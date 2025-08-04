@@ -24,7 +24,7 @@ export default function Hero() {
 
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
               <span className="bg-gradient-to-r from-wit-green via-wit-blue to-wit-coral bg-clip-text text-transparent">
-                Know what to do,
+                Know what to do Ezza,
               </span>
               <br />
               when to do it
