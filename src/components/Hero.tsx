@@ -15,7 +15,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
           {/* Left Column - Content */}
-          <div className="text-center lg:text-left lg:pr-8">
+          <div className="text-center lg:text-left lg:pr-8 mt-20">
             {/* Loved by users indicator */}
             {/* Main Headline */}
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -43,7 +43,7 @@ export default function Hero() {
                 href="https://apps.apple.com/us/app/wit-ai/id6748923692"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none"
+                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
               >
                 <svg
                   className="w-8 h-8 mr-3"
@@ -59,7 +59,7 @@ export default function Hero() {
               </a>
               <button
                 onClick={() => setIsAndroidModalOpen(true)}
-                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none"
+                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
               >
                 <svg
                   className="w-8 h-8 mr-3"
