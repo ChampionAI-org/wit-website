@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <img src="/Wit logo.png" alt="Witt" className="h-8 w-auto" />
+              <img src="/public/wit-white-transparent-bg.png" alt="Wit AI" className="h-8 w-auto" />
               <span className="text-2xl font-bold">Wit AI</span>
             </div>
             <p className="text-gray-400 mb-6">
