@@ -32,9 +32,7 @@ export default function Hero() {
 
             {/* Description */}
             <p className="text-xl text-gray-200 mb-12 leading-relaxed max-w-lg mx-auto lg:mx-0">
-              Meet Wit AI, the AI-powered assistant for students and families.
-              Get personalized productivity coaching, assignment tracking, and
-              academic insights.
+              Your personal assistant for students and parents.
             </p>
 
             {/* App Store Buttons */}
