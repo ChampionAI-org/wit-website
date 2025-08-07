@@ -107,8 +107,12 @@ export default function VideoTestimonial({
                 </div>
                 <div className="w-px h-8 bg-gray-300"></div>
                 <div>
-                  <div className="text-lg font-bold text-gray-900">4.9★</div>
-                  <div className="text-xs text-gray-600">App Store Rating</div>
+                  <div className="text-lg font-bold text-gray-900">
+                    Up to 75%
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    Reduction in Missing Assignments
+                  </div>
                 </div>
                 <div className="w-px h-8 bg-gray-300"></div>
                 <div className="text-center">
