@@ -1,5 +1,4 @@
-import React from 'react';
-import { Brain, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -9,20 +8,23 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <img src="/public/wit-white-transparent-bg.png" alt="Wit AI" className="h-8 w-auto" />
+              <img
+                src="wit-white-transparent-bg.png"
+                alt="Wit AI"
+                className="h-8 w-auto"
+              />
               <span className="text-2xl font-bold">Wit AI</span>
             </div>
             <p className="text-gray-400 mb-6">
-              Empowering students with AI-powered organization and executive function skills.
+              Empowering students with AI-powered organization and executive
+              function skills.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-gray-400">
                 <Mail className="w-4 h-4" />
                 <span>hi@witagent.ai</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-400">
-
-              </div>
+              <div className="flex items-center space-x-3 text-gray-400"></div>
             </div>
           </div>
 
@@ -55,10 +57,21 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">Support</h4>
             <ul className="space-y-3 text-gray-400">
               {/* <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Getting Started</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">School Partnerships</a></li> */}
+              <li><a href="#" className="hover:text-white transition-colors">Getting Started</a></li> */}
+              <li>
+                <a
+                  href="/privacy"
+                  className="hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className="hover:text-white transition-colors">
+                  Terms of Service
+                </a>
+              </li>
+              {/* <li><a href="#" className="hover:text-white transition-colors">School Partnerships</a></li> */}
             </ul>
           </div>
         </div>
@@ -69,9 +82,24 @@ export default function Footer() {
               © 2025 Wit AI. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Privacy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Cookies</a>
+              <a
+                href="/privacy"
+                className="text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Privacy
+              </a>
+              <a
+                href="/terms"
+                className="text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Terms
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Cookies
+              </a>
             </div>
           </div>
         </div>
