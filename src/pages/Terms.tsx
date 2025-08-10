@@ -1,7 +1,7 @@
 export default function Terms() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <div className="max-w-3xl mx-auto px-4 py-10">
+    <div className="min-h-screen pt-16">
+      <div className="max-w-3xl mx-auto px-4 py-10 [&_h2[id]]:scroll-mt-16">
         <h1 className="text-3xl font-bold mb-2">TERMS AND CONDITIONS</h1>
         <p className="text-gray-500 mb-8">Last updated January 26, 2025</p>
 

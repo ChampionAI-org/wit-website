@@ -1,6 +1,6 @@
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 pt-16">
       <div className="max-w-3xl mx-auto px-4 py-10">
         <h1 className="text-3xl font-bold mb-6">Wit's Privacy Policy</h1>
 
