@@ -55,8 +55,10 @@ export default function Hero() {
                   <div className="text-lg font-semibold">App Store</div>
                 </div>
               </a>
-              <button
-                onClick={() => setIsAndroidModalOpen(true)}
+              <a
+                href="https://play.google.com/store/apps/details?id=ai.wit"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
               >
                 <svg
@@ -70,7 +72,7 @@ export default function Hero() {
                   <div className="text-xs text-gray-300">Get it on</div>
                   <div className="text-lg font-semibold">Google Play</div>
                 </div>
-              </button>
+              </a>
             </div>
 
             {/* Divider */}

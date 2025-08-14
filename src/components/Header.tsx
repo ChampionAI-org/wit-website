@@ -61,8 +61,10 @@ export default function Header() {
                 <div className="text-sm font-semibold">App Store</div>
               </div>
             </a>
-            <button
-              onClick={() => setIsAndroidModalOpen(true)}
+            <a
+              href="https://play.google.com/store/apps/details?id=ai.wit"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center bg-black hover:bg-gray-900 text-white px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105"
             >
               <svg
@@ -76,7 +78,7 @@ export default function Header() {
                 <div className="text-xs text-gray-300">Get it on</div>
                 <div className="text-sm font-semibold">Google Play</div>
               </div>
-            </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -127,11 +129,10 @@ export default function Header() {
                     <div className="text-sm font-semibold">App Store</div>
                   </div>
                 </a>
-                <button
-                  onClick={() => {
-                    setIsAndroidModalOpen(true);
-                    setIsMenuOpen(false);
-                  }}
+                <a
+                  href="https://play.google.com/store/apps/details?id=ai.wit"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center bg-black hover:bg-gray-900 text-white px-3 py-2 rounded-lg transition-all duration-300 mx-3 w-full"
                 >
                   <svg
@@ -145,7 +146,7 @@ export default function Header() {
                     <div className="text-xs text-gray-300">Get it on</div>
                     <div className="text-sm font-semibold">Google Play</div>
                   </div>
-                </button>
+                </a>
               </div>
             </div>
           </div>

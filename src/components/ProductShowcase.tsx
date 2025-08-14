@@ -30,9 +30,9 @@ export default function ProductShowcase() {
         "Real-time progress updates",
         "Task assignment & monitoring",
         "Communication with student agent",
-        "Academic insights & reports",
+        "Manage family calendar events",
         "Goal setting & tracking",
-        "Teacher collaboration tools",
+        "LMS integration (when available)",
       ],
       gradient: "from-purple-500 to-pink-500",
       popular: false,
@@ -59,7 +59,7 @@ export default function ProductShowcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Start Free. Choose your Agent.
+            Start Free. Choose your Agent.
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Individual agents or complete family ecosystem—designed to grow with
@@ -78,7 +78,6 @@ export default function ProductShowcase() {
               features={product.features}
               gradient={product.gradient}
               popular={product.popular}
-              savings={product.savings}
             />
           ))}
         </div>
@@ -103,8 +102,10 @@ export default function ProductShowcase() {
               <div className="text-sm font-semibold">App Store</div>
             </div>
           </a>
-          <button
-            onClick={() => setIsAndroidModalOpen(true)}
+          <a
+            href="https://play.google.com/store/apps/details?id=ai.wit"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center bg-black hover:bg-gray-900 text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
           >
             <svg
@@ -118,7 +119,7 @@ export default function ProductShowcase() {
               <div className="text-xs text-gray-300">Get it on</div>
               <div className="text-sm font-semibold">Google Play</div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
 
