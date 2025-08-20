@@ -87,7 +87,7 @@ export default function Hero() {
               {/* Centered Schedule Demo Button */}
               <div className="mt-4 flex justify-center w-full">
                 <a
-                  href="https://calendly.com/hi-witagent/30min"
+                  href="https://calendly.com/hi-witagent/demo-meeting"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center bg-gradient-to-r from-wit-green to-wit-blue hover:from-wit-green/90 hover:to-wit-blue/90 text-white px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-semibold"
