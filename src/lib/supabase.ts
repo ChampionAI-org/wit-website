@@ -1,15 +1,16 @@
 import { createClient } from "@supabase/supabase-js";
 
 // Environment validation
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "https://placeholder.supabase.co";
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "placeholder-key";
 
-if (!supabaseUrl) {
-  throw new Error("Missing VITE_SUPABASE_URL environment variable");
+// Warn if not configured but don't throw in development
+if (!import.meta.env.VITE_SUPABASE_URL && process.env.NODE_ENV === 'development') {
+  console.warn("VITE_SUPABASE_URL not configured. Using placeholder for development.");
 }
 
-if (!supabaseAnonKey) {
-  throw new Error("Missing VITE_SUPABASE_ANON_KEY environment variable");
+if (!import.meta.env.VITE_SUPABASE_ANON_KEY && process.env.NODE_ENV === 'development') {
+  console.warn("VITE_SUPABASE_ANON_KEY not configured. Using placeholder for development.");
 }
 
 // Create and export the Supabase client
@@ -20,5 +21,5 @@ export const isClient = typeof window !== "undefined";
 
 // Optional: Export a function to check if Supabase is properly configured
 export const isSupabaseConfigured = () => {
-  return !!(supabaseUrl && supabaseAnonKey);
+  return !!(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
 };
