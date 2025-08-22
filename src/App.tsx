@@ -1,10 +1,10 @@
-import React from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import VideoTestimonial from "./components/VideoTestimonial";
 import ValueProps from "./components/ValueProps";
 import ProductShowcase from "./components/ProductShowcase";
 import TargetAudience from "./components/TargetAudience";
+import CalendarDemo from "./components/CalendarDemo";
 import Footer from "./components/Footer";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -38,6 +38,7 @@ function App() {
       <VideoTestimonial videoId="9hNmi9bTof8" />
       <ValueProps />
       <ProductShowcase />
+      <CalendarDemo />
       <TargetAudience />
       <Footer />
     </div>
