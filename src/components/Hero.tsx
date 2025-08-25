@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Brain, Users, ArrowLeftRight, Zap } from "lucide-react";
+import { useState } from "react";
+import { Brain, Users, ArrowLeftRight } from "lucide-react";
 import AndroidTestModal from "./AndroidTestModal";
 
 export default function Hero() {
@@ -9,20 +9,19 @@ export default function Hero() {
     <section className="relative min-h-screen bg-wit-hero-gradient overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-black/10"></div>
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-wit-green/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-wit-blue/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-wit-green/10 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-wit-blue/10 rounded-full blur-3xl animate-float-delayed"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
           {/* Left Column - Content */}
           <div className="text-center lg:text-left lg:pr-8 mt-20">
-            {/* Loved by users indicator */}
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in-down">
               Meet Wit.
             </h1>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight animate-fade-in-left">
               <span className="bg-gradient-to-r from-wit-green via-wit-blue to-wit-coral bg-clip-text text-transparent">
                 Know what to do,
               </span>
@@ -31,12 +30,12 @@ export default function Hero() {
             </h2>
 
             {/* Description */}
-            <p className="text-xl text-gray-200 mb-12 leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-xl text-gray-200 mb-12 leading-relaxed max-w-lg mx-auto lg:mx-0 animate-fade-in-up">
               Your personal assistant for students and parents.
             </p>
 
             {/* App Store Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md sm:max-w-none mx-auto lg:mx-0 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md sm:max-w-none mx-auto lg:mx-0 justify-center lg:justify-start animate-stagger-1">
               <a
                 href="https://apps.apple.com/us/app/wit-ai/id6748923692"
                 target="_blank"
@@ -112,27 +111,27 @@ export default function Hero() {
           </div>
 
           {/* Right Column - Visual/Mockup */}
-          <div className="relative lg:pl-8 py-20">
+          <div className="relative lg:pl-8 py-20 animate-fade-in-right">
             <div className="relative">
               {/* Mobile mockups - Side by side layout */}
               <div className="flex items-center justify-center gap-2 max-w-[180rem] mx-auto">
                 {/* Student Agent - Left */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center animate-scale-in">
                   <img
                     src="/homescreen_newphone.png"
                     alt="Wit AI Student Agent Interface"
-                    className="w-80 sm:w-96 md:w-[500px] lg:w-[1000px] xl:w-[2000px] h-auto mix-blend-multiply transform -rotate-3 scale-110 sm:scale-125 lg:scale-150"
+                    className="w-80 sm:w-96 md:w-[500px] lg:w-[1000px] xl:w-[2000px] h-auto mix-blend-multiply transform -rotate-3 scale-110 sm:scale-125 lg:scale-150 hover:scale-125 sm:hover:scale-150 lg:hover:scale-175 transition-transform duration-500"
                     style={{ backgroundColor: "transparent" }}
                   />
                   {/* Student Agent Description */}
                   <div className="text-center text-white mt-12">
-                    <Brain className="w-10 h-10 mx-auto mt-4 mb-4 text-wit-green" />
+                    <Brain className="w-10 h-10 mx-auto mt-4 mb-4 text-wit-green animate-float" />
                     <h3 className="text-l font-bold mb-1">Student Agent</h3>
                   </div>
                 </div>
 
                 {/* Agent Communication Visual */}
-                <div className="flex flex-col items-center justify-center py-1 -mt-64">
+                <div className="flex flex-col items-center justify-center py-1 -mt-64 animate-stagger-2">
                   {/* Communication bubbles */}
                   <div className="relative flex items-center gap-3">
                     {/* Left chat bubble (Student to Parent) */}
@@ -161,16 +160,16 @@ export default function Hero() {
                 </div>
 
                 {/* Parent Agent - Right */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center animate-scale-in">
                   <img
                     src="/classes.png"
                     alt="Wit AI Parent Agent Interface"
-                    className="w-80 sm:w-96 md:w-[500px] lg:w-[1000px] xl:w-[2000px] h-auto mix-blend-multiply transform rotate-3 scale-110 sm:scale-125 lg:scale-150"
+                    className="w-80 sm:w-96 md:w-[500px] lg:w-[1000px] xl:w-[2000px] h-auto mix-blend-multiply transform rotate-3 scale-110 sm:scale-125 lg:scale-150 hover:scale-125 sm:hover:scale-150 lg:hover:scale-175 transition-transform duration-500"
                     style={{ backgroundColor: "transparent" }}
                   />
                   {/* Parent Agent Description */}
                   <div className="text-center text-white mt-12">
-                    <Users className="w-10 h-10 mx-auto m-2 mt-4 text-wit-coral" />
+                    <Users className="w-10 h-10 mx-auto m-2 mt-4 text-wit-coral animate-float-delayed" />
                     <h3 className="text-l font-bold mb-1">Parent Agent</h3>
                   </div>
                 </div>
@@ -180,12 +179,12 @@ export default function Hero() {
         </div>
 
         {/* Trust Indicators at bottom */}
-        <div className="mt-20 text-center">
+        <div className="mt-20 text-center animate-stagger-3">
           <p className="text-gray-400 text-sm mb-4">
             Research-backed • Trusted by students and families
           </p>
           <div className="flex items-center justify-center space-x-8">
-            <div className="text-center">
+            <div className="text-center hover:scale-105 transition-transform duration-300">
               <div className="text-2xl font-bold text-white opacity-60">
                 500+
               </div>
@@ -194,14 +193,14 @@ export default function Hero() {
               </span>
             </div>
             <div className="w-px h-8 bg-gray-500 opacity-60"></div>
-            <div className="text-center">
+            <div className="text-center hover:scale-105 transition-transform duration-300">
               <div className="text-2xl font-bold text-white opacity-60">2</div>
               <span className="text-xs text-gray-400 mt-2 block">
                 Partnered Schools
               </span>
             </div>
             <div className="w-px h-8 bg-gray-500 opacity-60"></div>
-            <div className="text-center">
+            <div className="text-center hover:scale-105 transition-transform duration-300">
               <div className="text-2xl font-bold text-white opacity-60">
                 11%
               </div>

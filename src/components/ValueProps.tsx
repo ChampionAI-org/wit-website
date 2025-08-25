@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Target,
   TrendingUp,
@@ -7,8 +6,12 @@ import {
   Calendar,
   MessageSquare,
 } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function ValueProps() {
+  const titleAnimation = useScrollAnimation(0.1);
+  const cardsAnimation = useScrollAnimation(0.1);
+  const capabilitiesAnimation = useScrollAnimation(0.1);
   const features = [
     {
       icon: Target,
@@ -55,7 +58,12 @@ export default function ValueProps() {
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Value Props */}
-        <div className="text-center mb-20">
+        <div 
+          ref={titleAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-20 transition-all duration-700 ${
+            titleAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Three pillars of student success
           </h2>
@@ -65,12 +73,22 @@ export default function ValueProps() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div 
+          ref={cardsAnimation.ref as React.RefObject<HTMLDivElement>}
+          className="grid md:grid-cols-3 gap-8 mb-20"
+        >
           {features.map((feature, index) => (
-            <div key={index} className="group relative h-full">
+            <div 
+              key={index} 
+              className={`group relative h-full transition-all duration-700 ${
+                cardsAnimation.isVisible 
+                  ? `animate-stagger-${index + 1}` 
+                  : 'opacity-0 translate-y-8'
+              }`}
+            >
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 h-full flex flex-col">
                 <div
-                  className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}
                 >
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
@@ -86,7 +104,12 @@ export default function ValueProps() {
         </div>
 
         {/* Capabilities Grid */}
-        <div className="bg-white rounded-3xl p-12 shadow-xl">
+        <div 
+          ref={capabilitiesAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`bg-white rounded-3xl p-12 shadow-xl transition-all duration-700 ${
+            capabilitiesAnimation.isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Powerful capabilities, simple experience
@@ -99,7 +122,7 @@ export default function ValueProps() {
           <div className="grid md:grid-cols-3 gap-8">
             {capabilities.map((capability, index) => (
               <div key={index} className="text-center group">
-                <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                   <capability.icon className="w-6 h-6 text-white" />
                 </div>
                 <h4 className="text-xl font-semibold text-gray-900 mb-2">
