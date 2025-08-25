@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import {
-  GraduationCap,
   Building,
   Users,
   CheckCircle,
   Star,
   TrendingUp,
 } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function TargetAudience() {
   const [activeView, setActiveView] = useState("families");
+  const toggleAnimation = useScrollAnimation(0.1);
+  const contentAnimation = useScrollAnimation(0.1);
+  const benefitsAnimation = useScrollAnimation(0.1);
+  const ctaAnimation = useScrollAnimation(0.1);
 
   const views = {
     families: {
@@ -79,13 +83,18 @@ export default function TargetAudience() {
     <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* View Toggle */}
-        <div className="flex justify-center mb-16">
+        <div 
+          ref={toggleAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`flex justify-center mb-16 transition-all duration-700 ${
+            toggleAnimation.isVisible ? 'animate-fade-in-down' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="bg-white rounded-2xl p-2 shadow-lg border border-gray-200">
             {Object.entries(views).map(([key, view]) => (
               <button
                 key={key}
                 onClick={() => setActiveView(key)}
-                className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 ${
                   activeView === key
                     ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
@@ -103,9 +112,14 @@ export default function TargetAudience() {
         </div>
 
         {/* Content */}
-        <div className="text-center mb-16">
+        <div 
+          ref={contentAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-16 transition-all duration-700 ${
+            contentAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center">
+            <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center animate-float">
               <currentView.icon className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -118,13 +132,20 @@ export default function TargetAudience() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div 
+          ref={benefitsAnimation.ref as React.RefObject<HTMLDivElement>}
+          className="grid md:grid-cols-3 gap-8 mb-16"
+        >
           {currentView.benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-700 border border-gray-100 hover:-translate-y-2 ${
+                benefitsAnimation.isVisible 
+                  ? `animate-stagger-${index + 1}` 
+                  : 'opacity-0 translate-y-8'
+              }`}
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 hover:scale-110 hover:rotate-3 transition-transform duration-300">
                 <benefit.icon className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -160,7 +181,12 @@ export default function TargetAudience() {
         </div> */}
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div 
+          ref={ctaAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`text-center mt-16 transition-all duration-700 ${
+            ctaAnimation.isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'
+          }`}
+        >
           {activeView === "families" ? (
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { Brain, Users, Zap } from "lucide-react";
 import AndroidTestModal from "./AndroidTestModal";
 import ProductCard from "./ProductCard";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function ProductShowcase() {
   const [isAndroidModalOpen, setIsAndroidModalOpen] = useState(false);
+  const titleAnimation = useScrollAnimation(0.1);
+  const cardsAnimation = useScrollAnimation(0.1);
+  const buttonsAnimation = useScrollAnimation(0.1);
 
   const products = {
     student: {
@@ -57,7 +61,12 @@ export default function ProductShowcase() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div 
+          ref={titleAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-16 transition-all duration-700 ${
+            titleAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Start Free. Choose your Agent.
           </h2>
@@ -68,22 +77,38 @@ export default function ProductShowcase() {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid lg:grid-cols-3 gap-12 mb-12">
-          {Object.entries(products).map(([key, product]) => (
-            <ProductCard
+        <div 
+          ref={cardsAnimation.ref as React.RefObject<HTMLDivElement>}
+          className="grid lg:grid-cols-3 gap-12 mb-12"
+        >
+          {Object.entries(products).map(([key, product], index) => (
+            <div
               key={key}
-              icon={product.icon}
-              title={product.title}
-              description={product.description}
-              features={product.features}
-              gradient={product.gradient}
-              popular={product.popular}
-            />
+              className={`transition-all duration-700 ${
+                cardsAnimation.isVisible 
+                  ? `animate-stagger-${index + 1}` 
+                  : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <ProductCard
+                icon={product.icon}
+                title={product.title}
+                description={product.description}
+                features={product.features}
+                gradient={product.gradient}
+                popular={product.popular}
+              />
+            </div>
           ))}
         </div>
 
         {/* Download Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+        <div 
+          ref={buttonsAnimation.ref as React.RefObject<HTMLDivElement>}
+          className={`flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto transition-all duration-700 ${
+            buttonsAnimation.isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'
+          }`}
+        >
           <a
             href="https://apps.apple.com/us/app/wit-ai/id6748923692"
             target="_blank"
