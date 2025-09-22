@@ -1,6 +1,7 @@
+"use client";
 import React, { useState } from "react";
 import { X } from "lucide-react";
-import { supabase } from "../lib/supabase";
+import { getSupabase } from "../lib/supabase";
 
 interface AndroidTestModalProps {
   isOpen: boolean;
@@ -23,6 +24,7 @@ export default function AndroidTestModal({
     setIsSubmitting(true);
 
     try {
+      const supabase = getSupabase();
       // Insert data into Supabase
       const { data, error } = await supabase
         .from("android_waitlist_signups")
@@ -47,10 +49,15 @@ export default function AndroidTestModal({
         setIsSubmitted(false);
         onClose();
       }, 2000);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error signing up for test:", error);
       // Show the error message to the user in the alert for easier debugging
-      alert(`There was an error signing up. Please try again.\n\n${error?.message || error}`);
+      const message =
+        typeof error === 'object' && error !== null && 'message' in error &&
+        typeof (error as { message?: unknown }).message === 'string'
+          ? (error as { message: string }).message
+          : String(error);
+      alert(`There was an error signing up. Please try again.\n\n${message}`);
     } finally {
       setIsSubmitting(false);
     }

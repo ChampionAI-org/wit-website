@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  darkMode: 'media',
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -15,6 +20,12 @@ export default {
         "wit-light": "#f8fafc",
         "wit-gray": "#64748b",
 
+        // Background colors for consistency
+        "wit-bg-light": "#f8fafc",
+        "wit-bg-dark": "#1a1a1a",
+        "wit-card-light": "#ffffff",
+        "wit-card-dark": "#2a2a2a",
+
         // Gradients
         "wit-gradient-1": "#10b981",
         "wit-gradient-2": "#3b82f6",
@@ -25,7 +36,7 @@ export default {
         "wit-gradient-warm":
           "linear-gradient(135deg, #ff6b6b 0%, #10b981 100%)",
         "wit-hero-gradient":
-          "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
+          "linear-gradient(135deg, #1a1a1a 0%, #242424 30%, #2d2d2d 55%, #242424 80%, #1a1a1a 100%)",
       },
     },
   },

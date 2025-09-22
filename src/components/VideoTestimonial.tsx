@@ -1,5 +1,5 @@
 import React from "react";
-import { Play, Quote, ArrowUp } from "lucide-react";
+import { Quote, ArrowUp } from "lucide-react";
 
 interface VideoTestimonialProps {
   videoId: string; // YouTube video ID

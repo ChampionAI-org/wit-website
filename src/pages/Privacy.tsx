@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 pt-16">
+    <div className="min-h-screen bg-white text-gray-900">
       <div className="max-w-3xl mx-auto px-4 py-10">
         <h1 className="text-3xl font-bold mb-6">Wit's Privacy Policy</h1>
 
@@ -210,9 +212,9 @@ export default function Privacy() {
         </p>
 
         <div className="border-t border-gray-200 mt-10 pt-6">
-          <a href="/" className="text-blue-600 hover:underline">
+          <Link href="/" className="text-blue-600 hover:underline">
             Back to homepage
-          </a>
+          </Link>
         </div>
       </div>
     </div>

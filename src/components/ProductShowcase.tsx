@@ -1,7 +1,9 @@
+"use client";
 import React, { useState } from "react";
 import { Brain, Users, Zap } from "lucide-react";
 import AndroidTestModal from "./AndroidTestModal";
 import ProductCard from "./ProductCard";
+import { AnimateIn, StaggerIn } from "./Animate";
 
 export default function ProductShowcase() {
   const [isAndroidModalOpen, setIsAndroidModalOpen] = useState(false);
@@ -55,20 +57,24 @@ export default function ProductShowcase() {
   };
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-wit-light dark:bg-wit-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Start Free. Choose your Agent.
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Individual agents or complete family ecosystem—designed to grow with
-            your needs
-          </p>
+          <AnimateIn direction="left">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Start Free. Choose your Agent.
+            </h2>
+          </AnimateIn>
+          <AnimateIn direction="left" delay={0.05}>
+            <p className="text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto">
+              Individual agents or complete family ecosystem—designed to grow with
+              your needs
+            </p>
+          </AnimateIn>
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid lg:grid-cols-3 gap-12 mb-12">
+        <StaggerIn direction="left" className="grid lg:grid-cols-3 gap-12 mb-12">
           {Object.entries(products).map(([key, product]) => (
             <ProductCard
               key={key}
@@ -80,10 +86,10 @@ export default function ProductShowcase() {
               popular={product.popular}
             />
           ))}
-        </div>
+        </StaggerIn>
 
         {/* Download Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+        <StaggerIn direction="left" className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
           <a
             href="https://apps.apple.com/us/app/wit-ai/id6748923692"
             target="_blank"
@@ -120,7 +126,7 @@ export default function ProductShowcase() {
               <div className="text-sm font-semibold">Google Play</div>
             </div>
           </a>
-        </div>
+        </StaggerIn>
       </div>
 
       {/* Android Test Modal */}

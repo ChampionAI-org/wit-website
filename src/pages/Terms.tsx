@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Terms() {
   return (
     <div className="min-h-screen pt-16">
@@ -709,9 +711,9 @@ export default function Terms() {
         </p>
 
         <div className="border-t border-gray-200 mt-10 pt-6">
-          <a href="/" className="text-blue-600 hover:underline">
+          <Link href="/" className="text-blue-600 hover:underline">
             Back to homepage
-          </a>
+          </Link>
         </div>
       </div>
     </div>

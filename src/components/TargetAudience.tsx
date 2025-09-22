@@ -1,12 +1,7 @@
+"use client";
 import React, { useState } from "react";
-import {
-  GraduationCap,
-  Building,
-  Users,
-  CheckCircle,
-  Star,
-  TrendingUp,
-} from "lucide-react";
+import { Building, Users, CheckCircle, Star, TrendingUp } from "lucide-react";
+import { AnimateIn, StaggerIn } from "./Animate";
 
 export default function TargetAudience() {
   const [activeView, setActiveView] = useState("families");
@@ -80,6 +75,7 @@ export default function TargetAudience() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* View Toggle */}
         <div className="flex justify-center mb-16">
+          <AnimateIn direction="in">
           <div className="bg-white rounded-2xl p-2 shadow-lg border border-gray-200">
             {Object.entries(views).map(([key, view]) => (
               <button
@@ -100,25 +96,32 @@ export default function TargetAudience() {
               </button>
             ))}
           </div>
+          </AnimateIn>
         </div>
 
         {/* Content */}
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center">
-              <currentView.icon className="w-8 h-8 text-white" />
+          <AnimateIn direction="in">
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                <currentView.icon className="w-8 h-8 text-white" />
+              </div>
             </div>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {currentView.title}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {currentView.subtitle}
-          </p>
+          </AnimateIn>
+          <AnimateIn direction="left">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {currentView.title}
+            </h2>
+          </AnimateIn>
+          <AnimateIn direction="left" delay={0.05}>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {currentView.subtitle}
+            </p>
+          </AnimateIn>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <StaggerIn direction="left" className="grid md:grid-cols-3 gap-8 mb-16">
           {currentView.benefits.map((benefit, index) => (
             <div
               key={index}
@@ -135,7 +138,7 @@ export default function TargetAudience() {
               </p>
             </div>
           ))}
-        </div>
+        </StaggerIn>
 
         {/* Testimonial */}
         {/* <div className="bg-white rounded-3xl p-12 shadow-xl border border-gray-100 max-w-4xl mx-auto">
@@ -162,7 +165,7 @@ export default function TargetAudience() {
         {/* CTA Section */}
         <div className="text-center mt-16">
           {activeView === "families" ? (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <StaggerIn direction="left" className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="https://apps.apple.com/us/app/wit-ai/id6748923692"
                 target="_blank"
@@ -199,31 +202,33 @@ export default function TargetAudience() {
                   <div className="text-lg font-semibold">Google Play</div>
                 </div>
               </a>
-            </div>
+            </StaggerIn>
           ) : (
-            <div className="flex justify-center">
-              <a
-                href="https://calendly.com/hi-witagent/demo-meeting"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-gradient-to-r from-wit-green to-wit-blue hover:from-wit-green/90 hover:to-wit-blue/90 text-white px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-semibold"
-              >
-                <svg
-                  className="w-6 h-6 mr-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <AnimateIn direction="in">
+              <div className="flex justify-center">
+                <a
+                  href="https://calendly.com/hi-witagent/demo-meeting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center bg-gradient-to-r from-wit-green to-wit-blue hover:from-wit-green/90 hover:to-wit-blue/90 text-white px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-semibold"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Schedule Demo
-              </a>
-            </div>
+                  <svg
+                    className="w-6 h-6 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Schedule Demo
+                </a>
+              </div>
+            </AnimateIn>
           )}
         </div>
       </div>

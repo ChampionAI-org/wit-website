@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import { Brain, Users, ArrowLeftRight, Zap } from "lucide-react";
+"use client";
+import { useState } from "react";
+import { Brain, Users, ArrowLeftRight } from "lucide-react";
 import AndroidTestModal from "./AndroidTestModal";
+import { AnimateIn, StaggerIn } from "./Animate";
 
 export default function Hero() {
   const [isAndroidModalOpen, setIsAndroidModalOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen bg-wit-hero-gradient overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-black/10"></div>
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-wit-green/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-wit-blue/10 rounded-full blur-3xl"></div>
+    <section className="relative min-h-screen overflow-hidden">
+      {/* Subtle overlay to help text contrast over animated bg */}
+      <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-40">
+        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[800px]">
           {/* Left Column - Content */}
-          <div className="text-center lg:text-left lg:pr-8 mt-20">
+          <AnimateIn trigger="mount" direction="left" className="text-center lg:text-left lg:pr-8 mt-20">
             {/* Loved by users indicator */}
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-white mb-4 leading-tight">
               Meet Wit.
             </h1>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-white mb-8 leading-tight">
               <span className="bg-gradient-to-r from-wit-green via-wit-blue to-wit-coral bg-clip-text text-transparent">
                 Know what to do,
               </span>
@@ -31,17 +31,17 @@ export default function Hero() {
             </h2>
 
             {/* Description */}
-            <p className="text-xl text-gray-200 mb-12 leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-xl text-zinc-600 dark:text-zinc-200 mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
               Your personal assistant for students and parents.
             </p>
 
             {/* App Store Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md sm:max-w-none mx-auto lg:mx-0 justify-center lg:justify-start">
+            <StaggerIn trigger="mount" direction="left" className="flex flex-col sm:flex-row gap-6 max-w-md sm:max-w-none mx-auto lg:mx-0 justify-center lg:justify-start">
               <a
                 href="https://apps.apple.com/us/app/wit-ai/id6748923692"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
+                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
               >
                 <svg
                   className="w-8 h-8 mr-3"
@@ -59,7 +59,7 @@ export default function Hero() {
                 href="https://play.google.com/store/apps/details?id=ai.wit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
+                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
               >
                 <svg
                   className="w-8 h-8 mr-3"
@@ -73,16 +73,16 @@ export default function Hero() {
                   <div className="text-lg font-semibold">Google Play</div>
                 </div>
               </a>
-            </div>
+            </StaggerIn>
 
             {/* Divider */}
-            <div className="flex flex-col items-center my-8 max-w-md sm:max-w-none mx-auto">
+            <AnimateIn trigger="mount" direction="in" className="flex flex-col items-center my-12 max-w-md sm:max-w-none mx-auto">
               <div className="flex items-center w-full">
-                <div className="flex-1 h-px bg-gray-600"></div>
-                <span className="px-4 text-sm text-gray-400 whitespace-nowrap">
+                <div className="flex-1 h-px bg-gray-400 dark:bg-gray-600"></div>
+                <span className="px-4 text-sm text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
                   For Teachers & Administrators
                 </span>
-                <div className="flex-1 h-px bg-gray-600"></div>
+                <div className="flex-1 h-px bg-gray-400 dark:bg-gray-600"></div>
               </div>
               {/* Centered Schedule Demo Button */}
               <div className="mt-4 flex justify-center w-full">
@@ -90,7 +90,7 @@ export default function Hero() {
                   href="https://calendly.com/hi-witagent/demo-meeting"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-gradient-to-r from-wit-green to-wit-blue hover:from-wit-green/90 hover:to-wit-blue/90 text-white px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-semibold"
+                  className="flex items-center justify-center bg-gradient-to-r from-wit-green to-wit-blue hover:from-wit-green/90 hover:to-wit-blue/90 text-white px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-semibold text-lg"
                 >
                   <svg
                     className="w-6 h-6 mr-3"
@@ -108,14 +108,14 @@ export default function Hero() {
                   Schedule Demo
                 </a>
               </div>
-            </div>
-          </div>
+            </AnimateIn>
+          </AnimateIn>
 
           {/* Right Column - Visual/Mockup */}
-          <div className="relative lg:pl-8 py-20">
+          <AnimateIn trigger="mount" direction="right" className="relative lg:pl-8 py-20">
             <div className="relative">
               {/* Mobile mockups - Side by side layout */}
-              <div className="flex items-center justify-center gap-2 max-w-[180rem] mx-auto">
+              <StaggerIn trigger="mount" direction="right" className="flex items-center justify-center gap-2 max-w-[180rem] mx-auto">
                 {/* Student Agent - Left */}
                 <div className="flex flex-col items-center">
                   <img
@@ -125,7 +125,7 @@ export default function Hero() {
                     style={{ backgroundColor: "transparent" }}
                   />
                   {/* Student Agent Description */}
-                  <div className="text-center text-white mt-12">
+                  <div className="text-center text-zinc-900 dark:text-white mt-12">
                     <Brain className="w-10 h-10 mx-auto mt-4 mb-4 text-wit-green" />
                     <h3 className="text-l font-bold mb-1">Student Agent</h3>
                   </div>
@@ -155,7 +155,7 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  <p className="text-[8px] text-gray-300 font-medium mt-1">
+                  <p className="text-[8px] text-zinc-500 dark:text-zinc-300 font-medium mt-1">
                     Agents Work Together
                   </p>
                 </div>
@@ -169,51 +169,51 @@ export default function Hero() {
                     style={{ backgroundColor: "transparent" }}
                   />
                   {/* Parent Agent Description */}
-                  <div className="text-center text-white mt-12">
+                  <div className="text-center text-zinc-900 dark:text-white mt-12">
                     <Users className="w-10 h-10 mx-auto m-2 mt-4 text-wit-coral" />
                     <h3 className="text-l font-bold mb-1">Parent Agent</h3>
                   </div>
                 </div>
-              </div>
+              </StaggerIn>
             </div>
-          </div>
+          </AnimateIn>
         </div>
 
         {/* Trust Indicators at bottom */}
-        <div className="mt-20 text-center">
-          <p className="text-gray-400 text-sm mb-4">
+        <AnimateIn direction="in" className="mt-16 text-center">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-4">
             Research-backed • Trusted by students and families
           </p>
           <div className="flex items-center justify-center space-x-8">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white opacity-60">
+              <div className="text-2xl font-bold text-zinc-900 dark:text-white opacity-60">
                 500+
               </div>
-              <span className="text-xs text-gray-400 mt-2 block">
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 block">
                 Active Students
               </span>
             </div>
-            <div className="w-px h-8 bg-gray-500 opacity-60"></div>
+            <div className="w-px h-8 bg-gray-400 dark:bg-gray-500 opacity-60"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white opacity-60">2</div>
-              <span className="text-xs text-gray-400 mt-2 block">
+              <div className="text-2xl font-bold text-zinc-900 dark:text-white opacity-60">2</div>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 block">
                 Partnered Schools
               </span>
             </div>
-            <div className="w-px h-8 bg-gray-500 opacity-60"></div>
+            <div className="w-px h-8 bg-gray-400 dark:bg-gray-500 opacity-60"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white opacity-60">
+              <div className="text-2xl font-bold text-zinc-900 dark:text-white opacity-60">
                 11%
               </div>
-              <span className="text-xs text-gray-400 mt-2 block">
+              <span className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 block">
                 Study-Proven GPA Increase
               </span>
-              <span className="text-xs text-blue-400 mt-1 block font-medium">
+              <span className="text-xs text-blue-500 dark:text-blue-400 mt-1 block font-medium">
                 (Randomized Study)
               </span>
             </div>
           </div>
-        </div>
+        </AnimateIn>
       </div>
 
       {/* Android Test Modal */}
