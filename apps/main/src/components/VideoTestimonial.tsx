@@ -13,7 +13,7 @@ interface VideoTestimonialProps {
 
 export default function VideoTestimonial({
   videoId,
-  title = "See Wit AI in Action (Light & Dark)",
+  title = "See Wit AI in Action",
   subtitle = "(Formerly Champion AI)", // Default subtitle
   description = "Watch how students and families are transforming their academic experience with Wit AI",
   testimonialText = "Wit AI has completely changed how I manage my schoolwork. I'm more organized and less stressed than ever before.",
