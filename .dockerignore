@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Next.js build output
+.next
+apps/main/.next
+out
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Git & local
+.git
+.gitignore
+.DS_Store
+.env
+.env.*
+
+# Docker & misc
+Dockerfile*
+.dockerignore
+
+# Editor
+.vscode
+.idea
