@@ -71,12 +71,12 @@ export default function TargetAudience() {
   const currentView = views[activeView as keyof typeof views];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+    <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:bg-[#0b0b0b] dark:from-[#0b0b0b] dark:via-[#0b0b0b] dark:to-[#0b0b0b]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* View Toggle */}
         <div className="flex justify-center mb-16">
           <AnimateIn direction="in">
-          <div className="bg-white rounded-2xl p-2 shadow-lg border border-gray-200">
+          <div className="bg-white rounded-2xl p-2 shadow-lg border border-gray-200 dark:bg-zinc-900/70 dark:border-zinc-700">
             {Object.entries(views).map(([key, view]) => (
               <button
                 key={key}
@@ -84,7 +84,7 @@ export default function TargetAudience() {
                 className={`flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                   activeView === key
                     ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-zinc-800/60"
                 }`}
               >
                 <view.icon className="w-5 h-5" />
@@ -109,12 +109,12 @@ export default function TargetAudience() {
             </div>
           </AnimateIn>
           <AnimateIn direction="left">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               {currentView.title}
             </h2>
           </AnimateIn>
           <AnimateIn direction="left" delay={0.05}>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-slate-300 max-w-3xl mx-auto">
               {currentView.subtitle}
             </p>
           </AnimateIn>
@@ -125,15 +125,15 @@ export default function TargetAudience() {
           {currentView.benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              className="bg-white dark:bg-zinc-900/80 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-zinc-700/70"
             >
               <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
                 <benefit.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-slate-300 leading-relaxed">
                 {benefit.description}
               </p>
             </div>

@@ -3,6 +3,9 @@ import BezelButton from "../components/BezelButton";
 import HeroBackdrop from "../components/HeroBackdrop";
 // import PhoneMock from "../components/PhoneMock";
 import { AnimateIn, StaggerIn } from "../components/Animate";
+import Pricing from "../components/Pricing";
+import FAQ from "../components/FAQ";
+import DiscordCTA from "../components/DiscordCTA";
 
 function IconBadge() {
   return (
@@ -18,9 +21,14 @@ function IconBadge() {
 }
 
 export default function Landing() {
+  const DiscordGlyph = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden focusable="false" {...props}>
+      <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.372.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1569 2.419 0 1.3332-.9461 2.4189-2.1569 2.4189z" />
+    </svg>
+  );
   return (
     <main className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white pt-32 min-h-screen">
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section id="hero" className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center snap-start snap-always">
         <HeroBackdrop />
         <div className="relative">
           <AnimateIn trigger="mount" direction="in">
@@ -30,7 +38,8 @@ export default function Landing() {
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
-              Don't be a b*tch. Dream, Act, Achieve
+              <span className="block">Don't be a b*tch.</span>
+              <span className="block">Dream, Act, Achieve</span>
             </h1>
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left" delay={0.05}>
@@ -46,7 +55,9 @@ export default function Landing() {
             <BezelButton href="https://play.google.com/store/apps/details?id=ai.wit" variant="blue">
               Get it on Android
             </BezelButton>
-            {null}
+            <BezelButton href="https://discord.gg/uQcUXuQawe" variant="blue" className="p-3">
+              <DiscordGlyph className="w-5 h-5" />
+            </BezelButton>
           </StaggerIn>
           <AnimateIn direction="in" delay={0.1}>
             <p className="mt-6 text-sm text-zinc-600 dark:text-white/70">
@@ -57,7 +68,7 @@ export default function Landing() {
       </section>
 
       {/* Stats section */}
-      <section className="py-16 bg-wit-light dark:bg-wit-dark">
+      <section id="stats" className="py-16 bg-wit-light dark:bg-wit-dark snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerIn direction="right" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -88,7 +99,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 grid gap-6 md:grid-cols-2 lg:grid-cols-5 pb-32">
+      <section id="pillars" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 grid gap-6 md:grid-cols-2 lg:grid-cols-5 pb-32 snap-start snap-always">
         {[
           { t: "Think", d: "Brainstorm and break it down. Clarity cuts through the noise." },
           { t: "Do", d: "Act. Tasks, email, calendar — AI removes the friction." },
@@ -111,7 +122,7 @@ export default function Landing() {
       </section>
 
       {/* How it works with screenshots */}
-      <section className="bg-wit-card-light dark:bg-wit-dark text-zinc-900 dark:text-zinc-100 border-t border-zinc-100 dark:border-white/10 mt-16">
+      <section id="how-it-works" className="bg-wit-card-light dark:bg-wit-dark text-zinc-900 dark:text-zinc-100 border-t border-zinc-100 dark:border-white/10 mt-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
           <AnimateIn direction="left">
           <div>
@@ -144,17 +155,17 @@ export default function Landing() {
           </div>
           </AnimateIn>
           <AnimateIn direction="right">
-          <div className="flex items-center justify-center gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full place-items-center px-3 md:px-0">
             <img
               src="/homescreen_newphone.png"
               alt="App homescreen"
-              className="w-80 sm:w-96 md:w-[400px] h-auto transform -rotate-3 scale-110 sm:scale-125 transition-transform duration-300 hover:scale-130 hover:-rotate-2"
+              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:-rotate-2"
               style={{ backgroundColor: "transparent" }}
             />
             <img
               src="/classes.png"
               alt="Classes view"
-              className="w-80 sm:w-96 md:w-[400px] h-auto transform rotate-3 scale-110 sm:scale-125 transition-transform duration-300 hover:scale-130 hover:rotate-2"
+              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:rotate-2"
               style={{ backgroundColor: "transparent" }}
             />
           </div>
@@ -163,7 +174,7 @@ export default function Landing() {
       </section>
 
       {/* Social proof / values */}
-      <section className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white mt-16">
+      <section id="principles" className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white mt-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-32 grid md:grid-cols-3 gap-8">
           {["Clarity over noise", "Action over inertia", "Iteration over perfection"].map((h, i) => (
             <AnimateIn key={h} direction="left" delay={i * 0.05}>
@@ -183,6 +194,23 @@ export default function Landing() {
           ))}
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-white/10 snap-start snap-always">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <Pricing />
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-white/10 snap-start snap-always">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <FAQ />
+        </div>
+      </section>
+
+      {/* Large animated Discord CTA */}
+      <DiscordCTA />
     </main>
   );
 }

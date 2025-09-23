@@ -58,12 +58,12 @@ export default function ValueProps() {
         {/* Main Value Props */}
         <div className="text-center mb-20">
           <AnimateIn direction="left">
-            <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-6">
               Three pillars of student success
             </h2>
           </AnimateIn>
           <AnimateIn direction="left" delay={0.05}>
-            <p className="text-xl text-zinc-600 max-w-3xl mx-auto">
+            <p className="text-xl text-zinc-600 dark:text-slate-300 max-w-3xl mx-auto">
               Our AI agents work together to create a comprehensive support system
               that grows with your student's needs.
             </p>

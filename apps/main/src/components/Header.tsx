@@ -5,12 +5,32 @@ import { Menu, X } from "lucide-react";
 import AndroidTestModal from "./AndroidTestModal";
 import StoreIconButton from "./StoreIconButton";
 import { AnimateIn } from "./Animate";
+import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAndroidModalOpen, setIsAndroidModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  // Framer Motion: scroll-driven progress 0 -> 1 over first ~120px
+  const { scrollY } = useScroll();
+  const progressRaw = useTransform(scrollY, [0, 120], [0, 1]);
+  const progress = useSpring(progressRaw, { stiffness: 160, damping: 24, mass: 0.6 });
+  // Interpolations for a smooth morph
+  const topOffset = useTransform(progress, [0, 1], [0, 12]);
+  const barRadius = useTransform(progress, [0, 1], [0, 24]);
+  // No shadow at the very top to avoid a visible box
+  const shadowOpacity = useTransform(progress, [0, 0.18, 1], [0, 0.08, 0.22]);
+  // At the very top, keep header fully transparent so it blends with page background
+  // Slightly into scroll, fade in hero gradient, then crossfade to pill background
+  const heroBgOpacity = useTransform(progress, [0, 0.18, 1], [0, 1, 0]);
+  const pillBgOpacity = useTransform(progress, [0, 0.18, 1], [0, 0, 1]);
+  // Animate backdrop blur so it's 0 at rest
+  const heroBackdropBlur = useTransform(progress, [0, 0.18, 1], ["0px", "8px", "8px"]);
+  const pillBackdropBlur = useTransform(progress, [0, 0.18, 1], ["0px", "8px", "8px"]);
+  // A base layer that matches the page background exactly at the very top
+  const baseBgOpacity = useTransform(progress, [0, 0.08], [1, 0]);
+  const shadow = useMotionTemplate`0 8px 32px rgba(2,6,23, ${shadowOpacity})`;
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,25 +53,53 @@ export default function Header() {
   const navigation: { name: string; href: string }[] = [];
 
   // Styling that adapts between full-width hero bar and floating pill
-  const shellClasses = scrolled
-    ? "fixed top-3 left-0 right-0 z-50"
-    : "fixed top-0 w-full z-50";
+  // Note: top offset is animated via Framer Motion (topOffset)
+  const shellClasses = "fixed left-0 right-0 z-50";
   const containerClasses = scrolled
     ? "max-w-5xl mx-auto px-3 sm:px-4"
     : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8";
+  // Base structural classes; backgrounds are crossfaded via absolutely positioned layers
   const barClasses = scrolled
-    ? "flex items-center justify-between h-14 rounded-full bg-wit-card-light/90 text-slate-900 shadow-lg ring-1 ring-black/5 backdrop-blur supports-[backdrop-filter]:bg-wit-card-light/80 dark:bg-wit-card-dark/90 dark:text-white dark:ring-white/10 supports-[backdrop-filter]:dark:bg-wit-card-dark/80"
-    : "flex items-center justify-between h-14 sm:h-16 border-b border-white/10 bg-wit-hero-gradient/80 backdrop-blur supports-[backdrop-filter]:bg-wit-hero-gradient/70 text-white";
+    ? "flex items-center justify-between h-14 rounded-full text-slate-900 dark:text-white"
+    : "flex items-center justify-between h-14 sm:h-16 text-white";
 
   const linkColor = scrolled
     ? "text-zinc-700 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-white"
     : "text-zinc-200 hover:text-white";
 
   return (
-    <header className={shellClasses}>
-      <div className={containerClasses}>
+    <motion.header
+      className={shellClasses}
+      style={{ top: topOffset }}
+      initial={false}
+      aria-label="Site header"
+    >
+      <motion.div className={containerClasses} layout transition={{ type: "spring", stiffness: 220, damping: 28 }}>
         <AnimateIn trigger="mount" direction="left" distance={20}>
-        <div className={barClasses}>
+        <motion.div
+          className={`${barClasses} relative`}
+          layout
+          transition={{ type: "spring", stiffness: 220, damping: 28 }}
+          style={{ borderRadius: barRadius, boxShadow: shadow }}
+        >
+          {/* Background layers crossfade */}
+          {/* Base page background to avoid any visible box at top */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 bg-wit-light dark:bg-wit-dark pointer-events-none"
+            style={{ opacity: baseBgOpacity, borderRadius: barRadius }}
+          />
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 bg-wit-hero-gradient/80 supports-[backdrop-filter]:bg-wit-hero-gradient/70 pointer-events-none"
+            style={{ opacity: heroBgOpacity, backdropFilter: useMotionTemplate`blur(${heroBackdropBlur})`, borderRadius: barRadius }}
+          />
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 bg-wit-card-light/90 ring-1 ring-black/5 supports-[backdrop-filter]:bg-wit-card-light/80 dark:bg-wit-card-dark/90 dark:ring-white/10 supports-[backdrop-filter]:dark:bg-wit-card-dark/80"
+            style={{ opacity: pillBgOpacity, backdropFilter: useMotionTemplate`blur(${pillBackdropBlur})`, borderRadius: barRadius }}
+          />
+          {/* Content */}
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity pl-3 sm:pl-4">
@@ -111,7 +159,7 @@ export default function Header() {
               )}
             </button>
           </div>
-        </div>
+        </motion.div>
         </AnimateIn>
 
         {/* Mobile Navigation */}
@@ -171,13 +219,13 @@ export default function Header() {
             </AnimateIn>
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* Android Test Modal */}
       <AndroidTestModal
         isOpen={isAndroidModalOpen}
         onClose={() => setIsAndroidModalOpen(false)}
       />
-    </header>
+    </motion.header>
   );
 }

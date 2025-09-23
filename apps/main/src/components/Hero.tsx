@@ -12,10 +12,10 @@ export default function Hero() {
       {/* Subtle overlay to help text contrast over animated bg */}
       <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-40">
-        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[800px]">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[700px]">
           {/* Left Column - Content */}
-          <AnimateIn trigger="mount" direction="left" className="text-center lg:text-left lg:pr-8 mt-20">
+          <AnimateIn trigger="mount" direction="left" className="text-center lg:text-left lg:pr-8 mt-4">
             {/* Loved by users indicator */}
             {/* Main Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-white mb-4 leading-tight">
@@ -112,7 +112,7 @@ export default function Hero() {
           </AnimateIn>
 
           {/* Right Column - Visual/Mockup */}
-          <AnimateIn trigger="mount" direction="right" className="relative lg:pl-8 py-20">
+          <AnimateIn trigger="mount" direction="right" className="relative lg:pl-8 py-8">
             <div className="relative">
               {/* Mobile mockups - Side by side layout */}
               <StaggerIn trigger="mount" direction="right" className="flex items-center justify-center gap-2 max-w-[180rem] mx-auto">
@@ -180,7 +180,7 @@ export default function Hero() {
         </div>
 
         {/* Trust Indicators at bottom */}
-        <AnimateIn direction="in" className="mt-16 text-center">
+        <AnimateIn direction="in" className="mt-8 text-center">
           <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-4">
             Research-backed • Trusted by students and families
           </p>
