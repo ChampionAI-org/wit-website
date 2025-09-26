@@ -17,8 +17,12 @@ const DEFAULT_ITEMS: FAQItem[] = [
     a: "Wit is your AI partner for turning big goals into concrete projects and daily actions. It helps you plan, act, learn, and iterate—until you win.",
   },
   {
-    q: "Is Wit optimized for SEO?",
-    a: "Wit's website is SEO-friendly, but the product itself focuses on your personal productivity: projects, tasks, and momentum.",
+    q: "What are the core pillars of Wit?",
+    a: "Wit is built on five core pillars: Think, Do, Learn, Iterate, and Endure. These pillars guide you through the process of achieving your goals.",
+  },
+  {
+    q: "What are the core real features of Wit?",
+    a: "Organize your goals, projects, and tasks with ease. Proactively receive suggestions and insights. Iterate and refine your approach."
   },
   {
     q: "Do I need coding skills to use Wit?",
@@ -26,7 +30,7 @@ const DEFAULT_ITEMS: FAQItem[] = [
   },
   {
     q: "Can I customize Wit to fit my workflow?",
-    a: "Yes. Create your own projects, routines, and templates. Wit adapts to your style while offering smart suggestions along the way.",
+    a: "Yes. Create your own projects, routines. Wit adapts to your style while offering smart suggestions along the way.",
   },
   {
     q: "Does Wit work on mobile and web?",

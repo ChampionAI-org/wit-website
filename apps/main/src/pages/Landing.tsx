@@ -38,7 +38,7 @@ export default function Landing() {
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
-              <span className="block">Don't be a b*tch.</span>
+              <span className="block">F*ck waiting. Start now.</span>
               <span className="block">Dream, Act, Achieve</span>
             </h1>
           </AnimateIn>
