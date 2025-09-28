@@ -73,9 +73,9 @@ export default function Landing() {
           <StaggerIn direction="right" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { Icon: Users2, label: 'Total Users', value: '412', change: '+10% Up from last month' },
-              { Icon: CheckCircle2, label: 'Goals Achieved', value: '4', change: '+10% Up from last month' },
-              { Icon: MessageSquare, label: 'Messages Sent', value: '712', change: '+10% Up from last month' },
-              { Icon: Clock3, label: 'Daily Streaks', value: '48', change: '+10% Up from last month' },
+              { Icon: CheckCircle2, label: 'Goals Achieved', value: '4', change: '+100% Up from last month' },
+              { Icon: MessageSquare, label: 'Messages Sent', value: '7,326', change: '+24% Up from last month' },
+              { Icon: Clock3, label: 'Daily Streaks', value: '44', change: '+52% Up from last month' },
             ].map(({ Icon, label, value, change }) => (
               <AnimateIn key={label} direction={label === 'Goals Achieved' || label === 'Daily Streaks' ? 'up' : 'left'}
                 distance={28}
