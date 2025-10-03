@@ -97,7 +97,7 @@ export default function Landing() {
       </section>
 
       {/* Stats section */}
-      <section id="stats" className="py-16 bg-wit-light dark:bg-zinc-950 snap-start snap-always">
+      <section id="stats" className="py-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerIn
             direction="right"
@@ -190,7 +190,7 @@ export default function Landing() {
       </section>
 
       {/* How it works with screenshots */}
-      <section id="how-it-works" className="bg-wit-card-light dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border-t border-zinc-100 dark:border-zinc-800 mt-16 snap-start snap-always">
+      <section id="how-it-works" className="mt-16 snap-start snap-always border-t border-zinc-100 dark:border-zinc-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
           <AnimateIn direction="left">
           <div>
@@ -246,12 +246,12 @@ export default function Landing() {
       </section>
 
       {/* University Banner */}
-      <section className="bg-wit-light dark:bg-zinc-950 border-y border-zinc-100 dark:border-zinc-800 snap-start snap-always">
+      <section className="border-y border-zinc-100 dark:border-zinc-800 snap-start snap-always">
         <UniversityBanner variant="founder" className="py-14" />
       </section>
 
       {/* Social proof / values */}
-      <section id="principles" className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-white mt-16 snap-start snap-always">
+      <section id="principles" className="mt-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-32 grid md:grid-cols-3 gap-8">
           {[
             "Clarity over noise",
@@ -277,14 +277,14 @@ export default function Landing() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always">
+      <section id="pricing" className="border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Pricing />
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always">
+      <section id="faq" className="border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <FAQ />
         </div>

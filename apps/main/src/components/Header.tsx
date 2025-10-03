@@ -154,7 +154,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-2 pr-2 sm:pr-4">
             <BezelButton
               variant="neutral"
-              className="hidden md:inline-flex h-11 px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none"
+              className="hidden md:inline-flex h-11 px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none dark:from-neutral-800 dark:to-black dark:text-white dark:border-neutral-700"
               disabled
               aria-disabled
             >
@@ -208,7 +208,7 @@ export default function Header() {
               <div className="px-3">
                 <BezelButton
                   variant="neutral"
-                  className="w-full justify-between px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none"
+                  className="w-full justify-between px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none dark:from-neutral-800 dark:to-black dark:text-white dark:border-neutral-700"
                   disabled
                   aria-disabled
                 >

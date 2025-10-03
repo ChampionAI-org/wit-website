@@ -34,10 +34,10 @@ function variantClasses(variant: BezelVariant): string {
     case "neutral":
     default:
       return [
-        "bg-gradient-to-b from-zinc-50 to-zinc-200 text-zinc-900 dark:from-zinc-800 dark:to-zinc-900 dark:text-white",
-        "border border-zinc-300 dark:border-zinc-700",
-        "shadow-[inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-1px_0_rgba(0,0,0,0.08),0_10px_20px_rgba(0,0,0,0.18)]",
-        "hover:from-white hover:to-zinc-300 dark:hover:from-zinc-700 dark:hover:to-black",
+        "bg-gradient-to-b from-zinc-50 to-zinc-200 text-zinc-900 dark:from-white dark:to-zinc-200 dark:text-zinc-900",
+        "border border-zinc-300 dark:border-zinc-200",
+        "shadow-[inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-1px_0_rgba(0,0,0,0.08),0_10px_20px_rgba(0,0,0,0.18)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-1px_0_rgba(0,0,0,0.05),0_12px_20px_rgba(15,23,42,0.12)]",
+        "hover:from-white hover:to-zinc-300 dark:hover:from-zinc-100 dark:hover:to-zinc-300",
       ].join(" ");
   }
 }
