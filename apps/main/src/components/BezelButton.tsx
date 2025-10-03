@@ -11,6 +11,8 @@ export interface BezelButtonProps
   variant?: BezelVariant;
   className?: string;
   children: React.ReactNode;
+  target?: string;
+  rel?: string;
 }
 
 function variantClasses(variant: BezelVariant): string {
@@ -56,6 +58,8 @@ export default function BezelButton({
   variant = "neutral",
   className = "",
   children,
+  target,
+  rel,
   ...buttonProps
 }: BezelButtonProps) {
   const classes = [baseClasses, variantClasses(variant), sheenLayer, className].join(
@@ -64,7 +68,7 @@ export default function BezelButton({
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} target={target} rel={rel}>
         {children}
       </Link>
     );

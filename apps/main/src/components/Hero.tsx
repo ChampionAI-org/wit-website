@@ -41,7 +41,9 @@ export default function Hero() {
                 href="https://apps.apple.com/us/app/wit-ai/id6748923692"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
+                className="flex items-center justify-center sm:justify-start px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-[0_18px_40px_rgba(24,24,27,0.12)] text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0
+                bg-white text-zinc-900 border border-zinc-200 hover:bg-zinc-100
+                dark:bg-white dark:text-zinc-900 dark:border-zinc-200 dark:hover:bg-zinc-100"
               >
                 <svg
                   className="w-8 h-8 mr-3"
@@ -59,7 +61,9 @@ export default function Hero() {
                 href="https://play.google.com/store/apps/details?id=ai.wit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center sm:justify-start bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0"
+                className="flex items-center justify-center sm:justify-start px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-[0_18px_40px_rgba(24,24,27,0.12)] text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0
+                bg-white text-zinc-900 border border-zinc-200 hover:bg-zinc-100
+                dark:bg-white dark:text-zinc-900 dark:border-zinc-200 dark:hover:bg-zinc-100"
               >
                 <svg
                   className="w-8 h-8 mr-3"

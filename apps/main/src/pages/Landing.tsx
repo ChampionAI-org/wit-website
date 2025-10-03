@@ -6,6 +6,7 @@ import { AnimateIn, StaggerIn } from "../components/Animate";
 import Pricing from "../components/Pricing";
 import FAQ from "../components/FAQ";
 import DiscordCTA from "../components/DiscordCTA";
+import UniversityBanner from "../components/UniversityBanner";
 
 function IconBadge() {
   return (
@@ -27,7 +28,7 @@ export default function Landing() {
     </svg>
   );
   return (
-    <main className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white pt-32 min-h-screen">
+    <main className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 pt-32 min-h-screen">
       <section id="hero" className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center snap-start snap-always">
         <HeroBackdrop />
         <div className="relative">
@@ -49,7 +50,11 @@ export default function Landing() {
             </p>
           </AnimateIn>
           <StaggerIn direction="left" className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-            <BezelButton href="https://apps.apple.com/us/app/wit-ai/id6748923692" variant="dark">
+            <BezelButton
+              href="https://apps.apple.com/us/app/wit-ai/id6748923692"
+              variant="neutral"
+              className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
+            >
               Get the iOS App <ArrowRight className="w-4 h-4 ml-2" />
             </BezelButton>
             <BezelButton href="https://play.google.com/store/apps/details?id=ai.wit" variant="blue">
@@ -68,7 +73,7 @@ export default function Landing() {
       </section>
 
       {/* Stats section */}
-      <section id="stats" className="py-16 bg-wit-light dark:bg-wit-dark snap-start snap-always">
+      <section id="stats" className="py-16 bg-wit-light dark:bg-zinc-950 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerIn direction="right" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -82,13 +87,13 @@ export default function Landing() {
               >
               <div
                 key={label}
-                className="rounded-2xl p-5 backdrop-blur-xl border shadow-[0_8px_32px_rgba(2,6,23,0.12),_0_2px_8px_rgba(2,6,23,0.08)]
-                           bg-white/70 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-700
-                           dark:shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.45)]"
+                className="rounded-2xl p-5 backdrop-blur-xl border shadow-[0_12px_28px_rgba(15,23,42,0.12),_0_4px_12px_rgba(15,23,42,0.08)]
+                           bg-white/80 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-800
+                           dark:shadow-[0_20px_40px_rgba(0,0,0,0.55),_0_6px_16px_rgba(0,0,0,0.35)]"
               >
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-zinc-600 dark:text-white/70">{label}</div>
-                  <Icon className="w-4 h-4 text-zinc-400 dark:text-white/50" />
+                  <div className="text-sm text-zinc-600 dark:text-zinc-300">{label}</div>
+                  <Icon className="w-4 h-4 text-zinc-400 dark:text-zinc-200" />
                 </div>
                 <div className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">{value}</div>
                 <div className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">{change} demo</div>
@@ -110,11 +115,11 @@ export default function Landing() {
           <AnimateIn key={c.t} direction="left" delay={i * 0.04}>
           <div
             key={c.t}
-            className="rounded-2xl p-5 backdrop-blur-xl border shadow-[0_8px_32px_rgba(2,6,23,0.12),_0_2px_8px_rgba(2,6,23,0.08)]
-                       bg-white/70 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-700
-                       dark:shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.45)]"
+            className="rounded-2xl p-5 backdrop-blur-xl border shadow-[0_12px_28px_rgba(15,23,42,0.12),_0_4px_12px_rgba(15,23,42,0.08)]
+                       bg-white/80 border-zinc-200 dark:bg-zinc-900/75 dark:border-zinc-800
+                       dark:shadow-[0_20px_40px_rgba(0,0,0,0.5),_0_6px_16px_rgba(0,0,0,0.3)]"
           >
-            <div className="text-sm text-zinc-600 dark:text-white/70">{c.t}</div>
+            <div className="text-sm text-zinc-600 dark:text-zinc-300">{c.t}</div>
             <div className="mt-2 font-semibold text-zinc-900 dark:text-white">{c.d}</div>
           </div>
           </AnimateIn>
@@ -122,12 +127,12 @@ export default function Landing() {
       </section>
 
       {/* How it works with screenshots */}
-      <section id="how-it-works" className="bg-wit-card-light dark:bg-wit-dark text-zinc-900 dark:text-zinc-100 border-t border-zinc-100 dark:border-white/10 mt-16 snap-start snap-always">
+      <section id="how-it-works" className="bg-wit-card-light dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border-t border-zinc-100 dark:border-zinc-800 mt-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
           <AnimateIn direction="left">
           <div>
             <h2 className="text-3xl font-bold">Plan it. Do it. Track it.</h2>
-            <p className="mt-4 text-zinc-700 dark:text-zinc-300 leading-7">
+            <p className="mt-4 text-zinc-700 dark:text-zinc-200 leading-7">
               Wit turns your big goals into projects and daily tasks. It connects your
               email and calendar, removes friction, and keeps you moving.
             </p>
@@ -140,12 +145,16 @@ export default function Landing() {
               ].map((line) => (
                 <li key={line} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
-                  <span className="text-zinc-800 dark:text-zinc-300">{line}</span>
+                  <span className="text-zinc-800 dark:text-zinc-100">{line}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex gap-3">
-              <BezelButton href="https://apps.apple.com/us/app/wit-ai/id6748923692" variant="dark">
+              <BezelButton
+                href="https://apps.apple.com/us/app/wit-ai/id6748923692"
+                variant="neutral"
+                className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
+              >
                 Get the iOS App <ArrowRight className="w-4 h-4 ml-2" />
               </BezelButton>
               <BezelButton href="https://play.google.com/store/apps/details?id=ai.wit" variant="blue">
@@ -159,13 +168,13 @@ export default function Landing() {
             <img
               src="/homescreen_newphone.png"
               alt="App homescreen"
-              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:-rotate-2"
+              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:-rotate-2 drop-shadow-[0_30px_70px_rgba(9,9,11,0.55)]"
               style={{ backgroundColor: "transparent" }}
             />
             <img
               src="/classes.png"
               alt="Classes view"
-              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:rotate-2"
+              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:rotate-2 drop-shadow-[0_30px_70px_rgba(9,9,11,0.55)]"
               style={{ backgroundColor: "transparent" }}
             />
           </div>
@@ -173,19 +182,24 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* University Banner */}
+      <section className="bg-wit-light dark:bg-zinc-950 border-y border-zinc-100 dark:border-zinc-800 snap-start snap-always">
+        <UniversityBanner variant="founder" className="py-14" />
+      </section>
+
       {/* Social proof / values */}
-      <section id="principles" className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white mt-16 snap-start snap-always">
+      <section id="principles" className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-white mt-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-32 grid md:grid-cols-3 gap-8">
           {["Clarity over noise", "Action over inertia", "Iteration over perfection"].map((h, i) => (
             <AnimateIn key={h} direction="left" delay={i * 0.05}>
             <div
               key={h}
-              className="rounded-2xl p-6 backdrop-blur-xl border shadow-[0_8px_32px_rgba(2,6,23,0.12),_0_2px_8px_rgba(2,6,23,0.08)]
-                         bg-white/70 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-700
-                         dark:shadow-[0_8px_32px_rgba(0,0,0,0.55),_0_2px_8px_rgba(0,0,0,0.45)]"
+              className="rounded-2xl p-6 backdrop-blur-xl border shadow-[0_12px_28px_rgba(15,23,42,0.12),_0_4px_12px_rgba(15,23,42,0.08)]
+                         bg-white/80 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-800
+                         dark:shadow-[0_20px_40px_rgba(0,0,0,0.5),_0_6px_16px_rgba(0,0,0,0.3)]"
             >
               <h3 className="font-semibold text-lg text-zinc-900 dark:text-white">{h}</h3>
-              <p className="mt-2 text-zinc-700 dark:text-slate-400">
+              <p className="mt-2 text-zinc-700 dark:text-zinc-200">
                 Every plan meets reality. Wit helps you adapt, learn, and keep moving forward
                 until the goal is done.
               </p>
@@ -196,14 +210,14 @@ export default function Landing() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-white/10 snap-start snap-always">
+      <section id="pricing" className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Pricing />
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="bg-wit-light dark:bg-wit-dark text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-white/10 snap-start snap-always">
+      <section id="faq" className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <FAQ />
         </div>

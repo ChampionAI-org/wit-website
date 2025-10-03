@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, Sparkles, X } from "lucide-react";
 import AndroidTestModal from "./AndroidTestModal";
 import StoreIconButton from "./StoreIconButton";
 import { AnimateIn } from "./Animate";
+import BezelButton from "./BezelButton";
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 
 export default function Header() {
@@ -30,6 +31,9 @@ export default function Header() {
   const pillBackdropBlur = useTransform(progress, [0, 0.18, 1], ["0px", "8px", "8px"]);
   // A base layer that matches the page background exactly at the very top
   const baseBgOpacity = useTransform(progress, [0, 0.08], [1, 0]);
+  const baseBgOpacitySpring = useSpring(baseBgOpacity, { stiffness: 180, damping: 28, mass: 0.9 });
+  const heroBgOpacitySpring = useSpring(heroBgOpacity, { stiffness: 180, damping: 28, mass: 0.9 });
+  const pillBgOpacitySpring = useSpring(pillBgOpacity, { stiffness: 200, damping: 26, mass: 0.6 });
   const shadow = useMotionTemplate`0 8px 32px rgba(2,6,23, ${shadowOpacity})`;
 
   useEffect(() => {
@@ -74,6 +78,16 @@ export default function Header() {
       initial={false}
       aria-label="Site header"
     >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-wit-light dark:bg-zinc-950"
+        style={{ opacity: baseBgOpacity }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-wit-hero-gradient/80 supports-[backdrop-filter]:bg-wit-hero-gradient/70 dark:bg-black/30"
+        style={{ opacity: heroBgOpacity, backdropFilter: useMotionTemplate`blur(${heroBackdropBlur})` }}
+      />
       <motion.div className={containerClasses} layout transition={{ type: "spring", stiffness: 220, damping: 28 }}>
         <AnimateIn trigger="mount" direction="left" distance={20}>
         <motion.div
@@ -86,17 +100,17 @@ export default function Header() {
           {/* Base page background to avoid any visible box at top */}
           <motion.div
             aria-hidden
-            className="absolute inset-0 bg-wit-light dark:bg-wit-dark pointer-events-none"
+            className="absolute inset-0 bg-wit-light dark:bg-zinc-950 pointer-events-none"
             style={{ opacity: baseBgOpacity, borderRadius: barRadius }}
           />
           <motion.div
             aria-hidden
-            className="absolute inset-0 bg-wit-hero-gradient/80 supports-[backdrop-filter]:bg-wit-hero-gradient/70 pointer-events-none"
+            className="absolute inset-0 bg-wit-hero-gradient/80 supports-[backdrop-filter]:bg-wit-hero-gradient/70 dark:bg-black/30 pointer-events-none"
             style={{ opacity: heroBgOpacity, backdropFilter: useMotionTemplate`blur(${heroBackdropBlur})`, borderRadius: barRadius }}
           />
           <motion.div
             aria-hidden
-            className="absolute inset-0 bg-wit-card-light/90 ring-1 ring-black/5 supports-[backdrop-filter]:bg-wit-card-light/80 dark:bg-wit-card-dark/90 dark:ring-white/10 supports-[backdrop-filter]:dark:bg-wit-card-dark/80"
+            className="absolute inset-0 bg-white/80 ring-1 ring-black/5 backdrop-blur-xl dark:bg-zinc-900/80 dark:ring-white/10"
             style={{ opacity: pillBgOpacity, backdropFilter: useMotionTemplate`blur(${pillBackdropBlur})`, borderRadius: barRadius }}
           />
           {/* Content */}
@@ -138,6 +152,20 @@ export default function Header() {
 
           {/* App Store Icons (consistent across states) */}
           <div className="hidden md:flex items-center space-x-2 pr-2 sm:pr-4">
+            <BezelButton
+              variant="neutral"
+              className="hidden md:inline-flex h-11 px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none"
+              disabled
+              aria-disabled
+            >
+              <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-300">
+                <span className="font-semibold leading-none">Web</span>
+                <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.25em] rounded-full bg-zinc-200/80 px-2 py-[1px] text-zinc-600 dark:bg-zinc-700/70 dark:text-zinc-100">
+                  <Sparkles className="h-3 w-3" />
+                  Coming Soon
+                </span>
+              </span>
+            </BezelButton>
             <StoreIconButton href="https://apps.apple.com/us/app/wit-ai/id6748923692" ariaLabel="Download on the App Store">
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
             </StoreIconButton>
@@ -177,6 +205,22 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+              <div className="px-3">
+                <BezelButton
+                  variant="neutral"
+                  className="w-full justify-between px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none"
+                  disabled
+                  aria-disabled
+                >
+                  <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-300">
+                    <span className="font-semibold leading-none">Web</span>
+                    <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.25em] rounded-full bg-zinc-200/80 px-2 py-[1px] text-zinc-600 dark:bg-zinc-700/70 dark:text-zinc-100">
+                      <Sparkles className="h-3 w-3" />
+                      Coming Soon
+                    </span>
+                  </span>
+                </BezelButton>
+              </div>
               <div className="border-t border-white/10 pt-3 mt-3 space-y-3">
                 <a
                   href="https://apps.apple.com/us/app/wit-ai/id6748923692"

@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth scroll-pt-16">
-      <body className="min-h-screen bg-wit-light dark:bg-wit-dark text-slate-900 dark:text-white antialiased overflow-x-hidden">
+      <body className="min-h-screen bg-wit-light dark:bg-zinc-950 text-slate-900 dark:text-white antialiased overflow-x-hidden">
         <MotionProvider>
           <Header />
           <main className="min-h-screen pt-16 snap-y snap-proximity">{children}</main>

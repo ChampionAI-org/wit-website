@@ -4,7 +4,7 @@ import { AnimateIn, StaggerIn } from "./Animate";
 
 export default function Footer() {
   return (
-    <footer className="py-16 bg-wit-light dark:bg-wit-dark">
+    <footer className="py-16 bg-wit-light dark:bg-zinc-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="rounded-3xl p-10 backdrop-blur-xl border shadow-[0_8px_32px_rgba(2,6,23,0.12),_0_2px_8px_rgba(2,6,23,0.08)]
