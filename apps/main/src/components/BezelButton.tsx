@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 
-type BezelVariant = "neutral" | "dark" | "blue";
+type BezelVariant = "neutral" | "dark" | "blue" | "plain";
 
 export interface BezelButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,6 +17,9 @@ export interface BezelButtonProps
 
 function variantClasses(variant: BezelVariant): string {
   switch (variant) {
+    case "plain":
+      // No gradients, borders, or shadows – consumer supplies classes.
+      return "";
     case "dark":
       return [
         "bg-gradient-to-b from-neutral-800 to-black text-white",
@@ -62,9 +65,8 @@ export default function BezelButton({
   rel,
   ...buttonProps
 }: BezelButtonProps) {
-  const classes = [baseClasses, variantClasses(variant), sheenLayer, className].join(
-    " "
-  );
+  const withSheen = variant === "plain" ? "" : sheenLayer;
+  const classes = [baseClasses, variantClasses(variant), withSheen, className].join(" ");
 
   if (href) {
     return (

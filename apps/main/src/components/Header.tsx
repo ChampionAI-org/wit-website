@@ -153,14 +153,14 @@ export default function Header() {
           {/* App Store Icons (consistent across states) */}
           <div className="hidden md:flex items-center space-x-2 pr-2 sm:pr-4">
             <BezelButton
-              variant="neutral"
-              className="hidden md:inline-flex h-11 px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none dark:from-neutral-800 dark:to-black dark:text-white dark:border-neutral-700"
+              variant="plain"
+              className="hidden md:inline-flex h-11 px-4 py-2 text-sm cursor-not-allowed pointer-events-none bg-white text-zinc-700 border-0 shadow-none after:opacity-0 dark:bg-zinc-800 dark:text-white"
               disabled
               aria-disabled
             >
-              <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-300">
+              <span className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
                 <span className="font-semibold leading-none">Web</span>
-                <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.25em] rounded-full bg-zinc-200/80 px-2 py-[1px] text-zinc-600 dark:bg-zinc-700/70 dark:text-zinc-100">
+                <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.25em] rounded-full bg-zinc-200/80 px-2 py-[1px] text-zinc-600 dark:bg-zinc-700/70 dark:text-zinc-300">
                   <Sparkles className="h-3 w-3" />
                   Coming Soon
                 </span>
@@ -207,14 +207,14 @@ export default function Header() {
               ))}
               <div className="px-3">
                 <BezelButton
-                  variant="neutral"
-                  className="w-full justify-between px-4 py-2 text-sm cursor-not-allowed opacity-80 pointer-events-none dark:from-neutral-800 dark:to-black dark:text-white dark:border-neutral-700"
+                  variant="plain"
+                  className="w-full justify-between px-4 py-2 text-sm cursor-not-allowed pointer-events-none bg-white text-zinc-700 border-0 shadow-none after:opacity-0 dark:bg-zinc-800 dark:text-white"
                   disabled
                   aria-disabled
                 >
-                  <span className="flex items-center gap-2 text-zinc-500 dark:text-zinc-300">
+                  <span className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
                     <span className="font-semibold leading-none">Web</span>
-                    <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.25em] rounded-full bg-zinc-200/80 px-2 py-[1px] text-zinc-600 dark:bg-zinc-700/70 dark:text-zinc-100">
+                    <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.25em] rounded-full bg-zinc-200/80 px-2 py-[1px] text-zinc-600 dark:bg-zinc-700/70 dark:text-zinc-300">
                       <Sparkles className="h-3 w-3" />
                       Coming Soon
                     </span>
