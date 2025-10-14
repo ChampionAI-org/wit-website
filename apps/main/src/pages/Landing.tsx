@@ -77,13 +77,13 @@ export default function Landing() {
               variant="neutral"
               className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
             >
-              Get the iOS App <ArrowRight className="w-4 h-4 ml-2" />
+              Try for free on iOS <ArrowRight className="w-4 h-4 ml-2" />
             </BezelButton>
             <BezelButton
               href="https://play.google.com/store/apps/details?id=ai.wit"
               variant="blue"
             >
-              Get it on Android
+              Try for free on Android
             </BezelButton>
             <BezelButton
               href="https://discord.gg/uQcUXuQawe"
@@ -245,13 +245,13 @@ export default function Landing() {
                   variant="neutral"
                   className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
                 >
-                  Get the iOS App <ArrowRight className="w-4 h-4 ml-2" />
+                  Try for free on iOS <ArrowRight className="w-4 h-4 ml-2" />
                 </BezelButton>
                 <BezelButton
                   href="https://play.google.com/store/apps/details?id=ai.wit"
                   variant="blue"
                 >
-                  Get it on Android
+                  Try for free on Android
                 </BezelButton>
               </div>
             </div>
