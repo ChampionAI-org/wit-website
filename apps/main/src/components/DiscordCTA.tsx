@@ -14,7 +14,7 @@ export default function DiscordCTA() {
   return (
     <section
       id="discord"
-      className="relative border-t border-zinc-100 dark:border-zinc-800"
+      className="relative"
     >
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <AnimateIn direction="in">

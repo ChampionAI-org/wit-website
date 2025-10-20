@@ -220,7 +220,7 @@ export default function EmoLanding() {
         </AnimateIn>
       </section>
 
-      <section className="mt-24 border-y border-zinc-200 dark:border-white/10">
+      <section className="mt-24">
         <UniversityBanner variant="founder" className="py-14" />
       </section>
 

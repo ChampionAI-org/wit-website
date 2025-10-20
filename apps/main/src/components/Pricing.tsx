@@ -100,8 +100,7 @@ function PlanCardSingle({
           <Crown className="w-4 h-4 mr-2" /> Get Started
         </BezelButton>
       </div>
-
-      <hr className="my-6 border-zinc-200/60 dark:border-white/10" />
+      <div className="my-6" />
       <ul className="space-y-3">
         {features.map((f) => (
           <Feature key={f}>{f}</Feature>

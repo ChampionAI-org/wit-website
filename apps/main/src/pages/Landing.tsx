@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -13,6 +16,8 @@ import Pricing from "../components/Pricing";
 import FAQ from "../components/FAQ";
 import DiscordCTA from "../components/DiscordCTA";
 import UniversityBanner from "../components/UniversityBanner";
+import WaitlistModal from "../components/WaitlistModal";
+import RotatingHeroText from "../components/RotatingHeroText";
 
 function IconBadge() {
   return (
@@ -28,6 +33,7 @@ function IconBadge() {
 }
 
 export default function Landing() {
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
   const DiscordGlyph = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
@@ -56,16 +62,13 @@ export default function Landing() {
             </div>
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
-              <span className="block">F*ck waiting. Start now.</span>
-              <span className="block">Dream, Act, Achieve</span>
-            </h1>
+            <RotatingHeroText />
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left" delay={0.05}>
-            <p className="mt-8 text-lg sm:text-xl text-zinc-700 dark:text-white/85">
-              Wit is your AI partner built for speed, direction, and
-              consistency. It turns goals into clear roadmaps, removes the drag,
-              and keeps you moving every day.
+            <p className="mt-8 text-md sm:text-lg text-zinc-700 dark:text-white/85">
+              Give it a goal, and it will do whatever it takes for you to achieve it: set priorities,
+              do the research, plug into your apps, motivate you, send
+              educational videos, and more.
             </p>
           </AnimateIn>
           <StaggerIn
@@ -73,17 +76,11 @@ export default function Landing() {
             className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
           >
             <BezelButton
-              href="https://apps.apple.com/us/app/wit-ai/id6748923692"
               variant="neutral"
+              onClick={() => setIsWaitlistOpen(true)}
               className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
             >
-              Try for free on iOS <ArrowRight className="w-4 h-4 ml-2" />
-            </BezelButton>
-            <BezelButton
-              href="https://play.google.com/store/apps/details?id=ai.wit"
-              variant="blue"
-            >
-              Try for free on Android
+              Join Waitlist <ArrowRight className="w-4 h-4 ml-2" />
             </BezelButton>
             <BezelButton
               href="https://discord.gg/uQcUXuQawe"
@@ -93,84 +90,11 @@ export default function Landing() {
               <DiscordGlyph className="w-5 h-5" />
             </BezelButton>
           </StaggerIn>
-          <AnimateIn direction="in" delay={0.1}>
-            <p className="mt-6 text-sm text-zinc-600 dark:text-white/70">
-              We're mobile-first. The web app is functional but limited. For the
-              best experience, download our iOS or Android apps.
-            </p>
-          </AnimateIn>
-        </div>
-      </section>
-
-      {/* Stats section */}
-      <section id="stats" className="py-16 snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StaggerIn
-            direction="right"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {[
-              {
-                Icon: Users2,
-                label: "Total Users",
-                value: "412",
-                change: "+10% Up from last month",
-              },
-              {
-                Icon: CheckCircle2,
-                label: "Goals Achieved",
-                value: "4",
-                change: "+100% Up from last month",
-              },
-              {
-                Icon: MessageSquare,
-                label: "Messages Sent",
-                value: "7,326",
-                change: "+24% Up from last month",
-              },
-              {
-                Icon: Clock3,
-                label: "Daily Streaks",
-                value: "44",
-                change: "+52% Up from last month",
-              },
-            ].map(({ Icon, label, value, change }) => (
-              <AnimateIn
-                key={label}
-                direction={
-                  label === "Goals Achieved" || label === "Daily Streaks"
-                    ? "up"
-                    : "left"
-                }
-                distance={28}
-              >
-                <div
-                  key={label}
-                  className="rounded-2xl p-5 backdrop-blur-xl border shadow-[0_12px_28px_rgba(15,23,42,0.12),_0_4px_12px_rgba(15,23,42,0.08)]
-                           bg-white/80 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-800
-                           dark:shadow-[0_20px_40px_rgba(0,0,0,0.55),_0_6px_16px_rgba(0,0,0,0.35)]"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-zinc-600 dark:text-zinc-300">
-                      {label}
-                    </div>
-                    <Icon className="w-4 h-4 text-zinc-400 dark:text-zinc-200" />
-                  </div>
-                  <div className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">
-                    {value}
-                  </div>
-                  <div className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">
-                    {change} demo
-                  </div>
-                </div>
-              </AnimateIn>
-            ))}
-          </StaggerIn>
         </div>
       </section>
 
       {/* University Banner */}
-      <section className="border-y border-zinc-100 dark:border-zinc-800 snap-start snap-always">
+      <section className="snap-start snap-always">
         <UniversityBanner variant="founder" className="py-14" />
       </section>
 
@@ -180,16 +104,16 @@ export default function Landing() {
       >
         {[
           {
-            t: "Speed",
-            d: "Move fast while it still counts. Wit clears the clutter so momentum never stalls.",
+            t: "Always Scheming",
+            d: "Always thinking about what exactly what you need to do to succeed. Figuring out where you are and what you need to do to succeed.",
           },
           {
-            t: "Direction",
-            d: "Keep moves aligned to mission. Goals stay visible and next steps stay obvious.",
+            t: "Always Researching",
+            d: "Finding contacts to reach out to, the right videos to watch, and best practices. Researching anything related to your goals.",
           },
           {
-            t: "Consistency",
-            d: "Stack wins daily. Wit keeps you showing up until the finish line falls behind.",
+            t: "Always Working Your Goals",
+            d: "Doing whatever it takes to ensure you hit your goals. Whether that's motivation, educational videos, or reminders.",
           },
         ].map((c, i) => (
           <AnimateIn key={c.t} direction="left" delay={i * 0.04}>
@@ -213,23 +137,21 @@ export default function Landing() {
       {/* How it works with screenshots */}
       <section
         id="how-it-works"
-        className="mt-16 snap-start snap-always border-t border-zinc-100 dark:border-zinc-800"
+        className="mt-16 snap-start snap-always"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
           <AnimateIn direction="left">
             <div>
-              <h2 className="text-3xl font-bold">Plan it. Do it. Track it.</h2>
+              <h2 className="text-3xl font-bold">Give it a goal. It starts scheming.</h2>
               <p className="mt-4 text-zinc-700 dark:text-zinc-200 leading-7">
-                Wit turns your big goals into projects and daily tasks. It
-                connects your email and calendar, removes friction, and keeps
-                you moving.
+                Your agent's sole focus is getting you to the goal. It will do whatever it takes, set priorities, do the research, plug into your apps, motivate you, send educational videos, and more.
               </p>
               <ul className="mt-6 space-y-3">
                 {[
-                  "Brainstorm goals → auto-breakdown into projects and tasks",
-                  "One inbox for tasks, emails, and reminders",
-                  "Calendar-aware planning with smart suggestions",
-                  "Progress tracking, streaks, and momentum",
+                  "Sets the main priority — you always know what to do first",
+                  "Does the research — who to contact, what to watch, what to learn",
+                  "Connects into your main apps — email, calendar, tasks, context",
+                  "Pushes you forward — with reminders, pressure, and motivation",
                 ].map((line) => (
                   <li key={line} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
@@ -241,17 +163,11 @@ export default function Landing() {
               </ul>
               <div className="mt-8 flex gap-3">
                 <BezelButton
-                  href="https://apps.apple.com/us/app/wit-ai/id6748923692"
                   variant="neutral"
+                  onClick={() => setIsWaitlistOpen(true)}
                   className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
                 >
-                  Try for free on iOS <ArrowRight className="w-4 h-4 ml-2" />
-                </BezelButton>
-                <BezelButton
-                  href="https://play.google.com/store/apps/details?id=ai.wit"
-                  variant="blue"
-                >
-                  Try for free on Android
+                  Join Waitlist <ArrowRight className="w-4 h-4 ml-2" />
                 </BezelButton>
               </div>
             </div>
@@ -275,38 +191,10 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Social proof / values */}
-      <section id="principles" className="mt-16 snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pb-32 grid md:grid-cols-3 gap-8">
-          {[
-            "Clarity over noise",
-            "Action over inertia",
-            "Iteration over perfection",
-          ].map((h, i) => (
-            <AnimateIn key={h} direction="left" delay={i * 0.05}>
-              <div
-                key={h}
-                className="rounded-2xl p-6 backdrop-blur-xl border shadow-[0_12px_28px_rgba(15,23,42,0.12),_0_4px_12px_rgba(15,23,42,0.08)]
-                         bg-white/80 border-zinc-200 dark:bg-zinc-900/80 dark:border-zinc-800
-                         dark:shadow-[0_20px_40px_rgba(0,0,0,0.5),_0_6px_16px_rgba(0,0,0,0.3)]"
-              >
-                <h3 className="font-semibold text-lg text-zinc-900 dark:text-white">
-                  {h}
-                </h3>
-                <p className="mt-2 text-zinc-700 dark:text-zinc-200">
-                  Every plan meets reality. Wit helps you adapt, learn, and keep
-                  moving forward until the goal is done.
-                </p>
-              </div>
-            </AnimateIn>
-          ))}
-        </div>
-      </section>
-
       {/* Pricing Section */}
       <section
         id="pricing"
-        className="border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always"
+        className="snap-start snap-always"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Pricing />
@@ -316,7 +204,7 @@ export default function Landing() {
       {/* FAQ Section */}
       <section
         id="faq"
-        className="border-t border-zinc-100 dark:border-zinc-800 snap-start snap-always"
+        className="snap-start snap-always"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <FAQ />
@@ -325,6 +213,7 @@ export default function Landing() {
 
       {/* Large animated Discord CTA */}
       <DiscordCTA />
+      <WaitlistModal isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
     </main>
   );
 }

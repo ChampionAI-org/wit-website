@@ -99,7 +99,7 @@ export default function Footer() {
           </StaggerIn>
 
           <AnimateIn direction="in">
-            <div className="border-t border-slate-200 dark:border-slate-700 mt-12 pt-8">
+            <div className="mt-12 pt-8">
               <div className="flex flex-col md:flex-row items-center justify-between">
                 <p className="text-slate-600 dark:text-slate-400 text-sm">
                   &copy; 2025 Wit AI. All rights reserved.

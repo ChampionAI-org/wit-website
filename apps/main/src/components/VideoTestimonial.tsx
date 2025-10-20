@@ -99,7 +99,7 @@ export default function VideoTestimonial({
             </div>
 
             {/* Trust indicators */}
-            <div className="pt-6 border-t border-gray-200 dark:border-zinc-700/70">
+            <div className="pt-6">
               <div className="flex items-center justify-between text-center">
                 <div>
                   <div className="text-lg font-bold text-gray-900 dark:text-white">500+</div>

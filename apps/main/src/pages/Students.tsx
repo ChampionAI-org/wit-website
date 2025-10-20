@@ -12,7 +12,7 @@ export default function Students() {
       <section id="students-hero" className="snap-start snap-always">
         <Hero />
       </section>
-      <section id="students-university-banner" className="bg-wit-light dark:bg-wit-dark border-y border-zinc-100 dark:border-white/10 snap-start snap-always">
+      <section id="students-university-banner" className="bg-wit-light dark:bg-wit-dark snap-start snap-always">
         <UniversityBanner variant="students" className="py-12" />
       </section>
       <section id="students-testimonial" className="snap-start snap-always">

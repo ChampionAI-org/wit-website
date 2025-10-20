@@ -211,7 +211,7 @@ export default function Privacy() {
           [Re: Privacy Compliance Officer]
         </p>
 
-        <div className="border-t border-gray-200 mt-10 pt-6">
+        <div className="mt-10 pt-6">
           <Link href="/" className="text-blue-600 hover:underline">
             Back to homepage
           </Link>
