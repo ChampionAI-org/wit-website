@@ -13,6 +13,7 @@
     "docker:build": "docker build -t wit-website:local .",
     "docker:run": "docker run --rm -p 8080:8080 -e PORT=8080 wit-website:local",
     "gcp:buildx:push": "docker buildx build --platform linux/amd64 -t us-central1-docker.pkg.dev/pulse-464810/wit-website/wit-website:latest --push .",
-    "gcp:deploy": "gcloud run deploy wit-website --image us-central1-docker.pkg.dev/pulse-464810/wit-website/wit-website:latest --region us-central1 --allow-unauthenticated"
+    "gcp:deploy": "gcloud run deploy wit-website --image us-central1-docker.pkg.dev/pulse-464810/wit-website/wit-website:latest --region us-central1 --allow-unauthenticated",
+    "gcp-deploy-fresh": "npm run gcp:buildx:push && npm run gcp:deploy"
   }
 }
