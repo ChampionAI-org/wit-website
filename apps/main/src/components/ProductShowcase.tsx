@@ -96,7 +96,7 @@ export default function ProductShowcase() {
             onClick={() => setIsWaitlistOpen(true)}
             className="flex items-center justify-center bg-zinc-900 hover:bg-black text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
           >
-            Join Waitlist
+            Get Early Access
           </button>
         </StaggerIn>
       </div>

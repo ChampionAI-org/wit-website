@@ -78,7 +78,7 @@ export default function Landing() {
               onClick={() => setIsWaitlistOpen(true)}
               className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
             >
-              Join Waitlist <ArrowRight className="w-4 h-4 ml-2" />
+              Get Early Access <ArrowRight className="w-4 h-4 ml-2" />
             </BezelButton>
             <BezelButton
               href="https://discord.gg/uQcUXuQawe"
@@ -168,7 +168,7 @@ export default function Landing() {
                   onClick={() => setIsWaitlistOpen(true)}
                   className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
                 >
-                  Join Waitlist <ArrowRight className="w-4 h-4 ml-2" />
+                  Get Early Access <ArrowRight className="w-4 h-4 ml-2" />
                 </BezelButton>
               </div>
             </div>

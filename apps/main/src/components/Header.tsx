@@ -55,6 +55,15 @@ export default function Header() {
     return () => mq?.removeEventListener?.('change', update);
   }, []);
 
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('autoTrigger') === '1' || params.has('payload') || params.has('dt') || params.has('ri')) {
+        setIsWaitlistOpen(true);
+      }
+    } catch {}
+  }, []);
+
   const navigation: { name: string; href: string }[] = [];
 
   // Styling that adapts between full-width hero bar and floating pill
@@ -157,7 +166,7 @@ export default function Header() {
               variant="dark"
               onClick={() => setIsWaitlistOpen(true)}
             >
-              Join Waitlist
+              Get Early Access
             </BezelButton>
           </div>
 
@@ -215,7 +224,7 @@ export default function Header() {
                     className="w-full justify-center"
                     onClick={() => { setIsWaitlistOpen(true); setIsMenuOpen(false); }}
                   >
-                    Join Waitlist
+                    Get Early Access
                   </BezelButton>
                 </div>
               </div>
