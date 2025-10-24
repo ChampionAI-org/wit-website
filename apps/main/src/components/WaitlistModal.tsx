@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -20,6 +20,32 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false as boolean;
+    let timeout: any;
+    setIsReady(false);
+    if (typeof window !== "undefined") {
+      const defined = !!window.customElements?.get?.("form-widget");
+      if (defined) {
+        requestAnimationFrame(() => {
+          if (!cancelled) setIsReady(true);
+        });
+      } else if (window.customElements?.whenDefined) {
+        window.customElements.whenDefined("form-widget").then(() => {
+          if (!cancelled) setIsReady(true);
+        });
+      }
+      timeout = setTimeout(() => {
+        if (!cancelled) setIsReady(true);
+      }, 8000);
+    }
+    return () => {
+      cancelled = true;
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -47,7 +73,16 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <div className="space-y-4">
+              {!isReady && (
+                <div className="animate-pulse space-y-4" aria-busy>
+                  <div className="h-4 w-28 rounded bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-10 w-full rounded-xl bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-4 w-40 rounded bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-10 w-full rounded-xl bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-10 w-full rounded-xl bg-zinc-300 dark:bg-neutral-700" />
+                </div>
+              )}
+              <div className="space-y-4" style={{ display: isReady ? 'block' : 'none' }}>
                 <form-widget ucid='iqimP5fHwWzqaGiqOdGySIV7vNw'></form-widget>
               </div>
             </motion.div>
