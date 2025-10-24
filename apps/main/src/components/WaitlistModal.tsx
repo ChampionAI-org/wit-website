@@ -1,7 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'form-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        mode?: string;
+        ucid: string;
+      };
+    }
+  }
+}
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -9,54 +20,6 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
-  const [email, setEmail] = useState("");
-  const [goal, setGoal] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState<string>("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) {
-      setMessage("Please enter an email address.");
-      setStatus("error");
-      return;
-    }
-
-    setStatus("loading");
-    setMessage("");
-
-    try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), goal: goal.trim() }),
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Failed to join waitlist");
-      }
-
-      const data = await res.json().catch(() => ({ success: false }));
-      if (!data?.success) {
-        throw new Error("Unexpected response from waitlist");
-      }
-
-      setStatus("success");
-      setMessage("You're on the list. We'll email you when Wit is ready.");
-      setEmail("");
-      setGoal("");
-
-      setTimeout(() => {
-        onClose();
-        setStatus("idle");
-        setMessage("");
-      }, 1500);
-    } catch (err) {
-      setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Something went wrong.");
-    }
-  };
 
   return (
     <AnimatePresence>
@@ -84,61 +47,9 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-700 dark:border-zinc-700 dark:bg-neutral-800 dark:text-white"
-                    placeholder="you@example.com"
-                    disabled={status === "loading"}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="goal" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-                    What goal do you want to achieve with Wit?
-                  </label>
-                  <input
-                    id="goal"
-                    type="text"
-                    value={goal}
-                    onChange={(e) => setGoal(e.target.value)}
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-700 dark:border-zinc-700 dark:bg-neutral-800 dark:text-white"
-                    placeholder="e.g., reach 1k followers, build a daily study habit"
-                    disabled={status === "loading"}
-                  />
-                </div>
-
-                {message && (
-                  <p className={`text-sm ${status === "success" ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
-                    {message}
-                  </p>
-                )}
-
-                <div className="flex gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="flex-1 px-4 py-2 rounded-xl bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-neutral-800 dark:text-zinc-200 dark:hover:bg-neutral-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="flex-1 px-4 py-2 rounded-xl bg-zinc-900 text-white hover:bg-black disabled:opacity-70 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100"
-                  >
-                    {status === "loading" ? "Joining..." : "Join Waitlist"}
-                  </button>
-                </div>
-              </form>
+              <div className="space-y-4">
+                <form-widget ucid='iqimP5fHwWzqaGiqOdGySIV7vNw'></form-widget>
+              </div>
             </motion.div>
           </div>
         </div>
