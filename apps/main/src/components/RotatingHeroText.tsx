@@ -4,10 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const messages = [
   "founders going 0 → 1.",
-  "you losing weight.",
+  "your $10k MRR.",
+  "your first 100 users.",
   "your next 1K followers.",
-  "shipping v1 this week.",
-  "you getting jacked.",
+  "that angel investment.",
+  "your success"
 ];
 
 export default function RotatingHeroText() {

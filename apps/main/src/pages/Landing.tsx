@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import {
@@ -66,9 +66,7 @@ export default function Landing() {
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left" delay={0.05}>
             <p className="mt-8 text-md sm:text-lg text-zinc-700 dark:text-white/85">
-              Give it a goal, and it will do whatever it takes for you to achieve it: set priorities,
-              do the research, plug into your apps, motivate you, send
-              educational videos, and more.
+            The AI cofounder that helps first-time founders win. It knows your one priority, helps with the workload, does the research, finds contacts, motivates you, sends educational videos, anything you need to win.
             </p>
           </AnimateIn>
           <StaggerIn
@@ -112,8 +110,8 @@ export default function Landing() {
             d: "Finding contacts to reach out to, the right videos to watch, and best practices. Researching anything related to your goals.",
           },
           {
-            t: "Always Working Your Goals",
-            d: "Doing whatever it takes to ensure you hit your goals. Whether that's motivation, educational videos, or reminders.",
+            t: "Always Working For Your Win",
+            d: "Doing whatever it takes to ensure you win. Whether that's motivation, educational videos, reminders, finding contacts. Whatever it takes.",
           },
         ].map((c, i) => (
           <AnimateIn key={c.t} direction="left" delay={i * 0.04}>
@@ -135,22 +133,25 @@ export default function Landing() {
       </section>
 
       {/* How it works with screenshots */}
-      <section
-        id="how-it-works"
-        className="mt-16 snap-start snap-always"
-      >
+      <section id="how-it-works" className="mt-16 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
           <AnimateIn direction="left">
             <div>
-              <h2 className="text-3xl font-bold">Give it a goal. It starts scheming.</h2>
+              <h2 className="text-3xl font-bold">
+                Your AI cofounder is a hustler. It is always scheming.
+              </h2>
               <p className="mt-4 text-zinc-700 dark:text-zinc-200 leading-7">
-                Your agent's sole focus is getting you to the goal. It will do whatever it takes, set priorities, do the research, plug into your apps, motivate you, send educational videos, and more.
+                Your agent's sole focus is you getting to succeed as a founder.
+                It will do whatever it takes, set priorities, find contacts, do
+                the research, plug into your apps, motivate you, send
+                educational videos, and more.
               </p>
               <ul className="mt-6 space-y-3">
                 {[
-                  "Sets the main priority — you always know what to do first",
+                  "Sets the main priority — what is the one thing you need to do right now?",
                   "Does the research — who to contact, what to watch, what to learn",
-                  "Connects into your main apps — email, calendar, tasks, context",
+                  "An Active Teammate - proactively helps with the workload",
+                  "Always up to date — connects to your email, calendar, tasks, and context",
                   "Pushes you forward — with reminders, pressure, and motivation",
                 ].map((line) => (
                   <li key={line} className="flex items-start gap-3">
@@ -192,20 +193,14 @@ export default function Landing() {
       </section>
 
       {/* Pricing Section */}
-      <section
-        id="pricing"
-        className="snap-start snap-always"
-      >
+      <section id="pricing" className="snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Pricing />
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section
-        id="faq"
-        className="snap-start snap-always"
-      >
+      <section id="faq" className="snap-start snap-always">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <FAQ />
         </div>
@@ -213,7 +208,10 @@ export default function Landing() {
 
       {/* Large animated Discord CTA */}
       <DiscordCTA />
-      <WaitlistModal isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
+      <WaitlistModal
+        isOpen={isWaitlistOpen}
+        onClose={() => setIsWaitlistOpen(false)}
+      />
     </main>
   );
 }

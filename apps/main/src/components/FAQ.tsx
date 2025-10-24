@@ -14,15 +14,11 @@ export type FAQItem = {
 const DEFAULT_ITEMS: FAQItem[] = [
   {
     q: "What is Wit?",
-    a: "Wit is your AI partner for turning big goals into concrete projects and daily actions. It helps you plan, act, learn, and iterate—until you win.",
+    a: "Wit is your AI cofounder that helps first-time founders win. It connects to your email, calendar, and other apps to get context. Then, it proactively helps figure out what you need to do to win.",
   },
   {
-    q: "What are the core pillars of Wit?",
-    a: "Wit is built on five core pillars: Think, Do, Learn, Iterate, and Endure. These pillars guide you through the process of achieving your goals.",
-  },
-  {
-    q: "What are the core real features of Wit?",
-    a: "Organize your goals, projects, and tasks with ease. Proactively receive suggestions and insights. Iterate and refine your approach."
+    q: "How is this different from ChatGPT?",
+    a: "Wit is an AI cofounder, not a general purpose LLM. Our mission is to make your teammate feel alive. But before that, our AI agent is designed to proactively keep up to date with what is going on, learn about you and the team, and help you win by providing suggestions on what to do and by helping with the work itself.",
   },
   {
     q: "Do I need coding skills to use Wit?",
@@ -30,11 +26,11 @@ const DEFAULT_ITEMS: FAQItem[] = [
   },
   {
     q: "Can I customize Wit to fit my workflow?",
-    a: "Yes. Create your own projects, routines. Wit adapts to your style while offering smart suggestions along the way.",
+    a: "Yes. Your agent is built to join your team. We are integrating new apps daily!",
   },
   {
     q: "Does Wit work on mobile and web?",
-    a: "Absolutely. Wit is mobile‑first with iOS and Android apps, and a lightweight web experience for planning and review.",
+    a: "We are mobile-first. We believe the future of human and AI interaction is mobile and glasses, so we are building for that future.",
   },
 ];
 
