@@ -8,7 +8,8 @@ const messages = [
   "your first 100 users.",
   "your next 1K followers.",
   "that angel investment.",
-  "your success"
+  "your success",
+  "making your first $1M ARR.",
 ];
 
 export default function RotatingHeroText() {
