@@ -50,8 +50,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50">
-          <div className="flex items-center justify-center min-h-screen px-4">
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center px-4 py-6 sm:py-10">
             <motion.div
               className="fixed inset-0 bg-black/50"
               initial={{ opacity: 0 }}
@@ -61,7 +61,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               onClick={onClose}
             />
             <motion.div
-              className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 dark:bg-neutral-900 dark:ring-white/10"
+              className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 dark:bg-neutral-900 dark:ring-white/10 max-h-[90vh] sm:max-h-[85vh] overflow-y-auto overscroll-contain"
               initial={{ opacity: 0, y: 24, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.96 }}
