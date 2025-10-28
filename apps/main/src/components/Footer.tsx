@@ -41,8 +41,7 @@ export default function Footer() {
                 <span className="text-2xl font-bold text-slate-900 dark:text-white">Wit AI</span>
               </div>
               <p className="text-slate-600 dark:text-slate-400 mb-6">
-                Empowering students with AI-powered organization and executive
-                function skills.
+                Building the first AI cofounder that helps first-time founders win.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-slate-600 dark:text-slate-400">
