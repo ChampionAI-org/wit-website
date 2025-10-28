@@ -3,6 +3,7 @@ import './globals.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MotionProvider from '../components/MotionProvider'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Wit AI',
@@ -22,6 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-16">
       <body className="min-h-screen bg-wit-light dark:bg-zinc-950 text-slate-900 dark:text-white antialiased overflow-x-hidden">
+        <Script
+          id="viral-loops-loader"
+          src="https://app.viral-loops.com/widgetsV2/core/loader.js"
+          strategy="afterInteractive"
+          data-campaign-id="iqimP5fHwWzqaGiqOdGySIV7vNw"
+        />
         <MotionProvider>
           <Header />
           <main className="min-h-screen pt-16 snap-y snap-proximity">{children}</main>

@@ -1,7 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'form-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        mode?: string;
+        ucid: string;
+      };
+    }
+  }
+}
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -9,60 +20,38 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
-  const [email, setEmail] = useState("");
-  const [goal, setGoal] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState<string>("");
+  const [isReady, setIsReady] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) {
-      setMessage("Please enter an email address.");
-      setStatus("error");
-      return;
-    }
-
-    setStatus("loading");
-    setMessage("");
-
-    try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), goal: goal.trim() }),
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Failed to join waitlist");
+  useEffect(() => {
+    let cancelled = false as boolean;
+    let timeout: any;
+    setIsReady(false);
+    if (typeof window !== "undefined") {
+      const defined = !!window.customElements?.get?.("form-widget");
+      if (defined) {
+        requestAnimationFrame(() => {
+          if (!cancelled) setIsReady(true);
+        });
+      } else if (window.customElements?.whenDefined) {
+        window.customElements.whenDefined("form-widget").then(() => {
+          if (!cancelled) setIsReady(true);
+        });
       }
-
-      const data = await res.json().catch(() => ({ success: false }));
-      if (!data?.success) {
-        throw new Error("Unexpected response from waitlist");
-      }
-
-      setStatus("success");
-      setMessage("You're on the list. We'll email you when Wit is ready.");
-      setEmail("");
-      setGoal("");
-
-      setTimeout(() => {
-        onClose();
-        setStatus("idle");
-        setMessage("");
-      }, 1500);
-    } catch (err) {
-      setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Something went wrong.");
+      timeout = setTimeout(() => {
+        if (!cancelled) setIsReady(true);
+      }, 8000);
     }
-  };
+    return () => {
+      cancelled = true;
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50">
-          <div className="flex items-center justify-center min-h-screen px-4">
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center px-4 py-6 sm:py-10">
             <motion.div
               className="fixed inset-0 bg-black/50"
               initial={{ opacity: 0 }}
@@ -72,7 +61,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               onClick={onClose}
             />
             <motion.div
-              className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 dark:bg-neutral-900 dark:ring-white/10"
+              className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 dark:bg-neutral-900 dark:ring-white/10 max-h-[90vh] sm:max-h-[85vh] overflow-y-auto overscroll-contain"
               initial={{ opacity: 0, y: 24, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.96 }}
@@ -84,61 +73,18 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-700 dark:border-zinc-700 dark:bg-neutral-800 dark:text-white"
-                    placeholder="you@example.com"
-                    disabled={status === "loading"}
-                  />
+              {!isReady && (
+                <div className="animate-pulse space-y-4" aria-busy>
+                  <div className="h-4 w-28 rounded bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-10 w-full rounded-xl bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-4 w-40 rounded bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-10 w-full rounded-xl bg-zinc-200 dark:bg-neutral-800" />
+                  <div className="h-10 w-full rounded-xl bg-zinc-300 dark:bg-neutral-700" />
                 </div>
-                <div>
-                  <label htmlFor="goal" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-                    What goal do you want to achieve with Wit?
-                  </label>
-                  <input
-                    id="goal"
-                    type="text"
-                    value={goal}
-                    onChange={(e) => setGoal(e.target.value)}
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-700 dark:border-zinc-700 dark:bg-neutral-800 dark:text-white"
-                    placeholder="e.g., reach 1k followers, build a daily study habit"
-                    disabled={status === "loading"}
-                  />
-                </div>
-
-                {message && (
-                  <p className={`text-sm ${status === "success" ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
-                    {message}
-                  </p>
-                )}
-
-                <div className="flex gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="flex-1 px-4 py-2 rounded-xl bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-neutral-800 dark:text-zinc-200 dark:hover:bg-neutral-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="flex-1 px-4 py-2 rounded-xl bg-zinc-900 text-white hover:bg-black disabled:opacity-70 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100"
-                  >
-                    {status === "loading" ? "Joining..." : "Join Waitlist"}
-                  </button>
-                </div>
-              </form>
+              )}
+              <div className="space-y-4" style={{ display: isReady ? 'block' : 'none' }}>
+                <form-widget ucid='iqimP5fHwWzqaGiqOdGySIV7vNw'></form-widget>
+              </div>
             </motion.div>
           </div>
         </div>

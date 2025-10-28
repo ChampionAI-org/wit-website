@@ -37,13 +37,13 @@ export default function Hero() {
               Your personal assistant for students and parents.
             </p>
 
-            {/* Join Waitlist */}
+            {/* Get Early Access */}
             <StaggerIn trigger="mount" direction="left" className="flex flex-col sm:flex-row gap-6 max-w-md sm:max-w-none mx-auto lg:mx-0 justify-center lg:justify-start">
               <button
                 onClick={() => setIsWaitlistOpen(true)}
                 className="flex items-center justify-center sm:justify-start px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-[0_18px_40px_rgba(24,24,27,0.12)] text-lg sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0 bg-zinc-900 text-white hover:bg-black"
               >
-                Join Waitlist
+                Get Early Access
               </button>
             </StaggerIn>
 
