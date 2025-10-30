@@ -1,16 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Users2,
-  MessageSquare,
-  Clock3,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import BezelButton from "../components/BezelButton";
 import HeroBackdrop from "../components/HeroBackdrop";
-// import PhoneMock from "../components/PhoneMock";
 import { AnimateIn, StaggerIn } from "../components/Animate";
 import Pricing from "../components/Pricing";
 import FAQ from "../components/FAQ";
@@ -176,14 +169,14 @@ export default function Landing() {
           <AnimateIn direction="right">
             <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full place-items-center px-3 md:px-0">
               <img
-                src="/homescreen_newphone.png"
-                alt="App homescreen"
+                src="/device/Device-1.png"
+                alt="Wit app device screenshot 1"
                 className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:-rotate-2 drop-shadow-[0_18px_44px_rgba(15,23,42,0.22)] dark:drop-shadow-[0_30px_70px_rgba(3,4,7,0.6)]"
                 style={{ backgroundColor: "transparent" }}
               />
               <img
-                src="/classes.png"
-                alt="Classes view"
+                src="/device/Device-2.png"
+                alt="Wit app device screenshot 2"
                 className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:rotate-2 drop-shadow-[0_18px_44px_rgba(15,23,42,0.22)] dark:drop-shadow-[0_30px_70px_rgba(3,4,7,0.6)]"
                 style={{ backgroundColor: "transparent" }}
               />
