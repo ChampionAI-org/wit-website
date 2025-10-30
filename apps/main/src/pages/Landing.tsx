@@ -175,8 +175,8 @@ export default function Landing() {
                 style={{ backgroundColor: "transparent" }}
               />
               <img
-                src="/device/Device-2.png"
-                alt="Wit app device screenshot 2"
+                src="/device/Device-3.png"
+                alt="Wit app device screenshot 3"
                 className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:rotate-2 drop-shadow-[0_18px_44px_rgba(15,23,42,0.22)] dark:drop-shadow-[0_30px_70px_rgba(3,4,7,0.6)]"
                 style={{ backgroundColor: "transparent" }}
               />
