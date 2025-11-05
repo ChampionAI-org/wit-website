@@ -24,10 +24,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth scroll-pt-16">
       <body className="min-h-screen bg-wit-light dark:bg-zinc-950 text-slate-900 dark:text-white antialiased overflow-x-hidden">
         <Script
-          id="viral-loops-loader"
-          src="https://app.viral-loops.com/widgetsV2/core/loader.js"
+          id="getlaunchlist-diy"
+          src="https://getlaunchlist.com/js/widget-diy.js"
           strategy="afterInteractive"
-          data-campaign-id="iqimP5fHwWzqaGiqOdGySIV7vNw"
         />
         <MotionProvider>
           <Header />
