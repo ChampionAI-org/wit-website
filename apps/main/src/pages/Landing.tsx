@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { 
   ArrowRight, CheckCircle2, Brain, Search, Zap, Sparkles, 
-  Atom, Calendar, Mail, MapPin, Music, Hash, Filter, Shield, Settings, 
-  FileText, Layout
+  Atom, Calendar, MapPin, Music, Hash, Filter, Shield, Settings, 
+  FileText, Layout, Github
 } from "lucide-react";
 import BezelButton from "../components/BezelButton";
 import HeroBackdrop from "../components/HeroBackdrop";
@@ -19,6 +20,63 @@ import RotatingHeroText from "../components/RotatingHeroText";
 
 export default function Landing() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+  
+  // Integration Graph Refs & State
+  const containerRef = useRef<HTMLDivElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const childRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
+  const [paths, setPaths] = useState<string[]>([]);
+
+  // Calculate paths on mount/resize
+  useEffect(() => {
+    const updateLayout = () => {
+      if (!containerRef.current || !parentRef.current) return;
+
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const parentRect = parentRef.current.getBoundingClientRect();
+
+      // Update SVG size to match container
+      setSvgSize({ width: containerRect.width, height: containerRect.height });
+
+      // Parent connection point (bottom center) relative to container
+      const pX = parentRect.left + parentRect.width / 2 - containerRect.left;
+      const pY = parentRect.bottom - containerRect.top;
+
+      const newPaths = childRefs.current.map((child) => {
+        if (!child) return "";
+        const childRect = child.getBoundingClientRect();
+        
+        // Child connection point (top center) relative to container
+        const cX = childRect.left + childRect.width / 2 - containerRect.left;
+        const cY = childRect.top - containerRect.top;
+
+        // Control points for a smooth S-curve
+        const midY = (pY + cY) / 2;
+
+        // Cubic Bezier: M start C cp1, cp2, end
+        return `M ${pX} ${pY} C ${pX} ${midY}, ${cX} ${midY}, ${cX} ${cY}`;
+      });
+
+      setPaths(newPaths);
+    };
+
+    // Initial calculation
+    updateLayout();
+    // Recalculate after a short delay to ensure layout is settled (e.g. font load/animation)
+    const timeout = setTimeout(updateLayout, 100);
+
+    const observer = new ResizeObserver(updateLayout);
+    if (containerRef.current) observer.observe(containerRef.current);
+    window.addEventListener("resize", updateLayout);
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+      window.removeEventListener("resize", updateLayout);
+    };
+  }, []);
+
   const DiscordGlyph = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
@@ -118,13 +176,17 @@ export default function Landing() {
                      {/* Card 2: Email */}
                      <div className="absolute -left-4 bottom-48 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_7s_ease-in-out_2s_infinite]">
                         <div className="flex items-center gap-3">
-                             <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                                <Mail size={16} />
-                            </div>
-                            <div>
+                             <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                <img
+                                  src="/integration-logos/Google-G-Logo.svg"
+                                  alt="Gmail logo"
+                                  className="w-4 h-4 object-contain"
+                                />
+                             </div>
+                             <div>
                                 <div className="text-xs font-medium text-zinc-500">Drafted</div>
                                 <div className="text-sm font-bold">Investor Update</div>
-                            </div>
+                             </div>
                         </div>
                      </div>
 
@@ -167,132 +229,201 @@ export default function Landing() {
             </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col gap-6">
            
-           {/* Card 1: Context */}
-           <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
-                <div className="mb-8 relative z-20">
-                    <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Everything, Connected</h3>
-                    <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Your tools don't talk to each other. Wit fixes that. It weaves Slack, Linear, and Email into a single brain, so you never lose context.
+           {/* Card 1: Integrations (Full Width) */}
+           <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 md:p-12 min-h-[500px] flex flex-col">
+                <div className="mb-12 relative z-20 max-w-3xl">
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">All your apps in one place.</h3>
+                    <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                       Let Wit use all your stuff. It connects with Gmail, Slack, and Notion to give you a unified view of your work.
                     </p>
                 </div>
-                <div className="flex-1 relative flex items-center justify-center mt-4 z-10">
+                
+                <div className="flex-1 relative flex items-end justify-center mt-8 z-10 w-full">
                      {/* Tree Graph */}
-                     <div className="relative w-full max-w-md flex flex-col items-center">
+                     <div ref={containerRef} className="relative w-full max-w-5xl flex flex-col items-center h-[250px] md:h-[300px] lg:h-[320px]">
                          {/* Parent Node */}
-                         <div className="z-10 bg-white dark:bg-zinc-800 shadow-sm border border-zinc-200 dark:border-zinc-700 rounded-full px-4 py-2 flex items-center gap-2 mb-8">
-                             <Atom className="w-4 h-4 text-blue-500" />
-                             <span className="text-sm font-medium">Synthesizing</span>
+                         <div ref={parentRef} className="absolute -top-16 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3">
+                             <Atom className="w-5 h-5 text-emerald-500" />
+                             <span className="text-base font-semibold text-zinc-900 dark:text-white">Wit Core</span>
                          </div>
                          
                          {/* Connecting Lines */}
-                         <svg className="absolute top-8 left-0 w-full h-16 overflow-visible pointer-events-none" preserveAspectRatio="none" viewBox="0 0 400 60">
-                            <path d="M 200 0 C 200 20, 40 20, 40 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
-                            <path d="M 200 0 C 200 20, 104 20, 104 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
-                            <path d="M 200 0 C 200 20, 168 20, 168 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
-                            <path d="M 200 0 C 200 20, 232 20, 232 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
-                            <path d="M 200 0 C 200 20, 296 20, 296 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
-                            <path d="M 200 0 C 200 20, 360 20, 360 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                        <svg 
+                            className="absolute inset-0 overflow-visible pointer-events-none" 
+                            width={svgSize.width}
+                            height={svgSize.height}
+                            style={{ width: '100%', height: '100%' }}
+                        >
+                            {paths.map((d, i) => (
+                              <motion.path
+                                key={i}
+                                d={d}
+                                fill="none"
+                                stroke="currentColor"
+                                className="text-zinc-300 dark:text-zinc-700"
+                                strokeWidth="2"
+                                vectorEffect="non-scaling-stroke"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                whileInView={{ pathLength: 1, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                              />
+                            ))}
                          </svg>
 
-                         {/* Child Nodes - Founder Tools */}
-                         <div className="flex justify-between w-full px-2 pt-6">
+                         {/* Child Nodes */}
+                        <StaggerIn className="grid grid-cols-5 w-full gap-0 mt-8 md:mt-12" stagger={0.1} delay={0.5}>
                              {[
-                                { Icon: Calendar, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-900/20" },
-                                { Icon: FileText, color: "text-zinc-700", bg: "bg-zinc-100 dark:bg-zinc-800" }, // Notion/Docs
-                                { Icon: Mail, color: "text-red-500", bg: "bg-red-50 dark:bg-red-900/20" }, // Gmail
-                                { Icon: Layout, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-900/20" }, // Linear/Jira
-                                { Icon: Settings, color: "text-zinc-600", bg: "bg-zinc-100 dark:bg-zinc-800" }, // Code/GitHub
-                                { Icon: Hash, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-900/20" } // Slack
+                                { 
+                                  label: "Gmail", 
+                                  bg: "bg-white dark:bg-white/10", 
+                                  src: "/integration-logos/Google-G-Logo.svg",
+                                  isImage: true
+                                },
+                                { 
+                                  label: "Linear", 
+                                  bg: "bg-white dark:bg-white/10",
+                                  lightSrc: "/integration-logos/Linear-Brand-Assets/logo-dark.svg", // dark logo on light background
+                                  darkSrc: "/integration-logos/Linear-Brand-Assets/logo-light.svg", // light logo on dark background
+                                  isImage: true
+                                },
+                                { 
+                                  label: "Notion", 
+                                  bg: "bg-white dark:bg-white/10",
+                                  src: "/integration-logos/Notion-logo.svg",
+                                  isImage: true
+                                },
+                                { 
+                                  label: "Slack", 
+                                  bg: "bg-white dark:bg-white/10",
+                                  src: "/integration-logos/Slack-Logo.svg",
+                                  isImage: true
+                                },
+                                { 
+                                  label: "GitHub", 
+                                  bg: "bg-white dark:bg-white/10",
+                                  icon: (className: string) => <Github className={className} />,
+                                  color: "text-black dark:text-white",
+                                  isImage: false
+                                }
                              ].map((item, i) => (
-                                 <div key={i} className={`w-8 h-8 md:w-10 md:h-10 rounded-xl ${item.bg} flex items-center justify-center shadow-sm border border-black/5`}>
-                                    <item.Icon className={`w-4 h-4 md:w-5 md:h-5 ${item.color}`} />
+                                 <div 
+                                    key={i} 
+                                    ref={el => { childRefs.current[i] = el }} 
+                                    className="flex flex-col items-center gap-3"
+                                 >
+                                     <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl ${item.bg} flex items-center justify-center shadow-sm border border-zinc-200 dark:border-zinc-700 ring-4 ring-white dark:ring-zinc-900 p-3 md:p-4`}>
+                                        {item.isImage ? (
+                                          item.lightSrc && item.darkSrc ? (
+                                            <>
+                                              <img
+                                                src={item.lightSrc}
+                                                alt={`${item.label} logo`}
+                                                className="w-full h-full object-contain block dark:hidden"
+                                              />
+                                              <img
+                                                src={item.darkSrc}
+                                                alt={`${item.label} logo`}
+                                                className="w-full h-full object-contain hidden dark:block"
+                                              />
+                                            </>
+                                          ) : (
+                                            <img src={item.src} alt={`${item.label} logo`} className="w-full h-full object-contain" />
+                                          )
+                                        ) : (
+                                          item.icon!(`w-full h-full ${item.color}`)
+                                        )}
+                                     </div>
+                                     <span className="text-xs md:text-sm font-medium text-zinc-600 dark:text-zinc-400">{item.label}</span>
+                                 </div>
+                             ))}
+                         </StaggerIn>
+                     </div>
+                </div>
+           </AnimateIn>
+
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+               {/* Card 2: Executing (Centered) */}
+               <AnimateIn direction="up" delay={0.2} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
+                    <div className="mb-8 relative z-20">
+                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving</h3>
+                        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                           Wit is the engine that never stops. It drafts the emails, preps the briefs, and clears the blockers before you even wake up.
+                        </p>
+                    </div>
+                    <div className="flex-1 relative z-10">
+                        <div className="absolute inset-0">
+                             {/* Scattered Chips */}
+                            <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
+                                Draft investor update
+                            </div>
+                            <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
+                                Find 50 leads in SF
+                            </div>
+                            <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
+                                Move board meeting
+                            </div>
+                            <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
+                                Prep for YC interview
+                            </div>
+                            
+                            {/* Ghost Chips */}
+                            <div className="absolute top-1/2 left-0 w-24 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+                            <div className="absolute bottom-1/3 right-0 w-20 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+
+                            {/* Delegating Badge */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                                 <div className="bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-5 py-2.5 flex items-center gap-2">
+                                    <Settings className="w-5 h-5 text-emerald-500 animate-spin-slow" />
+                                    <span className="font-bold text-zinc-900 dark:text-white">Executing</span>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+               </AnimateIn>
+
+               {/* Card 3: Strategy/Prioritization */}
+               <AnimateIn direction="up" delay={0.1} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
+                    <div className="mb-8 relative z-20">
+                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Signal, Not Noise</h3>
+                        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                           Most notifications are distractions. Wit acts as your shield, surfacing only what impacts your runway and roadmap.
+                        </p>
+                    </div>
+                    <div className="flex-1 relative overflow-hidden z-10">
+                         {/* Layered Background */}
+                         <div className="absolute inset-0 space-y-4 pt-4">
+                             {[1, 2, 3].map((_, i) => (
+                                 <div key={i} className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700/50 shadow-sm ${i === 0 ? 'opacity-100' : 'opacity-50'}`}>
+                                     <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-700" />
+                                     <div className="flex-1 space-y-2">
+                                        <div className="w-3/4 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
+                                        <div className="w-1/2 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
+                                     </div>
+                                     {i === 0 && (
+                                         <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                            Action
+                                         </div>
+                                     )}
                                  </div>
                              ))}
                          </div>
-                     </div>
-                </div>
-           </AnimateIn>
-
-           {/* Card 2: Executing (Centered) */}
-           <AnimateIn direction="up" delay={0.2} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
-                <div className="mb-8 relative z-20">
-                    <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving</h3>
-                    <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Wit is the engine that never stops. It drafts the emails, preps the briefs, and clears the blockers before you even wake up.
-                    </p>
-                </div>
-                <div className="flex-1 relative z-10">
-                    <div className="absolute inset-0">
-                         {/* Scattered Chips */}
-                        <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
-                            Draft investor update
-                        </div>
-                        <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
-                            Find 50 leads in SF
-                        </div>
-                        <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
-                            Move board meeting
-                        </div>
-                        <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
-                            Prep for YC interview
-                        </div>
-                        
-                        {/* Ghost Chips */}
-                        <div className="absolute top-1/2 left-0 w-24 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
-                        <div className="absolute bottom-1/3 right-0 w-20 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
-
-                        {/* Delegating Badge */}
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                             <div className="bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-5 py-2.5 flex items-center gap-2">
-                                <Settings className="w-5 h-5 text-emerald-500 animate-spin-slow" />
-                                <span className="font-bold text-zinc-900 dark:text-white">Executing</span>
+                         
+                         {/* Overlay Pill */}
+                         <div className="absolute inset-0 flex items-center justify-center">
+                             <div className="bg-white dark:bg-zinc-800 shadow-xl border border-zinc-100 dark:border-zinc-700 rounded-full py-2 px-5 flex items-center gap-2 animate-pulse-slow">
+                                 <Filter className="w-4 h-4 text-emerald-500" />
+                                 <span className="font-semibold text-zinc-900 dark:text-white">Filtering</span>
                              </div>
-                        </div>
-                    </div>
-                </div>
-           </AnimateIn>
-
-           {/* Card 3: Strategy/Prioritization */}
-           <AnimateIn direction="up" delay={0.1} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
-                <div className="mb-8 relative z-20">
-                    <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Signal, Not Noise</h3>
-                    <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Most notifications are distractions. Wit acts as your shield, surfacing only what impacts your runway and roadmap.
-                    </p>
-                </div>
-                <div className="flex-1 relative overflow-hidden z-10">
-                     {/* Layered Background */}
-                     <div className="absolute inset-0 space-y-4 pt-4">
-                         {[1, 2, 3].map((_, i) => (
-                             <div key={i} className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700/50 shadow-sm ${i === 0 ? 'opacity-100' : 'opacity-50'}`}>
-                                 <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-700" />
-                                 <div className="flex-1 space-y-2">
-                                    <div className="w-3/4 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
-                                    <div className="w-1/2 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
-                                 </div>
-                                 {i === 0 && (
-                                     <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                        Action
-                                     </div>
-                                 )}
-                             </div>
-                         ))}
-                     </div>
-                     
-                     {/* Overlay Pill */}
-                     <div className="absolute inset-0 flex items-center justify-center">
-                         <div className="bg-white dark:bg-zinc-800 shadow-xl border border-zinc-100 dark:border-zinc-700 rounded-full py-2 px-5 flex items-center gap-2 animate-pulse-slow">
-                             <Filter className="w-4 h-4 text-emerald-500" />
-                             <span className="font-semibold text-zinc-900 dark:text-white">Filtering</span>
                          </div>
-                     </div>
-                     
-                     {/* Fade out bottom */}
-                     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent" />
-                </div>
-           </AnimateIn>
+                         
+                         {/* Fade out bottom */}
+                         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent" />
+                    </div>
+               </AnimateIn>
+           </div>
         </div>
       </section>
 
