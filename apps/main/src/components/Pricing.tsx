@@ -22,7 +22,7 @@ function Price({ amount, period, note, was }: { amount: string; period: string; 
         <div className="mb-1 text-xs text-zinc-500 line-through">${was}</div>
       ) : null}
       {note ? (
-        <span className="ml-2 mb-1 text-xs px-2 py-0.5 rounded-full bg-violet-600/10 text-violet-700 ring-1 ring-violet-700/20 dark:text-violet-200 dark:ring-violet-200/30">
+        <span className="ml-2 mb-1 text-xs px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 ring-1 ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:ring-zinc-700">
           {note}
         </span>
       ) : null}
@@ -62,14 +62,14 @@ function PlanCardSingle({
     <Card
       className={`relative pt-6 p-6 rounded-3xl ${
         highlight ?
-          "ring-1 ring-violet-500/20 shadow-[0_20px_50px_rgba(59,130,246,0.15)]" :
+          "ring-1 ring-zinc-900/10 dark:ring-white/20 shadow-xl" :
           ""
       }`}
     >
       <div className="flex items-center justify-between mb-1">
         <h3 className="font-semibold text-zinc-900 dark:text-white">{title}</h3>
         {(highlight || topRightBadge) && (
-          <span className="text-xs px-2 py-1 rounded-full bg-violet-600/15 text-violet-700 ring-1 ring-violet-700/20 dark:text-violet-200 dark:ring-violet-200/30">
+          <span className="text-xs px-2 py-1 rounded-full bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-700">
             {topRightBadge ?? "Popular"}
           </span>
         )}
@@ -84,14 +84,14 @@ function PlanCardSingle({
         <div className="flex items-center gap-2 mb-1">
           <div className="text-xs text-zinc-600 dark:text-zinc-400">{label}</div>
           {label === "Yearly" && (
-            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 ring-1 ring-emerald-700/20 dark:text-emerald-200 dark:ring-emerald-200/30">
+            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 ring-1 ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:ring-zinc-700">
               Save 20%
             </span>
           )}
         </div>
         <Price amount={price.amount} was={price.was} period={price.period} note={price.note} />
         {price.discounted && (
-          <div className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">Discount applied</div>
+          <div className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">Discount applied</div>
         )}
       </div>
 

@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { 
+  ArrowRight, CheckCircle2, Brain, Search, Zap, Sparkles, 
+  Atom, Calendar, Mail, MapPin, Music, Hash, Filter, Shield, Settings, 
+  FileText, Layout
+} from "lucide-react";
 import BezelButton from "../components/BezelButton";
 import HeroBackdrop from "../components/HeroBackdrop";
 import { AnimateIn, StaggerIn } from "../components/Animate";
@@ -12,18 +16,6 @@ import UniversityBanner from "../components/UniversityBanner";
 import WaitlistModal from "../components/WaitlistModal";
 import RotatingHeroText from "../components/RotatingHeroText";
 
-function IconBadge() {
-  return (
-    <div className="relative inline-block">
-      {/* Glow */}
-      <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-white to-white/60 blur-md opacity-60 dark:from-white/10 dark:to-white/0" />
-      {/* Badge */}
-      <div className="relative rounded-2xl p-1.5 bg-gradient-to-br from-white to-gray-100 ring-1 ring-black/10 shadow-xl dark:from-white/10 dark:to-white/5 dark:ring-white/10 dark:shadow-black/40">
-        <img src="/icon.png" alt="Wit" className="h-12 w-12 rounded-xl" />
-      </div>
-    </div>
-  );
-}
 
 export default function Landing() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
@@ -42,143 +34,308 @@ export default function Landing() {
     </svg>
   );
   return (
-    <main className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 pt-32 min-h-screen">
+    <main className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen overflow-hidden">
       <section
         id="hero"
-        className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center snap-start snap-always"
+        className="relative w-full pt-20 pb-16 lg:pt-32 lg:pb-32 snap-start snap-always"
       >
         <HeroBackdrop />
-        <div className="relative">
-          <AnimateIn trigger="mount" direction="in">
-            <div className="mb-6 flex justify-center">
-              <IconBadge />
-            </div>
-          </AnimateIn>
-          <AnimateIn trigger="mount" direction="left">
-            <RotatingHeroText />
-          </AnimateIn>
-          <AnimateIn trigger="mount" direction="left" delay={0.05}>
-            <p className="mt-8 text-md sm:text-lg text-zinc-700 dark:text-white/85">
-            The AI cofounder that helps first-time founders win. It knows your one priority, helps with the workload, does the research, finds contacts, motivates you, sends educational videos, anything you need to win.
-            </p>
-          </AnimateIn>
-          <StaggerIn
-            direction="left"
-            className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <BezelButton
-              variant="neutral"
-              onClick={() => setIsWaitlistOpen(true)}
-              className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
-            >
-              Get Early Access <ArrowRight className="w-4 h-4 ml-2" />
-            </BezelButton>
-            <BezelButton
-              href="https://discord.gg/uQcUXuQawe"
-              variant="blue"
-              className="p-3"
-            >
-              <DiscordGlyph className="w-5 h-5" />
-            </BezelButton>
-          </StaggerIn>
-        </div>
-      </section>
-
-      {/* University Banner */}
-      <section className="snap-start snap-always">
-        <UniversityBanner variant="founder" className="py-14" />
-      </section>
-
-      <section
-        id="pillars"
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pb-32 snap-start snap-always"
-      >
-        {[
-          {
-            t: "Always Scheming",
-            d: "Always thinking about what exactly what you need to do to succeed. Figuring out where you are and what you need to do to succeed.",
-          },
-          {
-            t: "Always Researching",
-            d: "Finding contacts to reach out to, the right videos to watch, and best practices. Researching anything related to your goals.",
-          },
-          {
-            t: "Always Working For Your Win",
-            d: "Doing whatever it takes to ensure you win. Whether that's motivation, educational videos, reminders, finding contacts. Whatever it takes.",
-          },
-        ].map((c, i) => (
-          <AnimateIn key={c.t} direction="left" delay={i * 0.04}>
-            <div
-              key={c.t}
-              className="rounded-2xl p-5 backdrop-blur-xl border shadow-[0_12px_28px_rgba(15,23,42,0.12),_0_4px_12px_rgba(15,23,42,0.08)]
-                       bg-white/80 border-zinc-200 dark:bg-zinc-900/75 dark:border-zinc-800
-                       dark:shadow-[0_20px_40px_rgba(0,0,0,0.5),_0_6px_16px_rgba(0,0,0,0.3)]"
-            >
-              <div className="text-sm text-zinc-600 dark:text-zinc-300">
-                {c.t}
-              </div>
-              <div className="mt-2 font-semibold text-zinc-900 dark:text-white">
-                {c.d}
-              </div>
-            </div>
-          </AnimateIn>
-        ))}
-      </section>
-
-      {/* How it works with screenshots */}
-      <section id="how-it-works" className="mt-16 snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
-          <AnimateIn direction="left">
-            <div>
-              <h2 className="text-3xl font-bold">
-                Your AI cofounder is a hustler. It is always scheming.
-              </h2>
-              <p className="mt-4 text-zinc-700 dark:text-zinc-200 leading-7">
-                Your agent's sole focus is you getting to succeed as a founder.
-                It will do whatever it takes, set priorities, find contacts, do
-                the research, plug into your apps, motivate you, send
-                educational videos, and more.
-              </p>
-              <ul className="mt-6 space-y-3">
-                {[
-                  "Sets the main priority — what is the one thing you need to do right now?",
-                  "Does the research — who to contact, what to watch, what to learn",
-                  "An Active Teammate - proactively helps with the workload",
-                  "Always up to date — connects to your email, calendar, tasks, and context",
-                  "Pushes you forward — with reminders, pressure, and motivation",
-                ].map((line) => (
-                  <li key={line} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
-                    <span className="text-zinc-800 dark:text-zinc-100">
-                      {line}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 flex gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            {/* Left Column: Text */}
+            <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
+              <AnimateIn trigger="mount" direction="left">
+                <RotatingHeroText />
+              </AnimateIn>
+              
+              <AnimateIn trigger="mount" direction="left" delay={0.05}>
+                <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  The AI cofounder that helps first-time founders win. It knows your one priority, handles the workload, finds contacts, and pushes you to succeed.
+                </p>
+              </AnimateIn>
+              
+              <StaggerIn
+                direction="up"
+                className="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              >
                 <BezelButton
                   variant="neutral"
                   onClick={() => setIsWaitlistOpen(true)}
-                  className="dark:from-white dark:to-zinc-100 dark:text-zinc-900 dark:border-zinc-200 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.08),0_12px_24px_rgba(250,250,250,0.18)] dark:hover:from-zinc-100 dark:hover:to-zinc-200"
+                  className="h-12 px-8 text-lg dark:from-white dark:to-zinc-200 dark:text-zinc-950 dark:border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-shadow"
                 >
-                  Get Early Access <ArrowRight className="w-4 h-4 ml-2" />
+                  Get Early Access <ArrowRight className="w-5 h-5 ml-2" />
                 </BezelButton>
+                <BezelButton
+                  href="https://discord.gg/uQcUXuQawe"
+                  variant="blue"
+                  className="h-12 px-4"
+                >
+                  <DiscordGlyph className="w-6 h-6" />
+                </BezelButton>
+              </StaggerIn>
+
+              {/* Social Proof / Mini trusted by */}
+              <div className="mt-12 flex items-center gap-3 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                 <div className="flex -space-x-3">
+                    {[1,2,3,4].map(i => (
+                        <div key={i} className="w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 flex items-center justify-center overflow-hidden">
+                            <span className="text-[10px]">👾</span>
+                        </div>
+                    ))}
+                 </div>
+                 <div className="text-sm text-zinc-500 dark:text-zinc-400">
+                    Joined by 300+ users
+                 </div>
+              </div>
+            </div>
+
+            {/* Right Column: Phone Mockup */}
+            <div className="relative mt-10 lg:mt-0 flex justify-center lg:justify-end">
+               <div className="relative w-[280px] sm:w-[320px] lg:w-[360px]">
+                  {/* Floating Phone */}
+                  <div className="relative z-10 animate-float">
+                     <img 
+                        src="/device/Device-1.png" 
+                        alt="Wit App Interface" 
+                        className="w-full h-auto drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.9)]"
+                     />
+                     
+                     {/* Floating UI Elements / Widgets */}
+                     {/* Card 1: Priority */}
+                     <div className="absolute -right-8 top-24 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_5s_ease-in-out_1s_infinite]">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                                <CheckCircle2 size={16} />
+                            </div>
+                            <div>
+                                <div className="text-xs font-medium text-zinc-500">Priority</div>
+                                <div className="text-sm font-bold">Launch Product</div>
+                            </div>
+                        </div>
+                     </div>
+
+                     {/* Card 2: Email */}
+                     <div className="absolute -left-4 bottom-48 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_7s_ease-in-out_2s_infinite]">
+                        <div className="flex items-center gap-3">
+                             <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <Mail size={16} />
+                            </div>
+                            <div>
+                                <div className="text-xs font-medium text-zinc-500">Drafted</div>
+                                <div className="text-sm font-bold">Investor Update</div>
+                            </div>
+                        </div>
+                     </div>
+
+                     {/* Card 3: Idea */}
+                     <div className="absolute -right-6 bottom-20 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_6s_ease-in-out_0.5s_infinite]">
+                        <div className="flex items-center gap-3">
+                             <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                                <Sparkles size={16} />
+                            </div>
+                            <div>
+                                <div className="text-xs font-medium text-zinc-500">New Idea</div>
+                                <div className="text-sm font-bold">Implement feature X</div>
+                            </div>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* University Banner - Validation */}
+      <section className="snap-start snap-always border-y border-zinc-200/50 dark:border-white/5 bg-white/50 dark:bg-white/[0.02] backdrop-blur-sm">
+        <UniversityBanner variant="founder" className="py-10" />
+      </section>
+
+      {/* Bento Grid Features / Pillars */}
+      <section
+        id="features"
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 snap-start snap-always"
+      >
+        <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                The AI that builds with you.
+            </h2>
+            <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+                Stop managing tools. Start managing vision. Wit handles the rest.
+            </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+           
+           {/* Card 1: Context */}
+           <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
+                <div className="mb-8 relative z-20">
+                    <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Everything, Connected</h3>
+                    <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                       Your tools don't talk to each other. Wit fixes that. It weaves Slack, Linear, and Email into a single brain, so you never lose context.
+                    </p>
+                </div>
+                <div className="flex-1 relative flex items-center justify-center mt-4 z-10">
+                     {/* Tree Graph */}
+                     <div className="relative w-full max-w-md flex flex-col items-center">
+                         {/* Parent Node */}
+                         <div className="z-10 bg-white dark:bg-zinc-800 shadow-sm border border-zinc-200 dark:border-zinc-700 rounded-full px-4 py-2 flex items-center gap-2 mb-8">
+                             <Atom className="w-4 h-4 text-blue-500" />
+                             <span className="text-sm font-medium">Synthesizing</span>
+                         </div>
+                         
+                         {/* Connecting Lines */}
+                         <svg className="absolute top-8 left-0 w-full h-16 overflow-visible pointer-events-none" preserveAspectRatio="none" viewBox="0 0 400 60">
+                            <path d="M 200 0 C 200 20, 40 20, 40 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                            <path d="M 200 0 C 200 20, 104 20, 104 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                            <path d="M 200 0 C 200 20, 168 20, 168 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                            <path d="M 200 0 C 200 20, 232 20, 232 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                            <path d="M 200 0 C 200 20, 296 20, 296 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                            <path d="M 200 0 C 200 20, 360 20, 360 50" fill="none" stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" strokeWidth="1.5" />
+                         </svg>
+
+                         {/* Child Nodes - Founder Tools */}
+                         <div className="flex justify-between w-full px-2 pt-6">
+                             {[
+                                { Icon: Calendar, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-900/20" },
+                                { Icon: FileText, color: "text-zinc-700", bg: "bg-zinc-100 dark:bg-zinc-800" }, // Notion/Docs
+                                { Icon: Mail, color: "text-red-500", bg: "bg-red-50 dark:bg-red-900/20" }, // Gmail
+                                { Icon: Layout, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-900/20" }, // Linear/Jira
+                                { Icon: Settings, color: "text-zinc-600", bg: "bg-zinc-100 dark:bg-zinc-800" }, // Code/GitHub
+                                { Icon: Hash, color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-900/20" } // Slack
+                             ].map((item, i) => (
+                                 <div key={i} className={`w-8 h-8 md:w-10 md:h-10 rounded-xl ${item.bg} flex items-center justify-center shadow-sm border border-black/5`}>
+                                    <item.Icon className={`w-4 h-4 md:w-5 md:h-5 ${item.color}`} />
+                                 </div>
+                             ))}
+                         </div>
+                     </div>
+                </div>
+           </AnimateIn>
+
+           {/* Card 2: Executing (Centered) */}
+           <AnimateIn direction="up" delay={0.2} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
+                <div className="mb-8 relative z-20">
+                    <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving</h3>
+                    <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                       Wit is the engine that never stops. It drafts the emails, preps the briefs, and clears the blockers before you even wake up.
+                    </p>
+                </div>
+                <div className="flex-1 relative z-10">
+                    <div className="absolute inset-0">
+                         {/* Scattered Chips */}
+                        <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
+                            Draft investor update
+                        </div>
+                        <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
+                            Find 50 leads in SF
+                        </div>
+                        <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
+                            Move board meeting
+                        </div>
+                        <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
+                            Prep for YC interview
+                        </div>
+                        
+                        {/* Ghost Chips */}
+                        <div className="absolute top-1/2 left-0 w-24 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+                        <div className="absolute bottom-1/3 right-0 w-20 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+
+                        {/* Delegating Badge */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                             <div className="bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-5 py-2.5 flex items-center gap-2">
+                                <Settings className="w-5 h-5 text-emerald-500 animate-spin-slow" />
+                                <span className="font-bold text-zinc-900 dark:text-white">Executing</span>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+           </AnimateIn>
+
+           {/* Card 3: Strategy/Prioritization */}
+           <AnimateIn direction="up" delay={0.1} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
+                <div className="mb-8 relative z-20">
+                    <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Signal, Not Noise</h3>
+                    <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                       Most notifications are distractions. Wit acts as your shield, surfacing only what impacts your runway and roadmap.
+                    </p>
+                </div>
+                <div className="flex-1 relative overflow-hidden z-10">
+                     {/* Layered Background */}
+                     <div className="absolute inset-0 space-y-4 pt-4">
+                         {[1, 2, 3].map((_, i) => (
+                             <div key={i} className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700/50 shadow-sm ${i === 0 ? 'opacity-100' : 'opacity-50'}`}>
+                                 <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-700" />
+                                 <div className="flex-1 space-y-2">
+                                    <div className="w-3/4 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
+                                    <div className="w-1/2 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
+                                 </div>
+                                 {i === 0 && (
+                                     <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                        Action
+                                     </div>
+                                 )}
+                             </div>
+                         ))}
+                     </div>
+                     
+                     {/* Overlay Pill */}
+                     <div className="absolute inset-0 flex items-center justify-center">
+                         <div className="bg-white dark:bg-zinc-800 shadow-xl border border-zinc-100 dark:border-zinc-700 rounded-full py-2 px-5 flex items-center gap-2 animate-pulse-slow">
+                             <Filter className="w-4 h-4 text-emerald-500" />
+                             <span className="font-semibold text-zinc-900 dark:text-white">Filtering</span>
+                         </div>
+                     </div>
+                     
+                     {/* Fade out bottom */}
+                     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent" />
+                </div>
+           </AnimateIn>
+        </div>
+      </section>
+
+      {/* How it works - Refined */}
+      <section id="how-it-works" className="py-24 bg-zinc-50 dark:bg-zinc-900/30 snap-start snap-always">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+          <AnimateIn direction="left">
+            <div>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-6">
+                <CheckCircle2 className="w-4 h-4 mr-2" /> Built for execution
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Don't just plan.<br/>Execute.
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">
+                Your agent isn't just a chatbot. It's an active teammate that plugs into your email, calendar, and tasks to get real work done.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  "Sets the main priority — eliminates distraction",
+                  "Does the research — actionable insights only",
+                  "An Active Teammate — proactively helps",
+                  "Connects to your context — email, calendar, tasks",
+                ].map((line, i) => (
+                  <div key={i} className="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-white/5 border border-zinc-100 dark:border-white/10 hover:border-emerald-500/30 transition-colors">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    </div>
+                    <span className="text-zinc-800 dark:text-zinc-200 font-medium">{line}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </AnimateIn>
+          
           <AnimateIn direction="right">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full place-items-center px-3 md:px-0">
-              <img
-                src="/device/Device-1.png"
-                alt="Wit app device screenshot 1"
-                className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:-rotate-2 drop-shadow-[0_18px_44px_rgba(15,23,42,0.22)] dark:drop-shadow-[0_30px_70px_rgba(3,4,7,0.6)]"
-                style={{ backgroundColor: "transparent" }}
-              />
+            <div className="relative">
+               {/* Maybe use Device 3 here for variety */}
               <img
                 src="/device/Device-3.png"
-                alt="Wit app device screenshot 3"
-                className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] h-auto object-contain md:transition-transform md:duration-300 md:hover:scale-[1.02] md:hover:rotate-2 drop-shadow-[0_18px_44px_rgba(15,23,42,0.22)] dark:drop-shadow-[0_30px_70px_rgba(3,4,7,0.6)]"
-                style={{ backgroundColor: "transparent" }}
+                alt="Wit app device screenshot"
+                className="w-full max-w-sm mx-auto drop-shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
               />
             </div>
           </AnimateIn>
@@ -187,14 +344,14 @@ export default function Landing() {
 
       {/* Pricing Section */}
       <section id="pricing" className="snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <Pricing />
         </div>
       </section>
 
       {/* FAQ Section */}
       <section id="faq" className="snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <FAQ />
         </div>
       </section>
