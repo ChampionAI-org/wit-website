@@ -98,7 +98,7 @@ export default function Landing() {
         className="relative w-full pt-20 pb-16 lg:pt-32 lg:pb-32 snap-start snap-always"
       >
         <HeroBackdrop />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             
             {/* Left Column: Text */}
@@ -109,7 +109,7 @@ export default function Landing() {
               
               <AnimateIn trigger="mount" direction="left" delay={0.05}>
                 <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  The AI cofounder that helps first-time founders win. It knows your one priority, handles the workload, finds contacts, and pushes you to succeed.
+                  Wit is your AI cofounder. It connects to your email, calendar, and apps, tells you the one thing you should work on, and helps do the work for you.
                 </p>
               </AnimateIn>
               
@@ -222,7 +222,7 @@ export default function Landing() {
       {/* Bento Grid Features / Pillars */}
       <section
         id="features"
-        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 snap-start snap-always"
+        className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-32 snap-start snap-always"
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
@@ -400,7 +400,7 @@ export default function Landing() {
                          {/* Layered Background */}
                          <div className="absolute inset-0 space-y-4 pt-4">
                              {[1, 2, 3].map((_, i) => (
-                                 <div key={i} className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700/50 shadow-sm ${i === 0 ? 'opacity-100' : 'opacity-50'}`}>
+                                 <div key={i} className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-white/10 shadow-sm ${i === 0 ? 'opacity-100' : 'opacity-50'}`}>
                                      <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-700" />
                                      <div className="flex-1 space-y-2">
                                         <div className="w-3/4 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
@@ -433,7 +433,7 @@ export default function Landing() {
 
       {/* How it works - Refined */}
       <section id="how-it-works" className="py-24 bg-zinc-50 dark:bg-zinc-900/30 snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
           <AnimateIn direction="left">
             <div>
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-6">
@@ -479,14 +479,14 @@ export default function Landing() {
 
       {/* Pricing Section */}
       <section id="pricing" className="snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 py-24">
           <Pricing />
         </div>
       </section>
 
       {/* FAQ Section */}
       <section id="faq" className="snap-start snap-always">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 py-24">
           <FAQ />
         </div>
       </section>
