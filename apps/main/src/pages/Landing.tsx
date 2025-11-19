@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
-  ArrowRight, CheckCircle2, Brain, Search, Zap, Sparkles, 
+  ArrowRight, CheckCircle2, Brain, Search, Zap, 
   Atom, Calendar, MapPin, Music, Hash, Filter, Shield, Settings, 
   FileText, Layout, Github
 } from "lucide-react";
@@ -178,7 +178,7 @@ export default function Landing() {
                         <div className="flex items-center gap-3">
                              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                 <img
-                                  src="/integration-logos/Google-G-Logo.svg"
+                                  src="/integration-logos/Gmail_icon_(2020).svg"
                                   alt="Gmail logo"
                                   className="w-4 h-4 object-contain"
                                 />
@@ -190,18 +190,22 @@ export default function Landing() {
                         </div>
                      </div>
 
-                     {/* Card 3: Idea */}
+                     {/* Card 3: Calendar */}
                      <div className="absolute -right-6 bottom-20 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_6s_ease-in-out_0.5s_infinite]">
                         <div className="flex items-center gap-3">
-                             <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
-                                <Sparkles size={16} />
-                            </div>
-                            <div>
-                                <div className="text-xs font-medium text-zinc-500">New Idea</div>
-                                <div className="text-sm font-bold">Implement feature X</div>
-                            </div>
-                        </div>
-                     </div>
+                             <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                <img
+                                  src="/integration-logos/Google_Calendar_icon_(2020).svg"
+                                  alt="Google Calendar icon"
+                                  className="w-4 h-4 object-contain"
+                                />
+                           </div>
+                           <div>
+                               <div className="text-xs font-medium text-zinc-500">Calendar</div>
+                               <div className="text-sm font-bold">Investor sync, 2:00 PM</div>
+                           </div>
+                       </div>
+                    </div>
 
                   </div>
                </div>
@@ -232,19 +236,19 @@ export default function Landing() {
         <div className="flex flex-col gap-6">
            
            {/* Card 1: Integrations (Full Width) */}
-           <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 md:p-12 min-h-[500px] flex flex-col">
-                <div className="mb-12 relative z-20 max-w-3xl">
+           <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 pb-2 md:pb-4 flex flex-col">
+                <div className="mb-8 relative z-20 max-w-3xl">
                     <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">All your apps in one place.</h3>
                     <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
                        Let Wit use all your stuff. It connects with Gmail, Slack, and Notion to give you a unified view of your work.
                     </p>
                 </div>
                 
-                <div className="flex-1 relative flex items-end justify-center mt-8 z-10 w-full">
+                <div className="relative flex items-end justify-center mt-12 z-10 w-full md:flex-1">
                      {/* Tree Graph */}
-                     <div ref={containerRef} className="relative w-full max-w-5xl flex flex-col items-center h-[250px] md:h-[300px] lg:h-[320px]">
+                     <div ref={containerRef} className="relative w-full max-w-5xl flex flex-col items-center h-[190px] md:h-[220px] lg:h-[230px]">
                          {/* Parent Node */}
-                         <div ref={parentRef} className="absolute -top-16 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3">
+                         <div ref={parentRef} className="absolute -top-6 md:-top-10 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3">
                              <Atom className="w-5 h-5 text-emerald-500" />
                              <span className="text-base font-semibold text-zinc-900 dark:text-white">Wit Core</span>
                          </div>
@@ -274,7 +278,7 @@ export default function Landing() {
                          </svg>
 
                          {/* Child Nodes */}
-                        <StaggerIn className="grid grid-cols-5 w-full gap-0 mt-8 md:mt-12" stagger={0.1} delay={0.5}>
+                        <StaggerIn className="grid grid-cols-5 w-full gap-0 mt-10 md:mt-12" stagger={0.1} delay={0.5}>
                              {[
                                 { 
                                   label: "Gmail", 
