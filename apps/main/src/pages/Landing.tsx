@@ -184,7 +184,7 @@ export default function Landing() {
                                 />
                              </div>
                              <div>
-                                <div className="text-xs font-medium text-zinc-500">Drafted</div>
+                                <div className="text-xs font-medium text-zinc-500">Email Sent</div>
                                 <div className="text-sm font-bold">Investor Update</div>
                              </div>
                         </div>
@@ -201,8 +201,8 @@ export default function Landing() {
                                 />
                            </div>
                            <div>
-                               <div className="text-xs font-medium text-zinc-500">Calendar</div>
-                               <div className="text-sm font-bold">Investor sync, 2:00 PM</div>
+                               <div className="text-xs font-medium text-zinc-500">Created Event</div>
+                               <div className="text-sm font-bold">Team Sync, 2:00 PM</div>
                            </div>
                        </div>
                     </div>
