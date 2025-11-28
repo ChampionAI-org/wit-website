@@ -27,13 +27,12 @@ export default function Landing() {
   const childRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
   const [paths, setPaths] = useState<string[]>([]);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState<"right" | "bottom" | null>(null);
 
   useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
+    // Determine direction once on mount (avoids hydration mismatch)
+    const isDesktop = window.innerWidth >= 1024;
+    setAnimationDirection(isDesktop ? "right" : "bottom");
   }, []);
 
   // Calculate paths on mount/resize
@@ -103,11 +102,11 @@ export default function Landing() {
     <main className="bg-wit-light dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen overflow-hidden">
       <section
         id="hero"
-        className="relative flex w-full min-h-[calc(100vh-4rem)] items-center pt-16 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24 snap-start snap-always"
+        className="relative flex w-full min-h-[calc(100vh-4rem)] items-center pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24 snap-start snap-always"
       >
         <HeroBackdrop />
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 relative w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 pb-10 items-center">
             
             {/* Left Column: Text */}
             <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -159,11 +158,17 @@ export default function Landing() {
             {/* Right Column: Phone Mockup */}
             <div className="relative mt-10 lg:mt-0 flex justify-center lg:justify-end">
                <motion.div
+                 key={animationDirection ?? "loading"}
                  className="relative w-[280px] sm:w-[320px] lg:w-[360px]"
-                 initial={isDesktop ? { x: 150, opacity: 0 } : { y: 80, opacity: 0 }}
-                 whileInView={{ x: 0, y: 0, opacity: 1 }}
+                 initial={
+                   animationDirection === "right"
+                     ? { x: 150, opacity: 0 }
+                     : animationDirection === "bottom"
+                     ? { y: 80, opacity: 0 }
+                     : { opacity: 0 }
+                 }
+                 animate={{ x: 0, y: 0, opacity: 1 }}
                  transition={{ type: "spring", stiffness: 50, damping: 18, delay: 0.15 }}
-                 viewport={{ once: true, amount: 0.3 }}
                >
                   {/* Floating Phone */}
                   <div className="relative z-10 animate-float">
