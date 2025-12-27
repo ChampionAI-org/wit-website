@@ -90,6 +90,13 @@ export default function Privacy() {
           updates.
         </p>
 
+        <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-4">
+          We do not share mobile information with third parties or affiliates
+          for marketing or promotional purposes. All of the above categories
+          exclude text messaging originator opt-in data and consent; this
+          information will not be shared with any third parties.
+        </p>
+
         <h2 className="text-xl font-semibold mt-8 mb-2">SECTION 2 - CONSENT</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-4">
           How do you get my consent? When you provide us with personal
