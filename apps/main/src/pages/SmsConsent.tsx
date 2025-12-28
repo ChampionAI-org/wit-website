@@ -17,7 +17,7 @@ const agents: SmsConsentAgent[] = [
     id: 'internal-test',
     name: 'Wit AI Internal Test',
     businessName: 'Wit AI',
-    tollFreeNumber: '[TOLL-FREE NUMBER]',
+    tollFreeNumber: '(888) 450-6404',
     isInternalTest: true,
   },
 ]
