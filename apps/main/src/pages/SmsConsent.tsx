@@ -15,10 +15,9 @@ type SmsConsentProps = {
 const agents: SmsConsentAgent[] = [
   {
     id: 'internal-test',
-    name: 'Wit AI Internal Test',
-    businessName: 'Wit AI',
+    name: 'Wit AI',
+    businessName: 'Champion AI',
     tollFreeNumber: '(888) 450-6404',
-    isInternalTest: true,
   },
 ]
 
@@ -38,6 +37,33 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
     <div className="min-h-screen pt-16">
       <div className="max-w-3xl mx-auto px-4 py-10">
         <h1 className="text-3xl font-bold mb-6">SMS Consent and Opt-In (Wit AI)</h1>
+        
+        <div className="rounded-xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 p-6 mb-8">
+          <h2 className="text-xl font-bold text-blue-900 dark:text-blue-100 mb-3">SMS/Text Message Consent (Opt-in)</h2>
+          <p className="leading-7 text-zinc-900 dark:text-zinc-100">
+            By texting <span className="font-bold">START</span> to <span className="font-bold">(888) 450-6404</span>, you <span className="font-bold">agree to receive SMS/text messages</span> from <span className="font-bold">Wit AI (Champion AI)</span> about your inquiry, including customer care and coordination (questions, scheduling, next steps). <span className="font-bold">Message frequency varies. Msg and data rates may apply.</span> Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <p>
+              <span className="font-semibold text-zinc-900 dark:text-zinc-100">Terms:</span>{' '}
+              <Link href="/terms" className="text-blue-600 dark:text-blue-400 hover:underline">
+                https://witagent.ai/terms
+              </Link>
+            </p>
+            <p>
+              <span className="font-semibold text-zinc-900 dark:text-zinc-100">Privacy:</span>{' '}
+              <Link href="/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">
+                https://witagent.ai/privacy
+              </Link>
+            </p>
+            <p>
+              <span className="font-semibold text-zinc-900 dark:text-zinc-100">Support:</span>{' '}
+              <a href="mailto:hi@witagent.ai" className="text-blue-600 dark:text-blue-400 hover:underline">
+                hi@witagent.ai
+              </a>
+            </p>
+          </div>
+        </div>
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Why this page exists</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
@@ -57,7 +83,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
         <h2 className="text-xl font-semibold mt-8 mb-2">Opt-in method</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
           <span className="font-semibold">Opt-in type:</span> via text. You opt in by sending the first text message to the
-          agent’s toll-free number.
+          agent’s toll-free number. You opt in by texting <span className="font-bold">START</span> (or any message) to the toll-free number shown above.
         </p>
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Message purpose</h2>
@@ -132,28 +158,19 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
                     : 'border-zinc-200 dark:border-zinc-800'
                 }`}
               >
-                <h3 className="text-lg font-semibold">
+                <h3 className="text-lg font-bold">
                   {agent.name} ({agent.businessName})
                 </h3>
 
                 <p className="mt-3 text-zinc-700 dark:text-zinc-300">
                   <span className="font-semibold">Toll-free number:</span>{' '}
                   <span className="font-mono">{agent.tollFreeNumber}</span>
-                  {agent.isInternalTest ? (
-                    <span className="ml-2 text-xs text-zinc-500 dark:text-zinc-400">(internal testing only)</span>
-                  ) : null}
                 </p>
 
                 <div className="mt-4">
                   <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Disclosure (consent)</p>
                   <p className="mt-1 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
-                    By texting <span className="font-mono">{agent.tollFreeNumber}</span>, you consent to receive SMS messages from{' '}
-                    <span className="font-semibold">
-                      {agent.name} / {agent.businessName}
-                    </span>{' '}
-                    related to your inquiry, including customer care and scheduling (for example: questions about a listing,
-                    availability, tours, and next steps). Msg and data rates may apply. Reply STOP to opt out, HELP for help.
-                    Terms: https://witagent.ai/terms Privacy: https://witagent.ai/privacy
+                    By texting <span className="font-bold">START</span> to <span className="font-bold">{agent.tollFreeNumber}</span>, you <span className="font-bold">agree to receive SMS/text messages</span> from <span className="font-bold">{agent.name} ({agent.businessName})</span> related to your inquiry, including customer care and coordination (questions, scheduling, next steps). <span className="font-bold">Message frequency varies. Msg and data rates may apply.</span> Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: https://witagent.ai/terms Privacy: https://witagent.ai/privacy
                   </p>
                 </div>
 
