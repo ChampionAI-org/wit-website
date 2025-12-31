@@ -18,6 +18,7 @@ const agents: SmsConsentAgent[] = [
     name: 'Wit AI',
     businessName: 'Champion AI',
     tollFreeNumber: '(888) 450-6404',
+    isInternalTest: true,
   },
 ]
 
@@ -42,38 +43,26 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
   const visibleAgents = selectedAgent ? [selectedAgent] : agents
 
   const headerNumber = selectedAgent?.tollFreeNumber ?? '(888) 450-6404'
-  const headerSender = selectedAgent
-    ? `${selectedAgent.name} (${selectedAgent.businessName})`
-    : 'Wit AI (Champion AI)'
+  const headerSender = selectedAgent ? selectedAgent.name : 'Wit AI'
+  const businessName = selectedAgent?.businessName ?? 'Champion AI'
 
   return (
     <div className="min-h-screen pt-16">
       <div className="max-w-3xl mx-auto px-4 py-10">
         <h1 className="text-3xl font-bold mb-6">SMS Consent and Opt-In (Wit AI)</h1>
         
-        <div className="rounded-xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 p-6 mb-8">
-          <h2 className="text-xl font-bold text-blue-900 dark:text-blue-100 mb-3">SMS/Text Message Consent (Opt-in)</h2>
-          <p className="leading-7 text-zinc-900 dark:text-zinc-100">
-            By texting (or sending any message) to <span className="font-bold">{headerNumber}</span>, you <span className="font-bold">agree to receive SMS/text messages</span> from <span className="font-bold">{headerSender}</span> about your inquiry, including customer care and coordination (questions, scheduling, next steps). <span className="font-bold">Message frequency varies. Msg and data rates may apply.</span> Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <p>
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">Terms:</span>{' '}
-              <a href="https://witagent.ai/terms" className="text-blue-600 dark:text-blue-400 hover:underline">
-                https://witagent.ai/terms
-              </a>
+        <div id="optin" className="rounded-xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 p-8 mb-8">
+          <div className="mb-6">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Call to action:</h2>
+            <p className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
+              Text <span className="text-blue-600">"HI"</span> to <span className="whitespace-nowrap">{headerNumber}</span>
             </p>
-            <p>
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">Privacy:</span>{' '}
-              <a href="https://witagent.ai/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">
-                https://witagent.ai/privacy
-              </a>
-            </p>
-            <p>
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100">Support:</span>{' '}
-              <a href="mailto:hi@witagent.ai" className="text-blue-600 dark:text-blue-400 hover:underline">
-                hi@witagent.ai
-              </a>
+          </div>
+
+          <div className="pt-6 border-t border-blue-200 dark:border-blue-800">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Disclosure:</h2>
+            <p className="leading-7 text-zinc-900 dark:text-zinc-100 italic">
+              “I agree to receive SMS/text messages from <span className="font-bold">{headerSender}</span> about my inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: <a href="https://witagent.ai/terms" className="underline">https://witagent.ai/terms</a> Privacy: <a href="https://witagent.ai/privacy" className="underline">https://witagent.ai/privacy</a>”
             </p>
           </div>
         </div>
@@ -95,7 +84,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Opt-in method</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
-          <span className="font-semibold">Opt-in type:</span> via text. You opt in by sending the first text message (e.g., "Hello" or any inquiry) to the
+          <span className="font-semibold">Opt-in type:</span> via text. You opt in by sending the text keyword <span className="font-bold">"HI"</span> to the
           agent’s toll-free number.
         </p>
 
@@ -175,7 +164,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
                 }`}
               >
                 <h3 className="text-lg font-bold">
-                  {agent.name} / {agent.businessName} (powered by Wit AI)
+                  {agent.name} {agent.isInternalTest ? '' : `/ ${agent.businessName}`} (powered by Wit AI)
                 </h3>
 
                 <p className="mt-3 text-zinc-700 dark:text-zinc-300">
@@ -184,9 +173,14 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
                 </p>
 
                 <div className="mt-4">
+                  <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Opt-in Keyword</p>
+                  <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300 font-bold">HI</p>
+                </div>
+
+                <div className="mt-4">
                   <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Disclosure (consent)</p>
                   <p className="mt-1 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
-                    By texting (or sending any message) to <span className="font-bold">{agent.tollFreeNumber}</span>, you <span className="font-bold">agree to receive SMS/text messages</span> from <span className="font-bold">{agent.name} / {agent.businessName}</span> related to your inquiry, including customer care and coordination (questions, scheduling, next steps). <span className="font-bold">Message frequency varies. Msg and data rates may apply.</span> Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: https://witagent.ai/terms Privacy: https://witagent.ai/privacy
+                    Texting <span className="font-bold">"HI"</span> to <span className="font-bold">{agent.tollFreeNumber}</span> constitutes your agreement to receive SMS/text messages from <span className="font-bold">{agent.name}</span> about your inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply STOP to opt out, HELP for help. Terms: https://witagent.ai/terms Privacy: https://witagent.ai/privacy
                   </p>
                 </div>
 
