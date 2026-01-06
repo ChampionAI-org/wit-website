@@ -20,6 +20,12 @@ const agents: SmsConsentAgent[] = [
     tollFreeNumber: '(888) 450-6404',
     isInternalTest: true,
   },
+  {
+    id: 'saul-holding',
+    name: 'Saul Holding',
+    businessName: 'Wit AI',
+    tollFreeNumber: '(866) 347-5449',
+  },
 ]
 
 export function getAgentIdParam(raw: string | string[] | undefined): string | null {
@@ -54,15 +60,27 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
         <div id="optin" className="rounded-xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 p-8 mb-8">
           <div className="mb-6">
             <h2 className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Call to action:</h2>
-            <p className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
-              Text <span className="text-blue-600">"HI"</span> to <span className="whitespace-nowrap">{headerNumber}</span>
-            </p>
+            <div className="space-y-4">
+              <p className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
+                Text <span className="text-blue-600">"HI"</span> to <span className="whitespace-nowrap">(888) 450-6404</span>
+                <span className="block text-sm font-normal text-zinc-500 mt-1">(Wit AI / Champion AI)</span>
+              </p>
+              <div className="flex items-center space-x-4">
+                <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+                <span className="text-xs font-bold text-zinc-400 uppercase">or</span>
+                <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+              </div>
+              <p className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
+                Text <span className="text-blue-600">"HI"</span> to <span className="whitespace-nowrap">(866) 347-5449</span>
+                <span className="block text-sm font-normal text-zinc-500 mt-1">(Saul Holding)</span>
+              </p>
+            </div>
           </div>
 
           <div className="pt-6 border-t border-blue-200 dark:border-blue-800">
             <h2 className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Disclosure:</h2>
             <p className="leading-7 text-zinc-900 dark:text-zinc-100 italic">
-              “I agree to receive SMS/text messages from <span className="font-bold">{headerSender}</span> about my inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: <a href="https://witagent.ai/terms" className="underline">https://witagent.ai/terms</a> Privacy: <a href="https://witagent.ai/privacy" className="underline">https://witagent.ai/privacy</a>”
+              “I agree to receive SMS/text messages from <span className="font-bold">Wit AI</span> or <span className="font-bold">Saul Holding</span> about my inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: <a href="https://witagent.ai/terms" className="underline">https://witagent.ai/terms</a> Privacy: <a href="https://witagent.ai/privacy" className="underline">https://witagent.ai/privacy</a>”
             </p>
           </div>
         </div>
