@@ -53,7 +53,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
   return (
     <div className="min-h-screen pt-16">
       <div className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-3xl font-bold mb-6">SMS Consent and Opt-In (Wit AI)</h1>
+        <h1 className="text-3xl font-bold mb-6">Toll-Free Verification (Wit AI)</h1>
         
         <div id="optin" className="rounded-xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 p-8 mb-8">
           <div className="mb-6">
@@ -147,7 +147,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
           </p>
         </div>
 
-        <h2 id="abuse" className="text-xl font-semibold mt-10 mb-2">Zero Tolerance for Abuse</h2>
+        <h2 id="abuse" className="text-xl font-semibold mt-10 mb-2 text-red-600 dark:text-red-400">Zero Tolerance for Abuse</h2>
         <div className="rounded-xl border-2 border-red-500 bg-red-50/60 dark:bg-red-950/20 p-6 mb-8">
           <p className="leading-7 text-red-700 dark:text-red-400 font-bold mb-3 text-lg uppercase tracking-tight">
             Strict Zero Tolerance Policy
@@ -155,9 +155,15 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
           <p className="leading-7 text-zinc-900 dark:text-zinc-100 font-medium mb-3">
             Wit AI maintains an absolute zero-tolerance policy for SMS abuse, spam, and harassment.
           </p>
-          <p className="leading-7 text-zinc-700 dark:text-zinc-300">
-            Every professional executive is required to pass a mandatory in-app <Link href="/sms-compliance-gate" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">"SMS Consent & Compliance"</Link> gate before accessing SMS features. They must explicitly certify that they have obtained express consent from all contacts and acknowledge that their assigned number will be revoked immediately for any misuse or compliance failure.
+          <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-4">
+            Every professional executive is required to pass a mandatory in-app "SMS Consent & Compliance" gate before accessing SMS features. They must explicitly certify that they have obtained express consent from all contacts and acknowledge that their assigned number will be revoked immediately for any misuse or compliance failure.
           </p>
+          <Link 
+            href="/sms-compliance-gate" 
+            className="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-lg hover:bg-red-700 transition-colors shadow-lg shadow-red-500/20"
+          >
+            View Mandatory Compliance Gate (Evidence)
+          </Link>
         </div>
 
         <h2 className="text-xl font-semibold mt-10 mb-2">Professional directory</h2>
@@ -243,10 +249,11 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
             — Visual evidence of the mandatory in-app compliance gate for professional executives.
           </p>
           <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-2">
-            <span className="font-semibold">SMS Consent (Toll-Free):</span>{' '}
-            <span className="text-zinc-500 dark:text-zinc-400">
-              This page — For toll-free numbers used by individuals (e.g., real estate professionals, consultants).
-            </span>
+            <span className="font-semibold">Toll-Free Verification Link:</span>{' '}
+            <Link href="/sms-consent" className="text-blue-600 dark:text-blue-400 hover:underline">
+              /sms-consent
+            </Link>{' '}
+            — This page, used for toll-free number compliance.
           </p>
           <p className="text-sm text-zinc-700 dark:text-zinc-300">
             <span className="font-semibold">SMS Terms (10DLC):</span>{' '}

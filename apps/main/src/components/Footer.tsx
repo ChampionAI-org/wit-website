@@ -88,7 +88,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/sms-consent" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
-                  SMS Consent
+                  Toll-Free Verification
                 </Link>
               </li>
               <li>

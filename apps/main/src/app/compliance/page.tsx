@@ -33,10 +33,21 @@ export default function Page() {
           </div>
         </div>
 
-        <h2 id="abuse" className="text-xl font-semibold mt-8 mb-2">Zero Tolerance for Abuse</h2>
-        <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6 font-medium">
-          Wit AI maintains a strict zero-tolerance policy for SMS abuse. Every professional executive is required to pass a mandatory in-app "SMS Consent & Compliance" gate before they can access SMS features. They must explicitly acknowledge that their assigned number will be revoked immediately if they violate our Terms of Service or SMS Consent requirements.
-        </p>
+        <h2 id="abuse" className="text-xl font-semibold mt-8 mb-2 text-red-600 dark:text-red-400">Zero Tolerance for Abuse</h2>
+        <div className="bg-red-50 dark:bg-red-950/20 border-l-4 border-red-500 p-4 mb-6">
+          <p className="leading-7 text-zinc-900 dark:text-zinc-100 font-bold mb-2">
+            Wit AI maintains a strict zero-tolerance policy for SMS abuse.
+          </p>
+          <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-4">
+            Every professional executive is required to pass a mandatory in-app "SMS Consent & Compliance" gate before they can access SMS features. They must explicitly acknowledge that their assigned number will be revoked immediately if they violate our Terms of Service or SMS Consent requirements.
+          </p>
+          <Link 
+            href="/sms-compliance-gate" 
+            className="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-lg hover:bg-red-700 transition-colors"
+          >
+            View Mandatory Compliance Gate (Evidence)
+          </Link>
+        </div>
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Why this page exists</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
@@ -125,7 +136,7 @@ export default function Page() {
             — Visual evidence of the mandatory in-app compliance gate for professional executives.
           </p>
           <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-2">
-            <span className="font-semibold">SMS Consent (Toll-Free):</span>{' '}
+            <span className="font-semibold">Toll-Free Verification:</span>{' '}
             <Link href="/sms-consent" className="text-blue-600 dark:text-blue-400 hover:underline">
               /sms-consent
             </Link>{' '}
