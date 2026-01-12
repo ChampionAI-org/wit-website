@@ -36,7 +36,18 @@ export default function Footer() {
               <span className="text-2xl font-bold text-zinc-900 dark:text-white">Wit AI</span>
             </div>
             <p className="text-zinc-500 dark:text-slate-400 mb-6">
-              Building the first AI cofounder that helps first-time founders win.
+              Building the first Executive Assistant suite.
+            </p>
+
+            <p className="text-zinc-500 dark:text-slate-400 text-sm leading-6">
+              Wit AI provides an Executive Assistant suite. By interacting with our users via SMS, you agree to our{' '}
+              <Link href="/compliance" className="hover:text-zinc-900 dark:hover:text-white transition-colors underline">
+                SMS Terms
+              </Link>{' '}
+              and{' '}
+              <Link href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors underline">
+                Privacy Policy
+              </Link>. Msg &amp; data rates may apply.
             </p>
           </div>
 
@@ -70,6 +81,16 @@ export default function Footer() {
             <ul className="space-y-3 text-zinc-500 dark:text-slate-400">
               {/* <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Getting Started</a></li> */}
+              <li>
+                <Link href="/compliance" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
+                  SMS Terms
+                </Link>
+              </li>
+              <li>
+                <Link href="/sms-consent" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
+                  SMS Consent
+                </Link>
+              </li>
               <li>
                 <Link href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
                   Privacy Policy

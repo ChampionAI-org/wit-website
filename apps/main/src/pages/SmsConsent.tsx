@@ -3,7 +3,7 @@ import Link from 'next/link'
 export type SmsConsentAgent = {
   id: string
   name: string
-  businessName: string
+  businessName?: string
   tollFreeNumber: string
   isInternalTest?: boolean
 }
@@ -16,14 +16,12 @@ const agents: SmsConsentAgent[] = [
   {
     id: 'internal-test',
     name: 'Wit AI',
-    businessName: 'Champion AI',
     tollFreeNumber: '(888) 450-6404',
     isInternalTest: true,
   },
   {
-    id: 'saul-holding',
-    name: 'Saul Holding',
-    businessName: 'Wit AI',
+    id: 'wit-ai-2',
+    name: 'Wit AI',
     tollFreeNumber: '(866) 347-5449',
   },
 ]
@@ -50,7 +48,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
 
   const headerNumber = selectedAgent?.tollFreeNumber ?? '(888) 450-6404'
   const headerSender = selectedAgent ? selectedAgent.name : 'Wit AI'
-  const businessName = selectedAgent?.businessName ?? 'Champion AI'
+  const businessName = selectedAgent?.businessName ?? 'Wit AI'
 
   return (
     <div className="min-h-screen pt-16">
@@ -63,7 +61,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
             <div className="space-y-4">
               <p className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
                 Text <span className="text-blue-600">"HI"</span> to <span className="whitespace-nowrap">(888) 450-6404</span>
-                <span className="block text-sm font-normal text-zinc-500 mt-1">(Wit AI / Champion AI)</span>
+                <span className="block text-sm font-normal text-zinc-500 mt-1">(Wit AI)</span>
               </p>
               <div className="flex items-center space-x-4">
                 <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
@@ -72,7 +70,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
               </div>
               <p className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
                 Text <span className="text-blue-600">"HI"</span> to <span className="whitespace-nowrap">(866) 347-5449</span>
-                <span className="block text-sm font-normal text-zinc-500 mt-1">(Saul Holding)</span>
+                <span className="block text-sm font-normal text-zinc-500 mt-1">(Wit AI)</span>
               </p>
             </div>
           </div>
@@ -80,7 +78,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
           <div className="pt-6 border-t border-blue-200 dark:border-blue-800">
             <h2 className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Disclosure:</h2>
             <p className="leading-7 text-zinc-900 dark:text-zinc-100 italic">
-              “I agree to receive SMS/text messages from <span className="font-bold">Wit AI</span> or <span className="font-bold">Saul Holding</span> about my inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: <a href="https://witagent.ai/terms" className="underline">https://witagent.ai/terms</a> Privacy: <a href="https://witagent.ai/privacy" className="underline">https://witagent.ai/privacy</a>”
+              “I agree to receive SMS/text messages from <span className="font-bold">Wit AI</span> about my inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply <span className="font-bold">STOP</span> to opt out, <span className="font-bold">HELP</span> for help. Terms: <a href="https://witagent.ai/terms" className="underline">https://witagent.ai/terms</a> Privacy: <a href="https://witagent.ai/privacy" className="underline">https://witagent.ai/privacy</a>”
             </p>
           </div>
         </div>
@@ -88,22 +86,22 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
         <h2 className="text-xl font-semibold mt-8 mb-2">Why this page exists</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
           Mobile carriers require proof that people agreed to receive text messages from a business. This page explains how SMS
-          consent works for agents using Wit AI and is used as opt-in documentation for toll-free verification reviews.
+          consent works for professionals using Wit AI and is used as opt-in documentation for toll-free verification reviews.
         </p>
 
-        <h2 className="text-xl font-semibold mt-8 mb-2">What is happening when you text an agent number</h2>
+        <h2 className="text-xl font-semibold mt-8 mb-2">What is happening when you text a professional number</h2>
         <ol className="list-decimal pl-6 space-y-2 text-zinc-700 dark:text-zinc-300 mb-6">
-          <li>You see an agent’s toll-free number on a listing, website, sign, or shared contact info.</li>
+          <li>You see a professional’s toll-free number on a listing, website, sign, or shared contact info.</li>
           <li>You send the first text to that number (this is the opt-in).</li>
           <li>The message is delivered through Twilio to Wit AI.</li>
-          <li>The agent and/or the agent’s AI assistant replies 1:1 to help with questions, scheduling, and next steps.</li>
+          <li>The professional and/or their assistant replies 1:1 to help with questions, scheduling, and next steps.</li>
           <li>You can stop messages anytime by replying STOP, or get help by replying HELP.</li>
         </ol>
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Opt-in method</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
           <span className="font-semibold">Opt-in type:</span> via text. You opt in by sending the text keyword <span className="font-bold">"HI"</span> to the
-          agent’s toll-free number.
+          professional’s toll-free number.
         </p>
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Message purpose</h2>
@@ -149,16 +147,29 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
           </p>
         </div>
 
-        <h2 className="text-xl font-semibold mt-10 mb-2">Agent directory</h2>
+        <h2 id="abuse" className="text-xl font-semibold mt-10 mb-2">Zero Tolerance for Abuse</h2>
+        <div className="rounded-xl border-2 border-red-500 bg-red-50/60 dark:bg-red-950/20 p-6 mb-8">
+          <p className="leading-7 text-red-700 dark:text-red-400 font-bold mb-3 text-lg uppercase tracking-tight">
+            Strict Zero Tolerance Policy
+          </p>
+          <p className="leading-7 text-zinc-900 dark:text-zinc-100 font-medium mb-3">
+            Wit AI maintains an absolute zero-tolerance policy for SMS abuse, spam, and harassment.
+          </p>
+          <p className="leading-7 text-zinc-700 dark:text-zinc-300">
+            Every professional executive is required to pass a mandatory in-app <Link href="/sms-compliance-gate" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">"SMS Consent & Compliance"</Link> gate before accessing SMS features. They must explicitly certify that they have obtained express consent from all contacts and acknowledge that their assigned number will be revoked immediately for any misuse or compliance failure.
+          </p>
+        </div>
+
+        <h2 className="text-xl font-semibold mt-10 mb-2">Professional directory</h2>
         <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
-          Each agent section below includes the agent identity and the toll-free number, because you are consenting to receive
+          Each section below includes the identity and the toll-free number, because you are consenting to receive
           messages from that specific business.
         </p>
 
         {selectedAgentId && !selectedAgent ? (
           <div className="rounded-xl border border-red-200 dark:border-red-900 bg-red-50/60 dark:bg-red-950/20 p-4 mb-6">
             <p className="text-sm text-red-700 dark:text-red-300">
-              Unknown agent id: <span className="font-mono">{selectedAgentId}</span>
+              Unknown id: <span className="font-mono">{selectedAgentId}</span>
             </p>
             <p className="text-sm text-red-700 dark:text-red-300 mt-1">
               Showing full directory instead.
@@ -182,7 +193,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
                 }`}
               >
                 <h3 className="text-lg font-bold">
-                  {agent.name} {agent.isInternalTest ? '' : `/ ${agent.businessName}`} (powered by Wit AI)
+                  Wit AI (powered by Wit AI)
                 </h3>
 
                 <p className="mt-3 text-zinc-700 dark:text-zinc-300">
@@ -198,7 +209,7 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
                 <div className="mt-4">
                   <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Disclosure (consent)</p>
                   <p className="mt-1 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
-                    Texting <span className="font-bold">"HI"</span> to <span className="font-bold">{agent.tollFreeNumber}</span> constitutes your agreement to receive SMS/text messages from <span className="font-bold">{agent.name}</span> about your inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply STOP to opt out, HELP for help. Terms: https://witagent.ai/terms Privacy: https://witagent.ai/privacy
+                    Texting <span className="font-bold">"HI"</span> to <span className="font-bold">{agent.tollFreeNumber}</span> constitutes your agreement to receive SMS/text messages from <span className="font-bold">Wit AI</span> about your inquiry (customer care and scheduling). Message frequency varies. Msg and data rates may apply. Reply STOP to opt out, HELP for help. Terms: https://witagent.ai/terms Privacy: https://witagent.ai/privacy
                   </p>
                 </div>
 
@@ -213,6 +224,37 @@ export default function SmsConsent({ agentId }: SmsConsentProps) {
               </section>
             )
           })}
+        </div>
+
+        <h2 className="text-xl font-semibold mt-10 mb-2">Related pages</h2>
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40 backdrop-blur-xl p-4 mb-8">
+          <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-2">
+            <span className="font-semibold">Abuse Policy:</span>{' '}
+            <Link href="/sms-consent#abuse" className="text-blue-600 dark:text-blue-400 hover:underline">
+              Zero Tolerance Policy
+            </Link>{' '}
+            — Detailed information on our strict enforcement against SMS misuse.
+          </p>
+          <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-2">
+            <span className="font-semibold">Compliance Evidence:</span>{' '}
+            <Link href="/sms-compliance-gate" className="text-blue-600 dark:text-blue-400 hover:underline">
+              /sms-compliance-gate
+            </Link>{' '}
+            — Visual evidence of the mandatory in-app compliance gate for professional executives.
+          </p>
+          <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-2">
+            <span className="font-semibold">SMS Consent (Toll-Free):</span>{' '}
+            <span className="text-zinc-500 dark:text-zinc-400">
+              This page — For toll-free numbers used by individuals (e.g., real estate professionals, consultants).
+            </span>
+          </p>
+          <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            <span className="font-semibold">SMS Terms (10DLC):</span>{' '}
+            <Link href="/compliance" className="text-blue-600 dark:text-blue-400 hover:underline">
+              /compliance
+            </Link>{' '}
+            — For Wit AI’s pool of local 10DLC numbers used for executive assistant support.
+          </p>
         </div>
 
         <div className="mt-10 pt-6">
