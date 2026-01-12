@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const messages = [
-  "founders going 0 → 1",
+  "projects going 0 → 1",
   "your $10k MRR",
   "your first 100 users",
   "your next 1K followers",
-  "that angel investment",
+  "that key investment",
   "your success",
   "your first $1M ARR",
 ];

@@ -116,7 +116,7 @@ export default function Landing() {
               
               <AnimateIn trigger="mount" direction="left" delay={0.05}>
                 <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Wit is your AI cofounder. It connects to your email, calendar, and apps, tells you the one thing you should work on, and helps do the work for you.
+                  Wit is your Executive Assistant. It connects to your email, sms, calendar, and apps, tells you the one thing you should work on, and helps do the work for you.
                 </p>
               </AnimateIn>
               
@@ -235,7 +235,7 @@ export default function Landing() {
 
       {/* University Banner - Validation */}
       <section className="snap-start snap-always border-y border-zinc-200/50 dark:border-white/5 bg-white/50 dark:bg-white/[0.02] backdrop-blur-sm">
-        <UniversityBanner variant="founder" className="py-10" />
+        <UniversityBanner variant="professional" className="py-10" />
       </section>
 
       {/* Bento Grid Features / Pillars */}
@@ -244,9 +244,9 @@ export default function Landing() {
         className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-32 snap-start snap-always"
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                The AI that builds with you.
-            </h2>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                The assistant that builds with you.
+              </h2>
             <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
                 Stop managing tools. Start managing vision. Wit handles the rest.
             </p>
@@ -462,7 +462,7 @@ export default function Landing() {
                 Don't just plan.<br/>Execute.
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">
-                Your agent isn't just a chatbot. It's an active teammate that plugs into your email, calendar, and tasks to get real work done.
+                Your assistant isn't just a chatbot. It's an active teammate that plugs into your email, calendar, and tasks to get real work done.
               </p>
               
               <div className="space-y-4">

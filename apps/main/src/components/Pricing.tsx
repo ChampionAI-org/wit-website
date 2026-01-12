@@ -124,7 +124,7 @@ export default function Pricing() {
     },
     entrepreneur: {
       title: "Entrepreneur",
-      sublabel: "WIT Founders Edition pricing",
+      sublabel: "WIT Professional Edition pricing",
       monthly: { amount: "11.99", period: "per month", was: "20", discounted: true },
       yearly: { amount: "120", period: "per year", was: "240", discounted: true, note: "7‑day free trial" },
     },

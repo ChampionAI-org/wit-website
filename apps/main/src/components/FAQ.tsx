@@ -14,11 +14,11 @@ export type FAQItem = {
 const DEFAULT_ITEMS: FAQItem[] = [
   {
     q: "What is Wit?",
-    a: "Wit is your AI cofounder that helps first-time founders win. It connects to your email, calendar, and other apps to get context. Then, it proactively helps figure out what you need to do to win.",
+    a: "Wit is your Executive Assistant. It connects to your email, calendar, and other apps to get context. Then, it proactively helps figure out what you need to do.",
   },
   {
     q: "How is this different from ChatGPT?",
-    a: "Wit is an AI cofounder, not a general purpose LLM. Our mission is to make your teammate feel alive. But before that, our AI agent is designed to proactively keep up to date with what is going on, learn about you and the team, and help you win by providing suggestions on what to do and by helping with the work itself.",
+    a: "Wit is an Executive Assistant, not a general purpose LLM. Our mission is to make your teammate feel alive. Your assistant is designed to proactively keep up to date with what is going on, learn about you and the team, and help by providing suggestions on what to do and by helping with the work itself.",
   },
   {
     q: "Do I need coding skills to use Wit?",
@@ -26,7 +26,7 @@ const DEFAULT_ITEMS: FAQItem[] = [
   },
   {
     q: "Can I customize Wit to fit my workflow?",
-    a: "Yes. Your agent is built to join your team. We are integrating new apps daily!",
+    a: "Yes. Your assistant is built to join your team. We are integrating new apps daily!",
   },
   {
     q: "Does Wit work on mobile and web?",

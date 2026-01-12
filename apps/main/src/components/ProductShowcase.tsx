@@ -13,8 +13,8 @@ export default function ProductShowcase() {
   const products = {
     student: {
       icon: Brain,
-      title: "Student Agent",
-      description: "Your personal AI assistant for academic success",
+      title: "Student Assistant",
+      description: "Your personal assistant for academic success",
       features: [
         "Assignment tracking & reminders",
         "Smart scheduling & time blocking",
@@ -28,12 +28,12 @@ export default function ProductShowcase() {
     },
     parent: {
       icon: Users,
-      title: "Parent Agent",
+      title: "Parent Assistant",
       description: "Stay connected and support your student's journey",
       features: [
         "Real-time progress updates",
         "Task assignment & monitoring",
-        "Communication with student agent",
+        "Communication with student assistant",
         "Manage family calendar events",
         "Goal setting & tracking",
         "LMS integration (when available)",
@@ -43,12 +43,12 @@ export default function ProductShowcase() {
     },
     bundle: {
       icon: Zap,
-      title: "Student + Parent Agents",
-      description: "Complete family support system with interconnected agents",
+      title: "Student + Parent Assistants",
+      description: "Complete family support system with interconnected assistants",
       features: [
-        "Everything in Student Agent",
-        "Everything in Parent Agent",
-        "Seamless agent communication",
+        "Everything in Student Assistant",
+        "Everything in Parent Assistant",
+        "Seamless communication",
         "Family dashboard & insights",
         "Priority support",
         "Advanced analytics",
@@ -64,12 +64,12 @@ export default function ProductShowcase() {
         <div className="text-center mb-16">
           <AnimateIn direction="left">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Start Free. Choose your Agent.
+              Start Free. Choose your Assistant.
             </h2>
           </AnimateIn>
           <AnimateIn direction="left" delay={0.05}>
             <p className="text-xl text-gray-600 dark:text-slate-400 max-w-3xl mx-auto">
-              Individual agents or complete family ecosystem—designed to grow with
+              Individual assistants or complete family ecosystem—designed to grow with
               your needs
             </p>
           </AnimateIn>

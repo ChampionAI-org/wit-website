@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 
 import { AnimateIn } from "./Animate";
 
-type UniversityBannerVariant = "founder" | "students";
+type UniversityBannerVariant = "professional" | "students";
 
 interface UniversityBannerProps {
   variant?: UniversityBannerVariant;
@@ -21,9 +21,9 @@ interface UniversityLogo {
 }
 
 const copy: Record<UniversityBannerVariant, { heading: string; subheading: string }> = {
-  founder: {
-    heading: "Founded by builders from Harvard, MIT, and UNLV",
-    subheading: "The same team crafting Wit for founders and operators",
+  professional: {
+    heading: "Built by a team from Harvard, MIT, and UNLV",
+    subheading: "Crafting Wit for professionals and operators",
   },
   students: {
     heading: "Built by students, for students",
@@ -42,7 +42,7 @@ const logos: UniversityLogo[] = [
   { name: "UNLV", src: "/unlv-vector-logo.png", trimWhite: true },
 ];
 
-export default function UniversityBanner({ variant = "founder", className = "" }: UniversityBannerProps) {
+export default function UniversityBanner({ variant = "professional", className = "" }: UniversityBannerProps) {
   const [processedSources, setProcessedSources] = useState<Record<string, string>>({});
 
   useEffect(() => {
