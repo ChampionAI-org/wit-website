@@ -116,7 +116,7 @@ export default function Landing() {
               
               <AnimateIn trigger="mount" direction="left" delay={0.05}>
                 <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Wit is your Executive Assistant. It connects to your email, sms, calendar, and apps, tells you the one thing you should work on, and helps do the work for you.
+                  Wit connects to your email, calendar, and CRM — surfaces the opportunities that matter, and helps you close them faster.
                 </p>
               </AnimateIn>
               
@@ -187,7 +187,7 @@ export default function Landing() {
                             </div>
                             <div>
                                 <div className="text-xs font-medium text-zinc-500">Priority</div>
-                                <div className="text-sm font-bold">Launch Product</div>
+                                <div className="text-sm font-bold">Follow up with lead</div>
                             </div>
                         </div>
                      </div>
@@ -204,7 +204,7 @@ export default function Landing() {
                              </div>
                              <div>
                                 <div className="text-xs font-medium text-zinc-500">Email Sent</div>
-                                <div className="text-sm font-bold">Investor Update</div>
+                                <div className="text-sm font-bold">Client Proposal</div>
                              </div>
                         </div>
                      </div>
@@ -221,7 +221,7 @@ export default function Landing() {
                            </div>
                            <div>
                                <div className="text-xs font-medium text-zinc-500">Created Event</div>
-                               <div className="text-sm font-bold">Team Sync, 2:00 PM</div>
+                               <div className="text-sm font-bold">Discovery Call, 2:00 PM</div>
                            </div>
                        </div>
                     </div>
@@ -245,10 +245,10 @@ export default function Landing() {
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                The assistant that builds with you.
+                The assistant that closes with you.
               </h2>
             <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-                Stop managing tools. Start managing vision. Wit handles the rest.
+                Stop chasing tasks. Start closing deals. Wit handles the rest.
             </p>
         </div>
 
@@ -259,7 +259,7 @@ export default function Landing() {
                 <div className="mb-8 relative z-20 max-w-3xl">
                     <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">All your apps in one place.</h3>
                     <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Let Wit use all your stuff. It connects with Gmail, Slack, and Notion to give you a unified view of your work.
+                       Connect your tools. Wit syncs with Gmail, Calendar, and your CRM to give you a unified view of every deal.
                     </p>
                 </div>
                 
@@ -373,23 +373,23 @@ export default function Landing() {
                     <div className="mb-8 relative z-20">
                         <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving</h3>
                         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                           Wit is the engine that never stops. It drafts the emails, preps the briefs, and clears the blockers before you even wake up.
+                           Wit is the engine that never stops. It drafts the emails, preps the proposals, and queues the follow-ups before you even ask.
                         </p>
                     </div>
                     <div className="flex-1 relative z-10">
                         <div className="absolute inset-0">
                              {/* Scattered Chips */}
                             <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
-                                Draft investor update
+                                Draft follow-up email
                             </div>
                             <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
-                                Find 50 leads in SF
+                                Find 50 leads in Austin
                             </div>
                             <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
-                                Move board meeting
+                                Schedule property showing
                             </div>
                             <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
-                                Prep for YC interview
+                                Prep for client call
                             </div>
                             
                             {/* Ghost Chips */}
@@ -412,7 +412,7 @@ export default function Landing() {
                     <div className="mb-8 relative z-20">
                         <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Signal, Not Noise</h3>
                         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                           Most notifications are distractions. Wit acts as your shield, surfacing only what impacts your runway and roadmap.
+                           Most notifications are distractions. Wit acts as your filter, surfacing only what moves the needle on your pipeline.
                         </p>
                     </div>
                     <div className="flex-1 relative overflow-hidden z-10">
@@ -456,21 +456,21 @@ export default function Landing() {
           <AnimateIn direction="left">
             <div>
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-6">
-                <CheckCircle2 className="w-4 h-4 mr-2" /> Built for execution
+                <CheckCircle2 className="w-4 h-4 mr-2" /> Built for closers
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Don't just plan.<br/>Execute.
+                Don't just plan.<br/>Close.
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">
-                Your assistant isn't just a chatbot. It's an active teammate that plugs into your email, calendar, and tasks to get real work done.
+                Your assistant isn't just a chatbot. It's an active teammate that plugs into your email, calendar, and CRM to help you close more deals.
               </p>
               
               <div className="space-y-4">
                 {[
-                  "Sets the main priority — eliminates distraction",
-                  "Does the research — actionable insights only",
-                  "An Active Teammate — proactively helps",
-                  "Connects to your context — email, calendar, tasks",
+                  "Surfaces your top priority — no more guessing",
+                  "Does the research — prospects, context, insights",
+                  "An Active Teammate — follows up proactively",
+                  "Connects to your context — email, calendar, CRM",
                 ].map((line, i) => (
                   <div key={i} className="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-white/5 border border-zinc-100 dark:border-white/10 hover:border-emerald-500/30 transition-colors">
                     <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center shrink-0">
