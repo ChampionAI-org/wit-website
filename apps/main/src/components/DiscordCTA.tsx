@@ -34,7 +34,7 @@ export default function DiscordCTA() {
                 </h2>
                 <p className="mt-4 text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-7">
                   Join our Discord to swap tactics, stay accountable, and keep the streak alive.
-                  It's where students, founders, and operators compare notes and get unstuck fast.
+                  It's where students, professionals, and operators compare notes and get unstuck fast.
                 </p>
                 <div className="mt-8">
                   <BezelButton href="https://discord.gg/uQcUXuQawe" variant="blue" className="px-6 py-3 text-base sm:text-lg">

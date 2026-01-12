@@ -119,7 +119,7 @@ export default function EmoLanding() {
         <div className="relative">
           <AnimateIn trigger="mount" direction="in">
             <div className="mb-6 inline-flex items-center gap-3 rounded-full bg-black/80 px-4 py-2 text-sm font-medium text-white shadow-[0_12px_24px_rgba(0,0,0,0.28)] ring-1 ring-black/30 dark:bg-white/10 dark:text-white dark:ring-white/20">
-              <span>Introducing Emo · Voice Email Agent</span>
+              <span>Introducing Emo · Voice Email Assistant</span>
             </div>
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left">
@@ -221,7 +221,7 @@ export default function EmoLanding() {
       </section>
 
       <section className="mt-24">
-        <UniversityBanner variant="founder" className="py-14" />
+        <UniversityBanner variant="professional" className="py-14" />
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 grid md:grid-cols-3 gap-8">
