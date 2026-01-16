@@ -64,10 +64,74 @@ export default function Page() {
           <li>You can stop messages anytime by replying <span className="font-bold">STOP</span>, or get help by replying <span className="font-bold">HELP</span>.</li>
         </ol>
 
-        <h2 className="text-xl font-semibold mt-8 mb-2">Opt-in method</h2>
-        <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-6">
-          Recipients of messages from a Wit AI number typically have a pre-existing professional relationship with the sender or have provided consent through verbal or business interactions. By interacting with the number, recipients agree to receive 1:1 professional communication and administrative support.
+        <h2 id="consent" className="text-xl font-semibold mt-8 mb-2">How End-Users Consent to Receive Messages</h2>
+        <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-4">
+          End-users (professional contacts) provide consent through proactive inbound initiation, existing business relationships, or verbal agreement during professional consultations.
         </p>
+
+        <div className="rounded-xl border-2 border-green-500 bg-green-50/50 dark:bg-green-900/20 p-6 mb-6">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-green-600 dark:text-green-400 mb-3">Verbal Consent Transcript:</h3>
+          <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-3">
+            During a business call or meeting, the professional says:
+          </p>
+          <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm mb-4">
+            <p className="text-zinc-800 dark:text-zinc-200 italic">
+              <span className="font-bold text-green-600 dark:text-green-400">Professional:</span> "I'd like to use my Wit AI assistant line to send you project updates and scheduling reminders via text. Is that okay with you?"
+            </p>
+          </div>
+          <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm mb-4">
+            <p className="text-zinc-800 dark:text-zinc-200 italic">
+              <span className="font-bold text-blue-600 dark:text-blue-400">End-user:</span> "Yes, that works for me."
+            </p>
+          </div>
+          <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm">
+            <p className="text-zinc-800 dark:text-zinc-200 italic">
+              <span className="font-bold text-green-600 dark:text-green-400">Professional:</span> "Great, you'll receive a message from my Wit AI line. Standard message and data rates may apply. You can reply STOP at any time to opt out or HELP for more info. Our terms are at <a href="https://witagent.ai/compliance" className="underline">https://witagent.ai/compliance</a> and privacy policy at <a href="https://witagent.ai/privacy" className="underline">https://witagent.ai/privacy</a>."
+            </p>
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40 p-4 mb-6">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-2">Inbound Initiation:</h3>
+          <p className="leading-7 text-zinc-700 dark:text-zinc-300">
+            In many cases, the contact initiates consent by messaging the professional's dedicated number first to request coordination.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40 p-4 mb-6">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-2">Digital Enforcement & Logging:</h3>
+          <p className="leading-7 text-zinc-700 dark:text-zinc-300">
+            To enforce this, every Wit AI user must pass a mandatory in-app "SMS Consent & Compliance" gate before sending messages. The professional must actively confirm they have obtained the express consent described above. Evidence of this gate is publicly hosted at: <Link href="/sms-compliance-gate" className="text-blue-600 dark:text-blue-400 hover:underline">https://witagent.ai/sms-compliance-gate</Link>
+          </p>
+        </div>
+
+        <h2 id="keywords" className="text-xl font-semibold mt-8 mb-2">Automated Keyword Responses</h2>
+        <p className="leading-7 text-zinc-700 dark:text-zinc-300 mb-4">
+          The following keywords trigger automated system responses:
+        </p>
+
+        <div className="space-y-4 mb-6">
+          <div className="rounded-xl border border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/20 p-4">
+            <p className="text-sm font-bold text-green-600 dark:text-green-400 mb-1">Opt-in Keyword: START</p>
+            <p className="text-zinc-700 dark:text-zinc-300 text-sm italic">
+              "You are successfully opted in for messages from Wit AI for professional coordination. Msg/data rates apply. Msg frequency varies. Reply HELP for support. Reply STOP to unsubscribe."
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/20 p-4">
+            <p className="text-sm font-bold text-red-600 dark:text-red-400 mb-1">Opt-out Keyword: STOP</p>
+            <p className="text-zinc-700 dark:text-zinc-300 text-sm italic">
+              "You have successfully been unsubscribed from Wit AI. You will no longer receive messages from this number. Reply START to re-subscribe."
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/20 p-4">
+            <p className="text-sm font-bold text-blue-600 dark:text-blue-400 mb-1">Help Keyword: HELP</p>
+            <p className="text-zinc-700 dark:text-zinc-300 text-sm italic">
+              "Wit AI: You are messaging a professional executive assistant line. Msg/data rates apply. Reply STOP to opt out. Support: hi@witagent.ai. More info: <a href="https://witagent.ai/compliance" className="underline">https://witagent.ai/compliance</a>"
+            </p>
+          </div>
+        </div>
 
         <h2 className="text-xl font-semibold mt-8 mb-2">Opt-out and assistance</h2>
         <ul className="list-disc pl-6 space-y-1 text-zinc-700 dark:text-zinc-300 mb-6">
