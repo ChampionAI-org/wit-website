@@ -33,7 +33,7 @@ export default function RotatingHeroText() {
         transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
       >
         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-        ALWAYS ON. ALWAYS FOLLOWING UP.
+        BUILT FOR REVENUE, NOT REMINDERS
       </motion.span>
 
       <div className="lg:text-left text-center">
@@ -61,7 +61,7 @@ export default function RotatingHeroText() {
           </AnimatePresence>
         </div>
         <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 font-medium">
-          Wit is your AI <span className="text-zinc-900 dark:text-white font-bold italic">for real estate agents</span>
+          Your AI assistant <span className="text-zinc-900 dark:text-white font-bold italic">for real estate</span>
         </p>
       </div>
     </div>

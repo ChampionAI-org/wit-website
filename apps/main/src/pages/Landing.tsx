@@ -116,8 +116,20 @@ export default function Landing() {
               
               <AnimateIn trigger="mount" direction="left" delay={0.05}>
                 <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Wit is an AI personal assistant for real estate agents. It owns your follow ups, pipeline, and next steps so you close more deals.
+                  Wit is the AI personal assistant for real estate agents. It turns every lead into a next step and keeps every deal moving forward.
                 </p>
+                <div className="mt-6 grid gap-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-300">
+                  {[
+                    "Every lead gets a next step",
+                    "Your pipeline stays on track",
+                    "Escrow deadlines are never missed",
+                  ].map((line) => (
+                    <div key={line} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <span>{line}</span>
+                    </div>
+                  ))}
+                </div>
               </AnimateIn>
               
               <StaggerIn
@@ -149,9 +161,9 @@ export default function Landing() {
                         </div>
                     ))}
                  </div>
-                 <div className="text-sm text-zinc-500 dark:text-zinc-400">
-                    Joined by 300+ users
-                 </div>
+                  <div className="text-sm text-zinc-500 dark:text-zinc-400">
+                     Joined by 300+ agents
+                  </div>
               </div>
             </div>
 
@@ -245,10 +257,10 @@ export default function Landing() {
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                AI that grows an agent's income.
+                Close more deals.
               </h2>
             <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-                It owns follow ups, pipeline, and next steps.
+                Built for revenue, not reminders. Wit owns follow ups, pipeline, and next steps.
             </p>
         </div>
 
@@ -257,9 +269,9 @@ export default function Landing() {
            {/* Card 1: Integrations (Full Width) */}
            <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 pb-2 md:pb-4 flex flex-col">
                 <div className="mb-8 relative z-20 max-w-3xl">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">All your deals in one place.</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">All your pipeline in one place.</h3>
                     <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Connect Gmail, Calendar, and your CRM. Wit keeps every lead and deal on one clear list.
+                       Connect Gmail, Calendar, and your CRM. Wit builds your pipeline and shows the next step for every deal.
                     </p>
                 </div>
                 
@@ -371,25 +383,25 @@ export default function Landing() {
                {/* Card 2: Executing (Centered) */}
                <AnimateIn direction="up" delay={0.2} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
                     <div className="mb-8 relative z-20">
-                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving Deals</h3>
+                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving the Pipeline</h3>
                         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                           Wit follows up, drafts simple emails, and keeps the next step ready.
+                           Wit follows up, schedules the next step, and keeps escrow moving.
                         </p>
                     </div>
                     <div className="flex-1 relative z-10">
                         <div className="absolute inset-0">
                              {/* Scattered Chips */}
                             <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
-                                Draft follow up email
+                                Draft follow up
                             </div>
                             <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
-                                Follow up on new lead
+                                Follow up on buyer lead
                             </div>
                             <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
-                                Schedule a showing
+                                Schedule inspection
                             </div>
                             <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
-                                Check escrow deadline
+                                Escrow deadline due
                             </div>
                             
                             {/* Ghost Chips */}
@@ -410,9 +422,9 @@ export default function Landing() {
                {/* Card 3: Strategy/Prioritization */}
                <AnimateIn direction="up" delay={0.1} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
                     <div className="mb-8 relative z-20">
-                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Pipeline, Not Noise</h3>
+                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Focus on What Matters</h3>
                         <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                           Wit shows what makes money: leads, next steps, and deadlines.
+                           Wit shows who to call, what to send, and which deadline is next.
                         </p>
                     </div>
                     <div className="flex-1 relative overflow-hidden z-10">
@@ -462,15 +474,15 @@ export default function Landing() {
                 Close more deals.<br/>Do less admin.
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">
-                Wit is not a chatbot. It is your AI assistant for real estate. It keeps leads, deals, and escrow moving.
+                Wit is not a chatbot. It is your AI assistant for real estate. It runs your follow ups and keeps deals on track.
               </p>
               
               <div className="space-y-4">
                 {[
-                  "Close more deals, do less admin",
-                  "No more lost leads",
-                  "Your pipeline on autopilot",
-                  "AI built for revenue, not reminders",
+                  "New lead comes in",
+                  "Wit creates the next step",
+                  "Wit watches escrow dates",
+                  "You get a clear daily list",
                 ].map((line, i) => (
                   <div key={i} className="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-white/5 border border-zinc-100 dark:border-white/10 hover:border-emerald-500/30 transition-colors">
                     <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center shrink-0">
