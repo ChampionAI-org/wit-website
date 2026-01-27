@@ -7,7 +7,7 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Wit AI',
-  description: 'Wit is your AI partner to think, act, learn, iterate — and endure — until you win.',
+  description: 'Wit is an AI personal assistant for real estate agents that owns follow ups, pipeline, and next steps.',
   icons: {
     icon: '/icon.png',
     shortcut: '/icon.png',

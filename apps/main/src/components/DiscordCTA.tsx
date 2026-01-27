@@ -27,14 +27,14 @@ export default function DiscordCTA() {
               <div>
                 <div className="inline-flex items-center gap-2 rounded-2xl px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-700 ring-1 ring-blue-500/30 dark:text-blue-300">
                   <DiscordGlyph className="w-4 h-4" />
-                  Community of doers
+                  Community of agents
                 </div>
                 <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-                  Build momentum with people who ship
+                  Close more deals with other agents
                 </h2>
                 <p className="mt-4 text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-7">
-                  Join our Discord to swap tactics, stay accountable, and keep the streak alive.
-                  It's where students, professionals, and operators compare notes and get unstuck fast.
+                  Join our Discord to swap scripts, follow up tactics, and escrow tips.
+                  It is where agents compare notes and move deals faster.
                 </p>
                 <div className="mt-8">
                   <BezelButton href="https://discord.gg/uQcUXuQawe" variant="blue" className="px-6 py-3 text-base sm:text-lg">

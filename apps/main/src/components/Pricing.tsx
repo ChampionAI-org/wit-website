@@ -7,10 +7,10 @@ import Card from "./Card";
 import BezelButton from "./BezelButton";
 
 const FEATURES_COMMON = [
-  "Unlimited planning & tasking",
-  "Smart suggestions",
-  "Email + calendar integration",
-  "Progress tracking & streaks",
+  "Lead follow ups",
+  "Pipeline next steps",
+  "Escrow deadlines",
+  "Email + calendar sync",
 ];
 
 function Price({ amount, period, note, was }: { amount: string; period: string; note?: string; was?: string }) {
@@ -111,22 +111,22 @@ function PlanCardSingle({
 }
 
 export default function Pricing() {
-  type Audience = "student" | "entrepreneur";
-  const [audience, setAudience] = useState<Audience>("student");
+  type Audience = "agent" | "team";
+  const [audience, setAudience] = useState<Audience>("agent");
 
   const audienceCopy: Record<Audience, { title: string; sublabel?: string; monthly: { amount: string; period: string; was?: string; discounted?: boolean; note?: string }; yearly: { amount: string; period: string; was?: string; discounted?: boolean; note?: string } }>
     = {
-    student: {
-      title: "Student",
-      sublabel: "Student discount available for a limited time",
+    agent: {
+      title: "Agent",
+      sublabel: "For solo agents",
       monthly: { amount: "11.99", period: "per month", was: "20", discounted: true },
-      yearly: { amount: "120", period: "per year", was: "200", discounted: true, note: "7‑day free trial" },
+      yearly: { amount: "120", period: "per year", was: "200", discounted: true, note: "7-day free trial" },
     },
-    entrepreneur: {
-      title: "Entrepreneur",
-      sublabel: "WIT Professional Edition pricing",
+    team: {
+      title: "Team",
+      sublabel: "For teams and brokerages",
       monthly: { amount: "11.99", period: "per month", was: "20", discounted: true },
-      yearly: { amount: "120", period: "per year", was: "240", discounted: true, note: "7‑day free trial" },
+      yearly: { amount: "120", period: "per year", was: "240", discounted: true, note: "7-day free trial" },
     },
   };
 
@@ -141,33 +141,33 @@ export default function Pricing() {
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left">
             <h2 className="mt-6 text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Flexible Plans for All
+              Plans for Agents and Teams
             </h2>
           </AnimateIn>
           <AnimateIn trigger="mount" direction="left" delay={0.04}>
-            <p className="mt-3 text-zinc-700 dark:text-zinc-300">Choose a plan that fits your goals and scale as you grow.</p>
+            <p className="mt-3 text-zinc-700 dark:text-zinc-300">Pick a plan that fits your business.</p>
           </AnimateIn>
 
-          {/* Audience Toggle: Student vs Entrepreneur */}
+          {/* Audience Toggle: Agent vs Team */}
           <div className="mt-6 flex justify-center">
             <div className="relative inline-flex items-center rounded-xl p-1 bg-white/70 border border-zinc-200 backdrop-blur-md shadow-sm dark:bg-white/10 dark:border-white/10 w-full max-w-[420px] overflow-hidden">
               <button
-                onClick={() => setAudience("student")}
-                className={`relative z-10 flex-1 px-4 py-1.5 text-sm rounded-lg transition-colors text-center select-none ${audience === "student" ? "text-zinc-900 dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}
+                onClick={() => setAudience("agent")}
+                className={`relative z-10 flex-1 px-4 py-1.5 text-sm rounded-lg transition-colors text-center select-none ${audience === "agent" ? "text-zinc-900 dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}
               >
-                Student
+                Agent
               </button>
               <button
-                onClick={() => setAudience("entrepreneur")}
-                className={`relative z-10 flex-1 px-4 py-1.5 text-sm rounded-lg transition-colors text-center select-none ${audience === "entrepreneur" ? "text-zinc-900 dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}
+                onClick={() => setAudience("team")}
+                className={`relative z-10 flex-1 px-4 py-1.5 text-sm rounded-lg transition-colors text-center select-none ${audience === "team" ? "text-zinc-900 dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}
               >
-                Entrepreneur
+                Team
               </button>
               <motion.span
                 layout
                 className="absolute top-1 bottom-1 rounded-lg bg-white shadow-sm ring-1 ring-black/5 dark:bg-white/20 dark:ring-white/10"
                 style={{ width: "calc(50% - 8px)" }}
-                animate={{ left: audience === "student" ? "4px" : "calc(50% + 4px)" }}
+                animate={{ left: audience === "agent" ? "4px" : "calc(50% + 4px)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
             </div>

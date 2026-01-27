@@ -36,11 +36,11 @@ export default function Footer() {
               <span className="text-2xl font-bold text-zinc-900 dark:text-white">Wit AI</span>
             </div>
             <p className="text-zinc-500 dark:text-slate-400 mb-6">
-              Building the first Executive Assistant suite.
+              Building the AI assistant for real estate agents.
             </p>
 
             <p className="text-zinc-500 dark:text-slate-400 text-sm leading-6">
-              Wit AI provides an Executive Assistant suite. By interacting with our users via SMS, you agree to our{' '}
+              Wit AI provides an AI assistant for real estate agents. By interacting with our users via SMS, you agree to our{' '}
               <Link href="/compliance" className="hover:text-zinc-900 dark:hover:text-white transition-colors underline">
                 SMS Terms
               </Link>{' '}

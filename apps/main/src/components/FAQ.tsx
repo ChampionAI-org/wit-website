@@ -14,23 +14,23 @@ export type FAQItem = {
 const DEFAULT_ITEMS: FAQItem[] = [
   {
     q: "What is Wit?",
-    a: "Wit is your Executive Assistant. It connects to your email, calendar, and other apps to get context. Then, it proactively helps figure out what you need to do.",
+    a: "Wit is an AI personal assistant for real estate agents. It handles follow ups, pipeline, and escrow next steps.",
   },
   {
     q: "How is this different from ChatGPT?",
-    a: "Wit is an Executive Assistant, not a general purpose LLM. Our mission is to make your teammate feel alive. Your assistant is designed to proactively keep up to date with what is going on, learn about you and the team, and help by providing suggestions on what to do and by helping with the work itself.",
+    a: "Wit is built for real estate deals. It tracks leads, deadlines, and docs so you can close more deals.",
   },
   {
     q: "Do I need coding skills to use Wit?",
-    a: "No. Wit is built for everyone—students, parents, entrepreneurs, and operators. If you can write a goal, Wit can help you get it done.",
+    a: "No. If you can use email or text, you can use Wit.",
   },
   {
     q: "Can I customize Wit to fit my workflow?",
-    a: "Yes. Your assistant is built to join your team. We are integrating new apps daily!",
+    a: "Yes. Connect your email, calendar, and CRM. Wit learns your deals and next steps.",
   },
   {
     q: "Does Wit work on mobile and web?",
-    a: "We are mobile-first. We believe the future of human and AI interaction is mobile and glasses, so we are building for that future.",
+    a: "Yes. Wit works on mobile and web.",
   },
 ];
 

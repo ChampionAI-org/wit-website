@@ -82,7 +82,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               transition={{ type: "spring", stiffness: 260, damping: 24, mass: 0.8 }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Join the Wit waitlist</h3>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Join the Wit AI waitlist</h3>
                 <button onClick={onClose} className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
                   <X className="w-6 h-6" />
                 </button>
@@ -129,13 +129,13 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="waitlist-goal" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    What do you want to achieve with Wit?
+                    What should Wit handle for your deals?
                   </label>
                   <textarea
                     id="waitlist-goal"
                     name="goal"
                     rows={2}
-                    placeholder="Tell us about your goals..."
+                    placeholder="Tell us about your deals..."
                     className="w-full rounded-xl bg-white dark:bg-neutral-800 ring-1 ring-black/10 dark:ring-white/10 px-4 py-3 text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 resize-none"
                   />
                 </div>

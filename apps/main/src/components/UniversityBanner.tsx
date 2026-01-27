@@ -23,7 +23,7 @@ interface UniversityLogo {
 const copy: Record<UniversityBannerVariant, { heading: string; subheading: string }> = {
   professional: {
     heading: "Built by a team from Harvard, MIT, and UNLV",
-    subheading: "Crafting Wit for professionals and operators",
+    subheading: "Crafting Wit for real estate agents",
   },
   students: {
     heading: "Built by students, for students",
