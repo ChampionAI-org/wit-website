@@ -2,10 +2,18 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, CheckCircle2, Brain, Search, Zap, 
-  Atom, Calendar, MapPin, Music, Hash, Filter, Shield, Settings, 
-  FileText, Layout, Github
+import {
+  ArrowRight,
+  Calendar,
+  CheckCircle2,
+  FileText,
+  Filter,
+  Home,
+  MapPin,
+  Search,
+  Settings,
+  Shield,
+  Zap,
 } from "lucide-react";
 import BezelButton from "../components/BezelButton";
 import HeroBackdrop from "../components/HeroBackdrop";
@@ -16,6 +24,8 @@ import DiscordCTA from "../components/DiscordCTA";
 import UniversityBanner from "../components/UniversityBanner";
 import WaitlistModal from "../components/WaitlistModal";
 import RotatingHeroText from "../components/RotatingHeroText";
+import AiTcExtrasSection from "../components/AiTcExtrasSection";
+import ActiveDealCard from "../components/ActiveDealCard";
 
 
 export default function Landing() {
@@ -116,19 +126,12 @@ export default function Landing() {
               
               <AnimateIn trigger="mount" direction="left" delay={0.05}>
                 <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Wit is the AI personal assistant for real estate agents. It turns every lead into a next step and keeps every deal moving forward.
+                  Wit is the AI assistant for real estate agents that owns the pipeline. It turns every lead into a staged deal, creates the next step, and keeps everything moving to close.
                 </p>
-                <div className="mt-6 grid gap-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-300">
-                  {[
-                    "Every lead gets a next step",
-                    "Your pipeline stays on track",
-                    "Escrow deadlines are never missed",
-                  ].map((line) => (
-                    <div key={line} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                      <span>{line}</span>
-                    </div>
-                  ))}
+
+                {/* Home widget (replaces hero bullets) */}
+                <div className="mt-6 w-full max-w-md mx-auto lg:mx-0">
+                  <ActiveDealCard />
                 </div>
               </AnimateIn>
               
@@ -184,62 +187,43 @@ export default function Landing() {
                >
                   {/* Floating Phone */}
                   <div className="relative z-10 animate-float">
-                     <img 
-                        src="/device/Device-1.png" 
-                        alt="Wit App Interface" 
-                        className="w-full h-auto drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.9)]"
-                     />
-                     
-                     {/* Floating UI Elements / Widgets */}
-                     {/* Card 1: Priority */}
-                     <div className="absolute -right-8 top-24 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_5s_ease-in-out_1s_infinite]">
-                        <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
-                                <CheckCircle2 size={16} />
-                            </div>
-                            <div>
-                                <div className="text-xs font-medium text-zinc-500">Priority</div>
-                                <div className="text-sm font-bold">Follow up with new lead</div>
-                            </div>
-                        </div>
-                     </div>
+                    <div className="relative">
+                      <img
+                        src="/device/Device-1.png"
+                        alt="Wit App Interface"
+                        className="relative z-20 w-full h-auto drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.9)]"
+                      />
 
-                     {/* Card 2: Email */}
-                     <div className="absolute -left-4 bottom-48 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_7s_ease-in-out_2s_infinite]">
-                        <div className="flex items-center gap-3">
-                             <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                                <img
-                                  src="/integration-logos/Gmail_icon_(2020).svg"
-                                  alt="Gmail logo"
-                                  className="w-4 h-4 object-contain"
-                                />
-                             </div>
-                             <div>
-                                <div className="text-xs font-medium text-zinc-500">Email Sent</div>
-                                <div className="text-sm font-bold">Offer summary</div>
-                             </div>
+                      {/* Overlay callouts (on the phone) */}
+                      <div className="hidden sm:block pointer-events-none">
+                        <div className="absolute left-2 sm:left-3 top-28 sm:top-32 w-[200px] rounded-2xl bg-white/65 dark:bg-zinc-900/65 backdrop-blur-xl border border-white/25 dark:border-white/10 shadow-xl p-3 z-30">
+                          <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 ring-1 ring-amber-500/20 flex items-center justify-center text-amber-700 dark:text-amber-300">
+                              <Shield className="w-5 h-5" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Deadline guard</div>
+                              <div className="text-sm font-bold text-zinc-900 dark:text-white truncate">Inspection due Fri</div>
+                            </div>
+                          </div>
                         </div>
-                     </div>
 
-                     {/* Card 3: Calendar */}
-                     <div className="absolute -right-6 bottom-20 p-3 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl rounded-xl border border-white/20 shadow-xl animate-[float_6s_ease-in-out_0.5s_infinite]">
-                        <div className="flex items-center gap-3">
-                             <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                                <img
-                                  src="/integration-logos/Google_Calendar_icon_(2020).svg"
-                                  alt="Google Calendar icon"
-                                  className="w-4 h-4 object-contain"
-                                />
-                           </div>
-                           <div>
-                               <div className="text-xs font-medium text-zinc-500">Created Event</div>
-                                <div className="text-sm font-bold">Showing, 2:00 PM</div>
-                           </div>
-                       </div>
+                        <div className="absolute right-2 sm:right-3 bottom-28 sm:bottom-32 w-[200px] rounded-2xl bg-white/65 dark:bg-zinc-900/65 backdrop-blur-xl border border-white/25 dark:border-white/10 shadow-xl p-3 z-30">
+                          <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-xl bg-sky-500/10 dark:bg-sky-500/15 ring-1 ring-sky-500/20 flex items-center justify-center text-sky-700 dark:text-sky-300">
+                              <Calendar className="w-5 h-5" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Auto-scheduled</div>
+                              <div className="text-sm font-bold text-zinc-900 dark:text-white truncate">Showing, 2:00 PM</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                   </div>
-               </motion.div>
+                </motion.div>
             </div>
           </div>
         </div>
@@ -257,10 +241,10 @@ export default function Landing() {
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                Close more deals.
+                Own your pipeline.
               </h2>
             <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-                Built for revenue, not reminders. Wit owns follow ups, pipeline, and next steps.
+                Built for revenue, not reminders. Wit owns your pipeline, follow ups, and next steps.
             </p>
         </div>
 
@@ -269,9 +253,9 @@ export default function Landing() {
            {/* Card 1: Integrations (Full Width) */}
            <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 pb-2 md:pb-4 flex flex-col">
                 <div className="mb-8 relative z-20 max-w-3xl">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">All your pipeline in one place.</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">Own the pipeline, end to end.</h3>
                     <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Connect Gmail, Calendar, and your CRM. Wit builds your pipeline and shows the next step for every deal.
+                       Connect email and calendar. Wit keeps each property moving with next steps, showings, docs, and deadlines.
                     </p>
                 </div>
                 
@@ -279,10 +263,10 @@ export default function Landing() {
                      {/* Tree Graph */}
                      <div ref={containerRef} className="relative w-full max-w-5xl flex flex-col items-center h-[190px] md:h-[220px] lg:h-[230px]">
                          {/* Parent Node */}
-                         <div ref={parentRef} className="absolute -top-6 md:-top-10 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3">
-                             <Atom className="w-5 h-5 text-emerald-500" />
-                             <span className="text-base font-semibold text-zinc-900 dark:text-white">Wit Core</span>
-                         </div>
+                          <div ref={parentRef} className="absolute -top-6 md:-top-10 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3">
+                              <Home className="w-5 h-5 text-emerald-500" />
+                              <span className="text-base font-semibold text-zinc-900 dark:text-white">Wit Pipeline</span>
+                          </div>
                          
                          {/* Connecting Lines */}
                         <svg 
@@ -311,65 +295,39 @@ export default function Landing() {
                          {/* Child Nodes */}
                         <StaggerIn className="grid grid-cols-5 w-full gap-0 mt-10 md:mt-12" stagger={0.1} delay={0.5}>
                              {[
-                                { 
-                                  label: "Gmail", 
-                                  bg: "bg-white dark:bg-white/10", 
-                                  src: "/integration-logos/Google-G-Logo.svg",
-                                  isImage: true
-                                },
-                                { 
-                                  label: "Linear", 
-                                  bg: "bg-white dark:bg-white/10",
-                                  lightSrc: "/integration-logos/Linear-Brand-Assets/logo-dark.svg", // dark logo on light background
-                                  darkSrc: "/integration-logos/Linear-Brand-Assets/logo-light.svg", // light logo on dark background
-                                  isImage: true
-                                },
-                                { 
-                                  label: "Notion", 
-                                  bg: "bg-white dark:bg-white/10",
-                                  src: "/integration-logos/Notion-logo.svg",
-                                  isImage: true
-                                },
-                                { 
-                                  label: "Slack", 
-                                  bg: "bg-white dark:bg-white/10",
-                                  src: "/integration-logos/Slack-Logo.svg",
-                                  isImage: true
-                                },
-                                { 
-                                  label: "GitHub", 
-                                  bg: "bg-white dark:bg-white/10",
-                                  icon: (className: string) => <Github className={className} />,
-                                  color: "text-black dark:text-white",
-                                  isImage: false
-                                }
+                               {
+                                 label: "Leads",
+                                 icon: Search,
+                                 tone: "from-emerald-500 to-teal-500",
+                               },
+                               {
+                                 label: "Showings",
+                                 icon: MapPin,
+                                 tone: "from-sky-500 to-blue-500",
+                               },
+                               {
+                                 label: "Follow ups",
+                                 icon: Zap,
+                                 tone: "from-zinc-800 to-zinc-950",
+                               },
+                               {
+                                 label: "Docs",
+                                 icon: FileText,
+                                 tone: "from-rose-500 to-orange-500",
+                               },
+                               {
+                                 label: "Deadlines",
+                                 icon: Calendar,
+                                 tone: "from-amber-500 to-orange-500",
+                               },
                              ].map((item, i) => (
                                  <div 
-                                    key={i} 
+                                    key={item.label} 
                                     ref={el => { childRefs.current[i] = el }} 
                                     className="flex flex-col items-center gap-3"
                                  >
-                                     <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl ${item.bg} flex items-center justify-center shadow-sm border border-zinc-200 dark:border-zinc-700 ring-4 ring-white dark:ring-zinc-900 p-3 md:p-4`}>
-                                        {item.isImage ? (
-                                          item.lightSrc && item.darkSrc ? (
-                                            <>
-                                              <img
-                                                src={item.lightSrc}
-                                                alt={`${item.label} logo`}
-                                                className="w-full h-full object-contain block dark:hidden"
-                                              />
-                                              <img
-                                                src={item.darkSrc}
-                                                alt={`${item.label} logo`}
-                                                className="w-full h-full object-contain hidden dark:block"
-                                              />
-                                            </>
-                                          ) : (
-                                            <img src={item.src} alt={`${item.label} logo`} className="w-full h-full object-contain" />
-                                          )
-                                        ) : (
-                                          item.icon!(`w-full h-full ${item.color}`)
-                                        )}
+                                     <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${item.tone} flex items-center justify-center shadow-sm ring-4 ring-white dark:ring-zinc-900 border border-white/15`}>
+                                        <item.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
                                      </div>
                                      <span className="text-xs md:text-sm font-medium text-zinc-600 dark:text-zinc-400">{item.label}</span>
                                  </div>
@@ -462,6 +420,8 @@ export default function Landing() {
         </div>
       </section>
 
+      <AiTcExtrasSection />
+
       {/* How it works - Refined */}
       <section id="how-it-works" className="py-24 bg-zinc-50 dark:bg-zinc-900/30 snap-start snap-always">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
@@ -511,7 +471,7 @@ export default function Landing() {
       {/* Pricing Section */}
       <section id="pricing" className="snap-start snap-always">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 py-24">
-          <Pricing />
+          <Pricing onGetEarlyAccess={() => setIsWaitlistOpen(true)} />
         </div>
       </section>
 

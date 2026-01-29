@@ -61,7 +61,7 @@ export default function RotatingHeroText() {
           </AnimatePresence>
         </div>
         <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 font-medium">
-          Your AI assistant <span className="text-zinc-900 dark:text-white font-bold italic">for real estate</span>
+          Your AI assistant for real estate that <span className="text-zinc-900 dark:text-white font-bold italic">owns the pipeline</span>
         </p>
       </div>
     </div>
