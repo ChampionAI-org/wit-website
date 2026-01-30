@@ -26,18 +26,21 @@ import WaitlistModal from "../components/WaitlistModal";
 import RotatingHeroText from "../components/RotatingHeroText";
 import AiTcExtrasSection from "../components/AiTcExtrasSection";
 import ActiveDealCard from "../components/ActiveDealCard";
-
+import BookDemoModal from "../components/BookDemoModal";
 
 export default function Landing() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
-  
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+
   // Integration Graph Refs & State
   const containerRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
   const childRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
   const [paths, setPaths] = useState<string[]>([]);
-  const [animationDirection, setAnimationDirection] = useState<"right" | "bottom" | null>(null);
+  const [animationDirection, setAnimationDirection] = useState<
+    "right" | "bottom" | null
+  >(null);
 
   useEffect(() => {
     // Determine direction once on mount (avoids hydration mismatch)
@@ -63,7 +66,7 @@ export default function Landing() {
       const newPaths = childRefs.current.map((child) => {
         if (!child) return "";
         const childRect = child.getBoundingClientRect();
-        
+
         // Child connection point (top center) relative to container
         const cX = childRect.left + childRect.width / 2 - containerRect.left;
         const cY = childRect.top - containerRect.top;
@@ -117,16 +120,17 @@ export default function Landing() {
         <HeroBackdrop />
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 relative w-full">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 pb-10 items-center">
-            
             {/* Left Column: Text */}
             <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
               <AnimateIn trigger="mount" direction="left">
                 <RotatingHeroText />
               </AnimateIn>
-              
+
               <AnimateIn trigger="mount" direction="left" delay={0.05}>
                 <p className="mt-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Wit is the AI assistant for real estate agents that owns the pipeline. It turns every lead into a staged deal, creates the next step, and keeps everything moving to close.
+                  Wit is the AI assistant for real estate agents that owns the
+                  pipeline. It turns every lead into a staged deal, creates the
+                  next step, and keeps everything moving to close.
                 </p>
 
                 {/* Home widget (replaces hero bullets) */}
@@ -134,17 +138,17 @@ export default function Landing() {
                   <ActiveDealCard />
                 </div>
               </AnimateIn>
-              
+
               <StaggerIn
                 direction="up"
                 className="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               >
                 <BezelButton
                   variant="neutral"
-                  onClick={() => setIsWaitlistOpen(true)}
+                  onClick={() => setIsDemoOpen(true)}
                   className="h-12 px-8 text-lg dark:from-white dark:to-zinc-200 dark:text-zinc-950 dark:border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-shadow"
                 >
-                  Get Early Access <ArrowRight className="w-5 h-5 ml-2" />
+                  Book a Demo <ArrowRight className="w-5 h-5 ml-2" />
                 </BezelButton>
                 <BezelButton
                   href="https://discord.gg/uQcUXuQawe"
@@ -157,73 +161,88 @@ export default function Landing() {
 
               {/* Social Proof / Mini trusted by */}
               <div className="mt-12 flex items-center gap-3 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-                 <div className="flex -space-x-3">
-                    {[1,2,3,4].map(i => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 flex items-center justify-center overflow-hidden">
-                            <span className="text-[10px]">👾</span>
-                        </div>
-                    ))}
-                 </div>
-                  <div className="text-sm text-zinc-500 dark:text-zinc-400">
-                     Joined by 300+ agents
-                  </div>
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 flex items-center justify-center overflow-hidden"
+                    >
+                      <span className="text-[10px]">👾</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-sm text-zinc-500 dark:text-zinc-400">
+                  Joined by 300+ agents
+                </div>
               </div>
             </div>
 
             {/* Right Column: Phone Mockup */}
             <div className="relative mt-10 lg:mt-0 flex justify-center lg:justify-end">
-               <motion.div
-                 key={animationDirection ?? "loading"}
-                 className="relative w-[280px] sm:w-[320px] lg:w-[360px]"
-                 initial={
-                   animationDirection === "right"
-                     ? { x: 150, opacity: 0 }
-                     : animationDirection === "bottom"
-                     ? { y: 80, opacity: 0 }
-                     : { opacity: 0 }
-                 }
-                 animate={{ x: 0, y: 0, opacity: 1 }}
-                 transition={{ type: "spring", stiffness: 50, damping: 18, delay: 0.15 }}
-               >
-                  {/* Floating Phone */}
-                  <div className="relative z-10 animate-float">
-                    <div className="relative">
-                      <img
-                        src="/device/Device-1.png"
-                        alt="Wit App Interface"
-                        className="relative z-20 w-full h-auto drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.9)]"
-                      />
+              <motion.div
+                key={animationDirection ?? "loading"}
+                className="relative w-[280px] sm:w-[320px] lg:w-[360px]"
+                initial={
+                  animationDirection === "right"
+                    ? { x: 150, opacity: 0 }
+                    : animationDirection === "bottom"
+                      ? { y: 80, opacity: 0 }
+                      : { opacity: 0 }
+                }
+                animate={{ x: 0, y: 0, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 50,
+                  damping: 18,
+                  delay: 0.15,
+                }}
+              >
+                {/* Floating Phone */}
+                <div className="relative z-10 animate-float">
+                  <div className="relative">
+                    <img
+                      src="/device/Device-1.png"
+                      alt="Wit App Interface"
+                      className="relative z-20 w-full h-auto drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] dark:drop-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.9)]"
+                    />
 
-                      {/* Overlay callouts (on the phone) */}
-                      <div className="hidden sm:block pointer-events-none">
-                        <div className="absolute left-2 sm:left-3 top-28 sm:top-32 w-[200px] rounded-2xl bg-white/65 dark:bg-zinc-900/65 backdrop-blur-xl border border-white/25 dark:border-white/10 shadow-xl p-3 z-30">
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 ring-1 ring-amber-500/20 flex items-center justify-center text-amber-700 dark:text-amber-300">
-                              <Shield className="w-5 h-5" />
+                    {/* Overlay callouts (on the phone) */}
+                    <div className="hidden sm:block pointer-events-none">
+                      <div className="absolute left-2 sm:left-3 top-28 sm:top-32 w-[200px] rounded-2xl bg-white/65 dark:bg-zinc-900/65 backdrop-blur-xl border border-white/25 dark:border-white/10 shadow-xl p-3 z-30">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 ring-1 ring-amber-500/20 flex items-center justify-center text-amber-700 dark:text-amber-300">
+                            <Shield className="w-5 h-5" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                              Deadline guard
                             </div>
-                            <div className="min-w-0">
-                              <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Deadline guard</div>
-                              <div className="text-sm font-bold text-zinc-900 dark:text-white truncate">Inspection due Fri</div>
+                            <div className="text-sm font-bold text-zinc-900 dark:text-white truncate">
+                              Inspection due Fri
                             </div>
                           </div>
                         </div>
+                      </div>
 
-                        <div className="absolute right-2 sm:right-3 bottom-28 sm:bottom-32 w-[200px] rounded-2xl bg-white/65 dark:bg-zinc-900/65 backdrop-blur-xl border border-white/25 dark:border-white/10 shadow-xl p-3 z-30">
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-xl bg-sky-500/10 dark:bg-sky-500/15 ring-1 ring-sky-500/20 flex items-center justify-center text-sky-700 dark:text-sky-300">
-                              <Calendar className="w-5 h-5" />
+                      <div className="absolute right-2 sm:right-3 bottom-28 sm:bottom-32 w-[200px] rounded-2xl bg-white/65 dark:bg-zinc-900/65 backdrop-blur-xl border border-white/25 dark:border-white/10 shadow-xl p-3 z-30">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-sky-500/10 dark:bg-sky-500/15 ring-1 ring-sky-500/20 flex items-center justify-center text-sky-700 dark:text-sky-300">
+                            <Calendar className="w-5 h-5" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                              Auto-scheduled
                             </div>
-                            <div className="min-w-0">
-                              <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Auto-scheduled</div>
-                              <div className="text-sm font-bold text-zinc-900 dark:text-white truncate">Showing, 2:00 PM</div>
+                            <div className="text-sm font-bold text-zinc-900 dark:text-white truncate">
+                              Showing, 2:00 PM
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-
                   </div>
-                </motion.div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -240,190 +259,244 @@ export default function Landing() {
         className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-32 snap-start snap-always"
       >
         <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                Own your pipeline.
-              </h2>
-            <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-                Built for revenue, not reminders. Wit owns your pipeline, follow ups, and next steps.
-            </p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            Own your pipeline.
+          </h2>
+          <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+            Built for revenue, not reminders. Wit owns your pipeline, follow
+            ups, and next steps.
+          </p>
         </div>
 
         <div className="flex flex-col gap-6">
-           
-           {/* Card 1: Integrations (Full Width) */}
-           <AnimateIn direction="up" className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 pb-2 md:pb-4 flex flex-col">
-                <div className="mb-8 relative z-20 max-w-3xl">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">Own the pipeline, end to end.</h3>
-                    <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                       Connect email and calendar. Wit keeps each property moving with next steps, showings, docs, and deadlines.
-                    </p>
-                </div>
-                
-                <div className="relative flex items-end justify-center mt-12 z-10 w-full md:flex-1">
-                     {/* Tree Graph */}
-                     <div ref={containerRef} className="relative w-full max-w-5xl flex flex-col items-center h-[190px] md:h-[220px] lg:h-[230px]">
-                         {/* Parent Node */}
-                          <div ref={parentRef} className="absolute -top-6 md:-top-10 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3">
-                              <Home className="w-5 h-5 text-emerald-500" />
-                              <span className="text-base font-semibold text-zinc-900 dark:text-white">Wit Pipeline</span>
-                          </div>
-                         
-                         {/* Connecting Lines */}
-                        <svg 
-                            className="absolute inset-0 overflow-visible pointer-events-none" 
-                            width={svgSize.width}
-                            height={svgSize.height}
-                            style={{ width: '100%', height: '100%' }}
-                        >
-                            {paths.map((d, i) => (
-                              <motion.path
-                                key={i}
-                                d={d}
-                                fill="none"
-                                stroke="currentColor"
-                                className="text-zinc-300 dark:text-zinc-700"
-                                strokeWidth="2"
-                                vectorEffect="non-scaling-stroke"
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                whileInView={{ pathLength: 1, opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
-                              />
-                            ))}
-                         </svg>
+          {/* Card 1: Integrations (Full Width) */}
+          <AnimateIn
+            direction="up"
+            className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 pb-2 md:pb-4 flex flex-col"
+          >
+            <div className="mb-8 relative z-20 max-w-3xl">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900 dark:text-white">
+                Own the pipeline, end to end.
+              </h3>
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                Connect email and calendar. Wit keeps each property moving with
+                next steps, showings, docs, and deadlines.
+              </p>
+            </div>
 
-                         {/* Child Nodes */}
-                        <StaggerIn className="grid grid-cols-5 w-full gap-0 mt-10 md:mt-12" stagger={0.1} delay={0.5}>
-                             {[
-                               {
-                                 label: "Leads",
-                                 icon: Search,
-                                 tone: "from-emerald-500 to-teal-500",
-                               },
-                               {
-                                 label: "Showings",
-                                 icon: MapPin,
-                                 tone: "from-sky-500 to-blue-500",
-                               },
-                               {
-                                 label: "Follow ups",
-                                 icon: Zap,
-                                 tone: "from-zinc-800 to-zinc-950",
-                               },
-                               {
-                                 label: "Docs",
-                                 icon: FileText,
-                                 tone: "from-rose-500 to-orange-500",
-                               },
-                               {
-                                 label: "Deadlines",
-                                 icon: Calendar,
-                                 tone: "from-amber-500 to-orange-500",
-                               },
-                             ].map((item, i) => (
-                                 <div 
-                                    key={item.label} 
-                                    ref={el => { childRefs.current[i] = el }} 
-                                    className="flex flex-col items-center gap-3"
-                                 >
-                                     <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${item.tone} flex items-center justify-center shadow-sm ring-4 ring-white dark:ring-zinc-900 border border-white/15`}>
-                                        <item.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
-                                     </div>
-                                     <span className="text-xs md:text-sm font-medium text-zinc-600 dark:text-zinc-400">{item.label}</span>
-                                 </div>
-                             ))}
-                         </StaggerIn>
-                     </div>
+            <div className="relative flex items-end justify-center mt-12 z-10 w-full md:flex-1">
+              {/* Tree Graph */}
+              <div
+                ref={containerRef}
+                className="relative w-full max-w-5xl flex flex-col items-center h-[190px] md:h-[220px] lg:h-[230px]"
+              >
+                {/* Parent Node */}
+                <div
+                  ref={parentRef}
+                  className="absolute -top-6 md:-top-10 left-1/2 -translate-x-1/2 z-10 bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-6 py-3 flex items-center gap-3"
+                >
+                  <Home className="w-5 h-5 text-emerald-500" />
+                  <span className="text-base font-semibold text-zinc-900 dark:text-white">
+                    Wit Pipeline
+                  </span>
                 </div>
-           </AnimateIn>
 
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-               {/* Card 2: Executing (Centered) */}
-               <AnimateIn direction="up" delay={0.2} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
-                    <div className="mb-8 relative z-20">
-                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Always Moving the Pipeline</h3>
-                        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                           Wit follows up, schedules the next step, and keeps escrow moving.
-                        </p>
+                {/* Connecting Lines */}
+                <svg
+                  className="absolute inset-0 overflow-visible pointer-events-none"
+                  width={svgSize.width}
+                  height={svgSize.height}
+                  style={{ width: "100%", height: "100%" }}
+                >
+                  {paths.map((d, i) => (
+                    <motion.path
+                      key={i}
+                      d={d}
+                      fill="none"
+                      stroke="currentColor"
+                      className="text-zinc-300 dark:text-zinc-700"
+                      strokeWidth="2"
+                      vectorEffect="non-scaling-stroke"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      whileInView={{ pathLength: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 1.5,
+                        ease: "easeInOut",
+                        delay: 0.2,
+                      }}
+                    />
+                  ))}
+                </svg>
+
+                {/* Child Nodes */}
+                <StaggerIn
+                  className="grid grid-cols-5 w-full gap-0 mt-10 md:mt-12"
+                  stagger={0.1}
+                  delay={0.5}
+                >
+                  {[
+                    {
+                      label: "Leads",
+                      icon: Search,
+                      tone: "from-emerald-500 to-teal-500",
+                    },
+                    {
+                      label: "Showings",
+                      icon: MapPin,
+                      tone: "from-sky-500 to-blue-500",
+                    },
+                    {
+                      label: "Follow ups",
+                      icon: Zap,
+                      tone: "from-zinc-800 to-zinc-950",
+                    },
+                    {
+                      label: "Docs",
+                      icon: FileText,
+                      tone: "from-rose-500 to-orange-500",
+                    },
+                    {
+                      label: "Deadlines",
+                      icon: Calendar,
+                      tone: "from-amber-500 to-orange-500",
+                    },
+                  ].map((item, i) => (
+                    <div
+                      key={item.label}
+                      ref={(el) => {
+                        childRefs.current[i] = el;
+                      }}
+                      className="flex flex-col items-center gap-3"
+                    >
+                      <div
+                        className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${item.tone} flex items-center justify-center shadow-sm ring-4 ring-white dark:ring-zinc-900 border border-white/15`}
+                      >
+                        <item.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                      </div>
+                      <span className="text-xs md:text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                        {item.label}
+                      </span>
                     </div>
-                    <div className="flex-1 relative z-10">
-                        <div className="absolute inset-0">
-                             {/* Scattered Chips */}
-                            <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
-                                Draft follow up
-                            </div>
-                            <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
-                                Follow up on buyer lead
-                            </div>
-                            <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
-                                Schedule inspection
-                            </div>
-                            <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
-                                Escrow deadline due
-                            </div>
-                            
-                            {/* Ghost Chips */}
-                            <div className="absolute top-1/2 left-0 w-24 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
-                            <div className="absolute bottom-1/3 right-0 w-20 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+                  ))}
+                </StaggerIn>
+              </div>
+            </div>
+          </AnimateIn>
 
-                            {/* Delegating Badge */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                                 <div className="bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-5 py-2.5 flex items-center gap-2">
-                                    <Settings className="w-5 h-5 text-emerald-500 animate-spin-slow" />
-                                    <span className="font-bold text-zinc-900 dark:text-white">Executing</span>
-                                 </div>
-                            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Card 2: Executing (Centered) */}
+            <AnimateIn
+              direction="up"
+              delay={0.2}
+              className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col"
+            >
+              <div className="mb-8 relative z-20">
+                <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">
+                  Always Moving the Pipeline
+                </h3>
+                <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                  Wit follows up, schedules the next step, and keeps escrow
+                  moving.
+                </p>
+              </div>
+              <div className="flex-1 relative z-10">
+                <div className="absolute inset-0">
+                  {/* Scattered Chips */}
+                  <div className="absolute top-0 left-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-6">
+                    Draft follow up
+                  </div>
+                  <div className="absolute top-8 right-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-3">
+                    Follow up on buyer lead
+                  </div>
+                  <div className="absolute bottom-24 left-12 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform rotate-12">
+                    Schedule inspection
+                  </div>
+                  <div className="absolute bottom-16 right-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400 shadow-sm transform -rotate-3">
+                    Escrow deadline due
+                  </div>
+
+                  {/* Ghost Chips */}
+                  <div className="absolute top-1/2 left-0 w-24 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+                  <div className="absolute bottom-1/3 right-0 w-20 h-8 bg-zinc-200/30 dark:bg-zinc-800/30 rounded-lg animate-pulse" />
+
+                  {/* Delegating Badge */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                    <div className="bg-white dark:bg-zinc-800 shadow-lg border border-zinc-200 dark:border-zinc-700 rounded-full px-5 py-2.5 flex items-center gap-2">
+                      <Settings className="w-5 h-5 text-emerald-500 animate-spin-slow" />
+                      <span className="font-bold text-zinc-900 dark:text-white">
+                        Executing
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimateIn>
+
+            {/* Card 3: Strategy/Prioritization */}
+            <AnimateIn
+              direction="up"
+              delay={0.1}
+              className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col"
+            >
+              <div className="mb-8 relative z-20">
+                <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">
+                  Focus on What Matters
+                </h3>
+                <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                  Wit shows who to call, what to send, and which deadline is
+                  next.
+                </p>
+              </div>
+              <div className="flex-1 relative overflow-hidden z-10">
+                {/* Layered Background */}
+                <div className="absolute inset-0 space-y-4 pt-4">
+                  {[1, 2, 3].map((_, i) => (
+                    <div
+                      key={i}
+                      className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-white/10 shadow-sm ${
+                        i === 0 ? "opacity-100" : "opacity-50"
+                      }`}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-700" />
+                      <div className="flex-1 space-y-2">
+                        <div className="w-3/4 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
+                        <div className="w-1/2 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
+                      </div>
+                      {i === 0 && (
+                        <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          Action
                         </div>
+                      )}
                     </div>
-               </AnimateIn>
+                  ))}
+                </div>
 
-               {/* Card 3: Strategy/Prioritization */}
-               <AnimateIn direction="up" delay={0.1} className="group relative overflow-hidden rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 h-[500px] flex flex-col">
-                    <div className="mb-8 relative z-20">
-                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">Focus on What Matters</h3>
-                        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                           Wit shows who to call, what to send, and which deadline is next.
-                        </p>
-                    </div>
-                    <div className="flex-1 relative overflow-hidden z-10">
-                         {/* Layered Background */}
-                         <div className="absolute inset-0 space-y-4 pt-4">
-                             {[1, 2, 3].map((_, i) => (
-                                 <div key={i} className={`flex items-center gap-4 p-4 bg-white dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-white/10 shadow-sm ${i === 0 ? 'opacity-100' : 'opacity-50'}`}>
-                                     <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-700" />
-                                     <div className="flex-1 space-y-2">
-                                        <div className="w-3/4 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
-                                        <div className="w-1/2 h-2 bg-zinc-100 dark:bg-zinc-700 rounded" />
-                                     </div>
-                                     {i === 0 && (
-                                         <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                            Action
-                                         </div>
-                                     )}
-                                 </div>
-                             ))}
-                         </div>
-                         
-                         {/* Overlay Pill */}
-                         <div className="absolute inset-0 flex items-center justify-center">
-                             <div className="bg-white dark:bg-zinc-800 shadow-xl border border-zinc-100 dark:border-zinc-700 rounded-full py-2 px-5 flex items-center gap-2 animate-pulse-slow">
-                                 <Filter className="w-4 h-4 text-emerald-500" />
-                                 <span className="font-semibold text-zinc-900 dark:text-white">Filtering</span>
-                             </div>
-                         </div>
-                         
-                         {/* Fade out bottom */}
-                         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent" />
-                    </div>
-               </AnimateIn>
-           </div>
+                {/* Overlay Pill */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white dark:bg-zinc-800 shadow-xl border border-zinc-100 dark:border-zinc-700 rounded-full py-2 px-5 flex items-center gap-2 animate-pulse-slow">
+                    <Filter className="w-4 h-4 text-emerald-500" />
+                    <span className="font-semibold text-zinc-900 dark:text-white">
+                      Filtering
+                    </span>
+                  </div>
+                </div>
+
+                {/* Fade out bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent" />
+              </div>
+            </AnimateIn>
+          </div>
         </div>
       </section>
 
       <AiTcExtrasSection />
 
       {/* How it works - Refined */}
-      <section id="how-it-works" className="py-24 bg-zinc-50 dark:bg-zinc-900/30 snap-start snap-always">
+      <section
+        id="how-it-works"
+        className="py-24 bg-zinc-50 dark:bg-zinc-900/30 snap-start snap-always"
+      >
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
           <AnimateIn direction="left">
             <div>
@@ -431,12 +504,15 @@ export default function Landing() {
                 <CheckCircle2 className="w-4 h-4 mr-2" /> Built for agents
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Close more deals.<br/>Do less admin.
+                Close more deals.
+                <br />
+                Do less admin.
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">
-                Wit is not a chatbot. It is your AI assistant for real estate. It runs your follow ups and keeps deals on track.
+                Wit is not a chatbot. It is your AI assistant for real estate.
+                It runs your follow ups and keeps deals on track.
               </p>
-              
+
               <div className="space-y-4">
                 {[
                   "New lead comes in",
@@ -444,20 +520,25 @@ export default function Landing() {
                   "Wit watches escrow dates",
                   "You get a clear daily list",
                 ].map((line, i) => (
-                  <div key={i} className="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-white/5 border border-zinc-100 dark:border-white/10 hover:border-emerald-500/30 transition-colors">
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-white/5 border border-zinc-100 dark:border-white/10 hover:border-emerald-500/30 transition-colors"
+                  >
                     <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     </div>
-                    <span className="text-zinc-800 dark:text-zinc-200 font-medium">{line}</span>
+                    <span className="text-zinc-800 dark:text-zinc-200 font-medium">
+                      {line}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
           </AnimateIn>
-          
+
           <AnimateIn direction="right">
             <div className="relative">
-               {/* Maybe use Device 3 here for variety */}
+              {/* Maybe use Device 3 here for variety */}
               <img
                 src="/device/Device-3.png"
                 alt="Wit app device screenshot"
@@ -471,7 +552,7 @@ export default function Landing() {
       {/* Pricing Section */}
       <section id="pricing" className="snap-start snap-always">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 py-24">
-          <Pricing onGetEarlyAccess={() => setIsWaitlistOpen(true)} />
+          <Pricing onBookDemo={() => setIsDemoOpen(true)} />
         </div>
       </section>
 
@@ -488,6 +569,7 @@ export default function Landing() {
         isOpen={isWaitlistOpen}
         onClose={() => setIsWaitlistOpen(false)}
       />
+      <BookDemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
   );
 }

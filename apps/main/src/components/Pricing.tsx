@@ -6,14 +6,7 @@ import { AnimateIn } from "./Animate";
 import BezelButton from "./BezelButton";
 import Card from "./Card";
 
-export default function Pricing({ onGetEarlyAccess }: { onGetEarlyAccess?: () => void }) {
-  const handleGetEarlyAccess = () => {
-    if (onGetEarlyAccess) return onGetEarlyAccess();
-    if (typeof window !== "undefined") {
-      window.location.href = "/?autoTrigger=1#pricing";
-    }
-  };
-
+export default function Pricing({ onBookDemo }: { onBookDemo: () => void }) {
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <Card className="rounded-3xl p-8 sm:p-10">
@@ -22,7 +15,7 @@ export default function Pricing({ onGetEarlyAccess }: { onGetEarlyAccess?: () =>
             <AnimateIn trigger="mount" direction="in">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-white/70 border border-zinc-200 text-zinc-700 shadow-sm dark:bg-white/10 dark:border-white/10 dark:text-white/80">
                 <Sparkles className="w-4 h-4" />
-                Pricing (Early Access)
+                Pricing
               </span>
             </AnimateIn>
 
@@ -34,7 +27,8 @@ export default function Pricing({ onGetEarlyAccess }: { onGetEarlyAccess?: () =>
 
             <AnimateIn trigger="mount" direction="left" delay={0.04}>
               <p className="mt-3 text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-7 max-w-2xl">
-                We’re onboarding agents in early access. Pricing depends on your team size and the tools you want Wit to run.
+                We’re onboarding agents in early access. Pricing depends on your
+                team size and the tools you want Wit to run.
               </p>
             </AnimateIn>
 
@@ -50,10 +44,11 @@ export default function Pricing({ onGetEarlyAccess }: { onGetEarlyAccess?: () =>
 
           <div className="rounded-3xl bg-gradient-to-br from-zinc-50 to-white border border-zinc-200 p-6 shadow-[0_18px_50px_rgba(2,6,23,0.10)] dark:from-zinc-900/70 dark:to-zinc-900/30 dark:border-white/10 dark:shadow-[0_18px_50px_rgba(0,0,0,0.55)]">
             <div className="text-sm font-semibold text-zinc-900 dark:text-white">
-              Get early access
+              Book a demo
             </div>
             <div className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-6">
-              Tell us what you want Wit to run in your pipeline. We’ll set you up.
+              Tell us what you want Wit to run in your pipeline. We’ll set you
+              up.
             </div>
 
             <div className="mt-6 flex flex-col gap-3">
@@ -67,9 +62,9 @@ export default function Pricing({ onGetEarlyAccess }: { onGetEarlyAccess?: () =>
               <BezelButton
                 variant="dark"
                 className="w-full justify-center"
-                onClick={handleGetEarlyAccess}
+                onClick={onBookDemo}
               >
-                Get Early Access <ArrowRight className="w-4 h-4" />
+                Book a Demo <ArrowRight className="w-4 h-4" />
               </BezelButton>
             </div>
 
