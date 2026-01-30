@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
+
+const HUBSPOT_URL = "https://meetings-na2.hubspot.com/saul-holding";
 
 interface BookDemoModalProps {
   isOpen: boolean;
@@ -11,33 +13,32 @@ interface BookDemoModalProps {
 
 export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  // Key to force fresh embed each time modal opens
   const [embedKey, setEmbedKey] = useState(0);
+  const [scriptError, setScriptError] = useState(false);
 
   // Reset embed when modal opens
   useEffect(() => {
     if (isOpen) {
       setEmbedKey((prev) => prev + 1);
+      setScriptError(false);
     }
   }, [isOpen]);
 
   useEffect(() => {
     if (isOpen && containerRef.current) {
-      // Small delay to ensure container is mounted
       const timeout = setTimeout(() => {
-        // Load HubSpot embed script
         const existingScript = document.querySelector(
-          'script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]',
-        );
+          'script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]'
+        ) as HTMLScriptElement | null;
 
         if (!existingScript) {
           const script = document.createElement("script");
           script.src =
             "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js";
           script.async = true;
+          script.onerror = () => setScriptError(true);
           document.body.appendChild(script);
         } else {
-          // If script already exists, trigger HubSpot to re-scan for embed containers
           // @ts-ignore - HubSpot global
           if (window.hbspt?.meetings?.create) {
             // @ts-ignore

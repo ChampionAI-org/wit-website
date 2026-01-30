@@ -52,21 +52,6 @@ export default function Header() {
   );
   // A base layer that matches the page background exactly at the very top
   const baseBgOpacity = useTransform(progress, [0, 0.08], [1, 0]);
-  const baseBgOpacitySpring = useSpring(baseBgOpacity, {
-    stiffness: 180,
-    damping: 28,
-    mass: 0.9,
-  });
-  const heroBgOpacitySpring = useSpring(heroBgOpacity, {
-    stiffness: 180,
-    damping: 28,
-    mass: 0.9,
-  });
-  const pillBgOpacitySpring = useSpring(pillBgOpacity, {
-    stiffness: 200,
-    damping: 26,
-    mass: 0.6,
-  });
   const shadow = useMotionTemplate`0 8px 32px rgba(2,6,23, ${shadowOpacity})`;
 
   useEffect(() => {
