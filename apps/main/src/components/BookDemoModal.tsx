@@ -93,17 +93,25 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ type: "spring", damping: 28, stiffness: 350 }}
-            className="relative w-full h-[95vh] sm:h-[90vh] sm:max-w-2xl bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-3xl shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.2)] sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.5)] dark:sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.7)] ring-1 ring-black/5 dark:ring-white/10 overflow-hidden"
+            className="relative w-full h-full sm:h-auto sm:max-h-[94vh] sm:max-w-2xl bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-3xl shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.2)] sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.5)] dark:sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.7)] ring-1 ring-black/5 dark:ring-white/10"
           >
-            {/* Mobile drag indicator */}
-            <div className="sm:hidden flex justify-center pt-3 pb-1">
+            {/* Mobile header with drag indicator and close */}
+            <div className="sm:hidden flex items-center justify-between px-4 pt-3 pb-2">
+              <div className="w-9" /> {/* Spacer */}
               <div className="w-10 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5 text-zinc-400" />
+              </button>
             </div>
 
-            {/* Close button */}
+            {/* Desktop close button */}
             <button
               onClick={onClose}
-              className="absolute top-14 right-4 sm:top-4 z-20 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="hidden sm:block absolute top-5 right-5 z-20 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5 text-zinc-400" />
@@ -112,7 +120,7 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
             {/* HubSpot Embed Container */}
             <div
               ref={containerRef}
-              className="h-[calc(100%-24px)] sm:h-full w-full"
+              className="h-[calc(100%-48px)] sm:h-[700px] w-full overflow-hidden sm:rounded-3xl"
             >
               <div
                 key={embedKey}
