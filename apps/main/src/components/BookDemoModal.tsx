@@ -90,20 +90,20 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ type: "spring", damping: 28, stiffness: 350 }}
-            className="relative w-full h-[95vh] sm:h-[92vh] sm:max-w-2xl sm:min-h-[700px] bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-3xl shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.2)] sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.5)] dark:sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.7)] ring-1 ring-black/5 dark:ring-white/10 overflow-hidden"
+            className="relative w-full h-[95vh] sm:h-[90vh] sm:max-w-2xl bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-3xl shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.2)] sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.3)] dark:shadow-[0_-10px_40px_-12px_rgba(0,0,0,0.5)] dark:sm:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.7)] ring-1 ring-black/5 dark:ring-white/10 overflow-hidden"
           >
             {/* Mobile drag indicator */}
             <div className="sm:hidden flex justify-center pt-3 pb-1">
               <div className="w-10 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
             </div>
 
-            {/* Close button - sleek floating pill */}
+            {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2 sm:p-1.5 rounded-full bg-zinc-100/90 hover:bg-zinc-200 dark:bg-zinc-800/90 dark:hover:bg-zinc-700 transition-all duration-150 sm:hover:scale-105"
+              className="absolute top-14 right-4 sm:top-4 z-20 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               aria-label="Close"
             >
-              <X className="w-5 h-5 sm:w-4 sm:h-4 text-zinc-500 dark:text-zinc-400" />
+              <X className="w-5 h-5 text-zinc-400" />
             </button>
 
             {/* HubSpot Embed Container */}
