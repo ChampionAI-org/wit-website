@@ -28,7 +28,7 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
     if (isOpen && containerRef.current) {
       const timeout = setTimeout(() => {
         const existingScript = document.querySelector(
-          'script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]'
+          'script[src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"]',
         ) as HTMLScriptElement | null;
 
         if (!existingScript) {
@@ -51,15 +51,17 @@ export default function BookDemoModal({ isOpen, onClose }: BookDemoModalProps) {
     }
   }, [isOpen, embedKey]);
 
-  // Close on escape key
+  // Close on escape key and manage scroll lock
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
-    }
+
+    document.addEventListener("keydown", handleEscape);
+    document.body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "";
